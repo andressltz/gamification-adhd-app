@@ -12,6 +12,25 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		4113D9742BB93D9E00933D4A /* FontAwesome6_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9612BB93D9E00933D4A /* FontAwesome6_Solid.ttf */; };
+		4113D9752BB93D9E00933D4A /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9622BB93D9E00933D4A /* FontAwesome5_Brands.ttf */; };
+		4113D9762BB93D9E00933D4A /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9632BB93D9E00933D4A /* Zocial.ttf */; };
+		4113D9772BB93D9E00933D4A /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9642BB93D9E00933D4A /* Fontisto.ttf */; };
+		4113D9782BB93D9E00933D4A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9652BB93D9E00933D4A /* FontAwesome.ttf */; };
+		4113D9792BB93D9E00933D4A /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9662BB93D9E00933D4A /* Ionicons.ttf */; };
+		4113D97A2BB93D9E00933D4A /* FontAwesome6_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9672BB93D9E00933D4A /* FontAwesome6_Brands.ttf */; };
+		4113D97B2BB93D9E00933D4A /* FontAwesome6_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9682BB93D9E00933D4A /* FontAwesome6_Regular.ttf */; };
+		4113D97C2BB93D9E00933D4A /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9692BB93D9E00933D4A /* Entypo.ttf */; };
+		4113D97D2BB93D9E00933D4A /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D96A2BB93D9E00933D4A /* Feather.ttf */; };
+		4113D97E2BB93D9E00933D4A /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D96B2BB93D9E00933D4A /* MaterialIcons.ttf */; };
+		4113D97F2BB93D9E00933D4A /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D96C2BB93D9E00933D4A /* FontAwesome5_Regular.ttf */; };
+		4113D9802BB93D9E00933D4A /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D96D2BB93D9E00933D4A /* Octicons.ttf */; };
+		4113D9812BB93D9E00933D4A /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D96E2BB93D9E00933D4A /* MaterialCommunityIcons.ttf */; };
+		4113D9822BB93D9E00933D4A /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D96F2BB93D9E00933D4A /* SimpleLineIcons.ttf */; };
+		4113D9832BB93D9E00933D4A /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9702BB93D9E00933D4A /* AntDesign.ttf */; };
+		4113D9842BB93D9E00933D4A /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9712BB93D9E00933D4A /* EvilIcons.ttf */; };
+		4113D9852BB93D9E00933D4A /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9722BB93D9E00933D4A /* FontAwesome5_Solid.ttf */; };
+		4113D9862BB93D9E00933D4A /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4113D9732BB93D9E00933D4A /* Foundation.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-AdhdGamificationApp-AdhdGamificationAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-AdhdGamificationApp-AdhdGamificationAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -38,6 +57,25 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AdhdGamificationApp/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-AdhdGamificationApp-AdhdGamificationAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AdhdGamificationApp-AdhdGamificationAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-AdhdGamificationApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdhdGamificationApp.debug.xcconfig"; path = "Target Support Files/Pods-AdhdGamificationApp/Pods-AdhdGamificationApp.debug.xcconfig"; sourceTree = "<group>"; };
+		4113D9612BB93D9E00933D4A /* FontAwesome6_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Solid.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Solid.ttf"; sourceTree = "<group>"; };
+		4113D9622BB93D9E00933D4A /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Brands.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		4113D9632BB93D9E00933D4A /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		4113D9642BB93D9E00933D4A /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		4113D9652BB93D9E00933D4A /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		4113D9662BB93D9E00933D4A /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		4113D9672BB93D9E00933D4A /* FontAwesome6_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Brands.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Brands.ttf"; sourceTree = "<group>"; };
+		4113D9682BB93D9E00933D4A /* FontAwesome6_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Regular.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Regular.ttf"; sourceTree = "<group>"; };
+		4113D9692BB93D9E00933D4A /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		4113D96A2BB93D9E00933D4A /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		4113D96B2BB93D9E00933D4A /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		4113D96C2BB93D9E00933D4A /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		4113D96D2BB93D9E00933D4A /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		4113D96E2BB93D9E00933D4A /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		4113D96F2BB93D9E00933D4A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		4113D9702BB93D9E00933D4A /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		4113D9712BB93D9E00933D4A /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		4113D9722BB93D9E00933D4A /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		4113D9732BB93D9E00933D4A /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Foundation.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-AdhdGamificationApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdhdGamificationApp.release.xcconfig"; path = "Target Support Files/Pods-AdhdGamificationApp/Pods-AdhdGamificationApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-AdhdGamificationApp-AdhdGamificationAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdhdGamificationApp-AdhdGamificationAppTests.debug.xcconfig"; path = "Target Support Files/Pods-AdhdGamificationApp-AdhdGamificationAppTests/Pods-AdhdGamificationApp-AdhdGamificationAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-AdhdGamificationApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AdhdGamificationApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +144,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4113D9602BB93D2B00933D4A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4113D9702BB93D9E00933D4A /* AntDesign.ttf */,
+				4113D9692BB93D9E00933D4A /* Entypo.ttf */,
+				4113D9712BB93D9E00933D4A /* EvilIcons.ttf */,
+				4113D96A2BB93D9E00933D4A /* Feather.ttf */,
+				4113D9652BB93D9E00933D4A /* FontAwesome.ttf */,
+				4113D9622BB93D9E00933D4A /* FontAwesome5_Brands.ttf */,
+				4113D96C2BB93D9E00933D4A /* FontAwesome5_Regular.ttf */,
+				4113D9722BB93D9E00933D4A /* FontAwesome5_Solid.ttf */,
+				4113D9672BB93D9E00933D4A /* FontAwesome6_Brands.ttf */,
+				4113D9682BB93D9E00933D4A /* FontAwesome6_Regular.ttf */,
+				4113D9612BB93D9E00933D4A /* FontAwesome6_Solid.ttf */,
+				4113D9642BB93D9E00933D4A /* Fontisto.ttf */,
+				4113D9732BB93D9E00933D4A /* Foundation.ttf */,
+				4113D9662BB93D9E00933D4A /* Ionicons.ttf */,
+				4113D96E2BB93D9E00933D4A /* MaterialCommunityIcons.ttf */,
+				4113D96B2BB93D9E00933D4A /* MaterialIcons.ttf */,
+				4113D96D2BB93D9E00933D4A /* Octicons.ttf */,
+				4113D96F2BB93D9E00933D4A /* SimpleLineIcons.ttf */,
+				4113D9632BB93D9E00933D4A /* Zocial.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +180,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				4113D9602BB93D2B00933D4A /* Fonts */,
 				13B07FAE1A68108700A75B9A /* AdhdGamificationApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* AdhdGamificationAppTests */,
@@ -242,7 +307,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4113D97F2BB93D9E00933D4A /* FontAwesome5_Regular.ttf in Resources */,
+				4113D9772BB93D9E00933D4A /* Fontisto.ttf in Resources */,
+				4113D97C2BB93D9E00933D4A /* Entypo.ttf in Resources */,
+				4113D97D2BB93D9E00933D4A /* Feather.ttf in Resources */,
+				4113D97B2BB93D9E00933D4A /* FontAwesome6_Regular.ttf in Resources */,
+				4113D9852BB93D9E00933D4A /* FontAwesome5_Solid.ttf in Resources */,
+				4113D9842BB93D9E00933D4A /* EvilIcons.ttf in Resources */,
+				4113D97E2BB93D9E00933D4A /* MaterialIcons.ttf in Resources */,
+				4113D9832BB93D9E00933D4A /* AntDesign.ttf in Resources */,
+				4113D9812BB93D9E00933D4A /* MaterialCommunityIcons.ttf in Resources */,
+				4113D9782BB93D9E00933D4A /* FontAwesome.ttf in Resources */,
+				4113D9792BB93D9E00933D4A /* Ionicons.ttf in Resources */,
+				4113D9822BB93D9E00933D4A /* SimpleLineIcons.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				4113D9752BB93D9E00933D4A /* FontAwesome5_Brands.ttf in Resources */,
+				4113D9862BB93D9E00933D4A /* Foundation.ttf in Resources */,
+				4113D9802BB93D9E00933D4A /* Octicons.ttf in Resources */,
+				4113D9762BB93D9E00933D4A /* Zocial.ttf in Resources */,
+				4113D9742BB93D9E00933D4A /* FontAwesome6_Solid.ttf in Resources */,
+				4113D97A2BB93D9E00933D4A /* FontAwesome6_Brands.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +570,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 853H6ALNQX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AdhdGamificationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -499,6 +584,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = br.com.andressltz.AdhdGamificationApp;
 				PRODUCT_NAME = AdhdGamificationApp;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -513,6 +599,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 853H6ALNQX;
 				INFOPLIST_FILE = AdhdGamificationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -525,6 +612,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = br.com.andressltz.AdhdGamificationApp;
 				PRODUCT_NAME = AdhdGamificationApp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
