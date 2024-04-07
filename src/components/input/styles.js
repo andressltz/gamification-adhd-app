@@ -11,10 +11,10 @@ export default StyleSheet.create({
 		borderColor: '#C6C6C6',
 		borderWidth: 1,
 		marginTop: 2,
-		marginBottom: 10
+		marginBottom: 10,
 	},
 	label: {
 		fontSize: 18,
-		marginBottom: 5
-	}
+		marginBottom: 5,
+	},
 })

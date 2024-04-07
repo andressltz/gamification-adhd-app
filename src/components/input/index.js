@@ -1,16 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import {Text, TextInput, View} from 'react-native';
-import styles from './styles';
+import { Text, TextInput, View } from 'react-native'
+import styles from './styles'
 
 export function Input(props) {
-	const {
-		placeholderTextColor = '#000000',
-		style = {},
-		label = '',
-		type = 'default',
-		...otherProps
-	} = props;
+	const { placeholderTextColor = '#000000', style = {}, label = '', type = 'default', ...otherProps } = props
 
 	return (
 		<View>
@@ -22,5 +16,5 @@ export function Input(props) {
 				keyboardType={type}
 			/>
 		</View>
-	);
+	)
 }

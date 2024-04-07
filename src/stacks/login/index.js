@@ -15,11 +15,10 @@ export function LoginStack() {
 					elevation: 0,
 					shadowOpacity: 0,
 					backgroundColor: '#008120',
-				}
+				},
 			}}>
 			<Stack.Screen component={LoginScreen} name='LoginScreen' options={{ title: 'Login' }} />
 			<Stack.Screen component={RegisterScreen} name='RegisterScreen' options={{ title: 'Cadastro' }} />
 		</Stack.Navigator>
 	)
 }
-
