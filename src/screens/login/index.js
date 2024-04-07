@@ -4,7 +4,13 @@ import { View, SafeAreaView } from 'react-native'
 import styles from '../../styles'
 import { Button, Input } from '../../components'
 
-export function LoginScreen() {
+export function LoginScreen(props) {
+	const {navigation} = props
+
+	function onButtonRegisterPress() {
+		navigation.navigate('RegisterScreen', [])
+	}
+
 	return (
 		<SafeAreaView style={{flex: 1, backgroundColor: '#FFFFFF'}}>
 			<View style={styles.container}>
@@ -13,7 +19,7 @@ export function LoginScreen() {
 				<Input label='Senha:' placeholder='Senha'/>
 
 				<Button label="Entrar"/>
-				<Button label="Cadastrar"/>
+				<Button label="Cadastrar" onPress={() => onButtonRegisterPress()}/>
 
 			</View>
 		</SafeAreaView>

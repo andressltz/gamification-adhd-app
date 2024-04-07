@@ -8,6 +8,7 @@ const Stack = createStackNavigator()
 export function TasksStack() {
 	return (
 		<Stack.Navigator
+			initialRouteName='TasksScreen'
 			screenOptions={{
 				headerTitleAlign: 'left',
 				headerTintColor: '#FFFFFF',
@@ -18,6 +19,7 @@ export function TasksStack() {
 				},
 			}}>
 			<Stack.Screen component={TasksScreen} name='TasksScreen' options={{ title: 'Tarefas' }} />
+			<Stack.Screen component={TasksScreen} name='TasksScreen2' options={{ title: 'Tarefas2' }} />
 		</Stack.Navigator>
 	)
 }
