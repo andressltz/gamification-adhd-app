@@ -4,11 +4,13 @@ export default StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#FFFFFF',
-		padding: 30,
+		paddingLeft: 15,
+		paddingRight: 15,
+		paddingTop: 10,
+		paddingBottom: 10,
 	},
-	separator: {
-		height: 1,
+	safeArea: {
+		flex: 1,
 		backgroundColor: '#FFFFFF',
-		marginVertical: 20,
 	},
 })

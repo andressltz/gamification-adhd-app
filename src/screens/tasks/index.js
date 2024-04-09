@@ -5,19 +5,17 @@ import styles from '../../styles'
 import { Button } from '../../components'
 
 export function TasksScreen(props) {
-	const {navigation} = props
+	const { navigation } = props
 
-	function onPressCard() {
-    navigation.navigate('TasksScreen')
-  }
+	function onButtonNewTaskPress() {
+		navigation.navigate('NewTaskScreen', [])
+	}
 
 	return (
-		<SafeAreaView style={{flex: 1, backgroundColor: '#FFFFFF'}}>
+		<SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
 			<View style={styles.container}>
-
 				<Text>TasksScreen</Text>
-				<Button onPressCard={() => onPressCard()}>Click aqui</Button>
-
+				<Button label='Nova tarefa' onPress={() => onButtonNewTaskPress()} />
 			</View>
 		</SafeAreaView>
 	)

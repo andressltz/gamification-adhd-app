@@ -23,7 +23,7 @@ export function RegisterScreen(props) {
 		{ label: 'Profissional', value: '3' },
 	]
 
-	async function register() {
+	async function onButtonRegisterPress() {
 		const response = await api.post('/user', {
 			name: name,
 			email: email,
@@ -41,7 +41,7 @@ export function RegisterScreen(props) {
 	}
 
 	return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+		<SafeAreaView style={styles.safeArea}>
 			<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
 				<ScrollView>
 					{hasError ? <Toast label={errorMessage} /> : null}
@@ -85,7 +85,7 @@ export function RegisterScreen(props) {
 						}}
 					/>
 
-					<Button label='Cadastrar' onPress={() => register()} />
+					<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
 				</ScrollView>
 			</KeyboardAvoidingView>
 		</SafeAreaView>

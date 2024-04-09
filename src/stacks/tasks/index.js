@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { createStackNavigator } from '@react-navigation/stack'
-import { TasksScreen } from '../../screens'
+import { TasksScreen, NewTaskScreen } from '../../screens'
 
 const Stack = createStackNavigator()
 
@@ -19,7 +19,7 @@ export function TasksStack() {
 				},
 			}}>
 			<Stack.Screen component={TasksScreen} name='TasksScreen' options={{ title: 'Tarefas' }} />
-			<Stack.Screen component={TasksScreen} name='TasksScreen2' options={{ title: 'Tarefas2' }} />
+			<Stack.Screen component={NewTaskScreen} name='NewTaskScreen' options={{ title: 'Nova Tarefa' }} />
 		</Stack.Navigator>
 	)
 }
