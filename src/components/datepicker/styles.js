@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { COLORS } from '../../assets'
 
 export default StyleSheet.create({
 	container: {
@@ -10,10 +11,10 @@ export default StyleSheet.create({
 		flexWrap: 'wrap',
 	},
 	input: {
-		color: 'gray',
+		color: COLORS.GREY,
 		borderRadius: 10,
 		fontWeight: '600',
-		borderColor: '#C6C6C6',
+		borderColor: COLORS.GREY,
 		borderWidth: 1,
 		marginTop: 2,
 		paddingLeft: 5,

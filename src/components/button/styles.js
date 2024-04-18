@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native'
+import { COLORS } from '../../assets'
 
 export default StyleSheet.create({
 	mainButton: {
-		backgroundColor: '#04741C',
+		backgroundColor: COLORS.GREEN_BUTTON,
 		height: 60,
 		marginVertical: 10,
 		borderRadius: 10,
@@ -10,7 +11,7 @@ export default StyleSheet.create({
 		alignItems: 'center',
 	},
 	buttonText: {
-		color: '#FFFFFF',
+		color: COLORS.WHITE,
 		textTransform: 'capitalize',
 		fontSize: 18,
 		fontWeight: '600',

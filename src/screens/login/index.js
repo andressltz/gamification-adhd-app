@@ -4,6 +4,7 @@ import { View, SafeAreaView } from 'react-native'
 import styles from '../../styles'
 import { Button, Input, Toast } from '../../components'
 import { api } from '../../services'
+import { COLORS } from '../../assets'
 
 export function LoginScreen(props) {
 	const { navigation } = props
@@ -33,7 +34,7 @@ export function LoginScreen(props) {
 	}
 
 	return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+		<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.WHITE }}>
 			<View style={styles.container}>
 				{hasError ? <Toast label={errorMessage} /> : null}
 

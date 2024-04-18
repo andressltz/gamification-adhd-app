@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { COLORS } from '../../assets'
 
 export default StyleSheet.create({
 	container: {
@@ -7,7 +8,7 @@ export default StyleSheet.create({
 	label: {
 		flex: 1,
 		position: 'absolute',
-		backgroundColor: 'white',
+		backgroundColor: COLORS.WHITE,
 		left: 10,
 		top: 4,
 		zIndex: 999,
@@ -17,7 +18,7 @@ export default StyleSheet.create({
 	dropdown: {
 		height: 50,
 		flex: 1,
-		borderColor: 'gray',
+		borderColor: COLORS.GREY,
 		borderWidth: 0.5,
 		borderRadius: 8,
 		paddingHorizontal: 8,

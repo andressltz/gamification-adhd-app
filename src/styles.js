@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native'
+import { COLORS } from './assets'
 
 export default StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#FFFFFF',
+		backgroundColor: COLORS.WHITE,
 		paddingLeft: 15,
 		paddingRight: 15,
 		paddingTop: 10,
@@ -11,6 +12,11 @@ export default StyleSheet.create({
 	},
 	safeArea: {
 		flex: 1,
-		backgroundColor: '#FFFFFF',
+		backgroundColor: COLORS.WHITE,
+	},
+	loaderContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 })

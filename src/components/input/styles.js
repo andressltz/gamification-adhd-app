@@ -1,14 +1,15 @@
 import { StyleSheet } from 'react-native'
+import { COLORS } from '../../assets'
 
 export default StyleSheet.create({
 	mainInput: {
-		backgroundColor: '#FFFFFF',
+		backgroundColor: COLORS.WHITE,
 		height: 60,
 		paddingHorizontal: 20,
 		borderRadius: 10,
 		fontSize: 18,
 		fontWeight: '600',
-		borderColor: '#C6C6C6',
+		borderColor: COLORS.GREY,
 		borderWidth: 1,
 		marginTop: 2,
 		marginBottom: 10,

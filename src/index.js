@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AchievementsStack, TasksStack, MessagesStack, ProfileStack, LoginStack } from './stacks'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { COLORS } from './assets'
 
 const BottomTab = createBottomTabNavigator()
 
@@ -12,11 +13,11 @@ export default function App() {
 		<NavigationContainer>
 			<BottomTab.Navigator
 				screenOptions={{
-					tabBarActiveTintColor: '#FFFFFF',
-					tabBarActiveBackgroundColor: '#006E1B',
-					tabBarInactiveTintColor: '#FFFFFF',
-					tabBarInactiveBackgroundColor: '#008120',
-					tabBarStyle: [{ backgroundColor: '#008120', display: 'flex' }],
+					tabBarActiveTintColor: COLORS.WHITE,
+					tabBarActiveBackgroundColor: COLORS.GREEN_SEC,
+					tabBarInactiveTintColor: COLORS.WHITE,
+					tabBarInactiveBackgroundColor: COLORS.GREEN_PRIM,
+					tabBarStyle: [{ backgroundColor: COLORS.GREEN_PRIM, display: 'flex' }],
 				}}>
 				<BottomTab.Screen
 					component={TasksStack}
