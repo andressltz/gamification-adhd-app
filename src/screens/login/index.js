@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { View, SafeAreaView } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import styles from '../../styles'
 import { Button, Input, Toast } from '../../components'
-import { api } from '../../services'
-import { COLORS } from '../../assets'
+import { ApiClient } from '../../services'
+
+const api = ApiClient()
 
 export function LoginScreen(props) {
-	const { navigation } = props
+	const { navigation, route } = props
+	const { setTokenStack } = route.params
 
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
@@ -21,9 +24,15 @@ export function LoginScreen(props) {
 			password: pass,
 		})
 
-		if (response.data.data) {
-			navigation.navigate('ProfileScreen', [])
+		if (response.data.data.token) {
+			console.log('token salvando', response. data.data.token)
+			await AsyncStorage.setItem('@App:token', response.data.data.token)
+			await AsyncStorage.setItem('@App:userType', response.data.data.user.type)
+			setTokenStack(response.data.data.token)
 		} else {
+			await AsyncStorage.setItem('@App:token', undefined)
+			await AsyncStorage.setItem('@App:userType', undefined)
+			setTokenStack(undefined)
 			setHasError(true)
 			setErrorMessage(response.data.error)
 		}
@@ -34,7 +43,7 @@ export function LoginScreen(props) {
 	}
 
 	return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.WHITE }}>
+		<SafeAreaView style={styles.safeArea}>
 			<View style={styles.container}>
 				{hasError ? <Toast label={errorMessage} /> : null}
 

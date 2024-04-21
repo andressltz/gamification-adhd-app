@@ -3,7 +3,9 @@ import { View, SafeAreaView, KeyboardAvoidingView, ScrollView } from 'react-nati
 
 import styles from '../../styles'
 import { Button, Input, Toast, Selection } from '../../components'
-import { api } from '../../services'
+import { ApiClient } from '../../services'
+
+const api = ApiClient()
 
 export function RegisterScreen(props) {
 	const { navigation } = props
@@ -18,8 +20,8 @@ export function RegisterScreen(props) {
 	const [userType, setUserType] = useState(null)
 
 	const userTypeOptions = [
-		{ label: 'Paciente', value: '1' },
-		{ label: 'Responsável', value: '2' },
+		{ label: 'Responsável', value: '1' },
+		{ label: 'Paciente', value: '2' },
 		{ label: 'Profissional', value: '3' },
 	]
 
@@ -49,7 +51,7 @@ export function RegisterScreen(props) {
 					<Input label='Nome:' placeholder='Insira seu nome' onChangeText={setFormName} autoCorrect={false} value={name} />
 					<Input
 						label='Email:'
-						placeholder='Insira seu email'
+						placeholder='nome@servidor.com.br'
 						type='email-address'
 						onChangeText={setFormEmail}
 						autoCorrect={false}
@@ -58,7 +60,7 @@ export function RegisterScreen(props) {
 					/>
 					<Input
 						label='Telefone:'
-						placeholder='Insira seu telefone'
+						placeholder='(11) 98765-4321'
 						type='phone-pad'
 						onChangeText={setFormPhone}
 						autoCorrect={false}

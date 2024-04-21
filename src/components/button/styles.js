@@ -9,11 +9,15 @@ export default StyleSheet.create({
 		borderRadius: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
+		flexDirection: 'row',
 	},
 	buttonText: {
 		color: COLORS.WHITE,
 		textTransform: 'capitalize',
 		fontSize: 18,
 		fontWeight: '600',
+	},
+	icon: {
+		marginRight: 5,
 	},
 })

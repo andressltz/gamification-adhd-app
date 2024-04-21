@@ -1,27 +1,57 @@
-import React, { useState, useEffect } from 'react'
-import { View, SafeAreaView, FlatList, ActivityIndicator } from 'react-native'
+import React, { useLayoutEffect, useState, useEffect } from 'react'
+import { View, SafeAreaView, FlatList, ActivityIndicator, useColorScheme } from 'react-native'
+import { FAB } from '@rneui/themed'
 
 import styles from '../../styles'
-import { api } from '../../services'
-import { ItemCard } from '../../components'
+import { ApiClient } from '../../services'
+import { ItemCard, Toast } from '../../components'
 import { COLORS } from '../../assets'
+import { COLORS_DARK } from '../../assets'
 
-export function TasksScreen(props) {
-	const { navigation } = props
+const api = ApiClient()
+
+export function TasksScreen({ route, navigation }) {
+	// const isDarkMode = useColorScheme() === 'dark';
+	// const COLORSCHEME = isDarkMode ? COLORS_DARK : COLORS
+
+	const { patientId, patientName } = route.params
+
+	const [hasError, setHasError] = useState(false)
+	const [errorMessage, setErrorMessage] = useState(undefined)
 
 	const [isLoading, setIsLoading] = useState(false)
 	const [tasks, setTasks] = useState([])
 
+	useLayoutEffect(() => {
+		if (patientName) {
+			navigation.setOptions({ title: `Tarefas de ${patientName}` })
+		}
+	}, [patientName, navigation])
+
 	useEffect(() => {
 		async function getScreenData() {
 			setIsLoading(true)
-			const resp = await api.get('/task')
-			console.log(resp.data.data)
-			setTasks(resp.data.data)
+			if (patientId) {
+				const response = await api.get(`/task/${patientId}`)
+				if (response?.data?.data) {
+					setTasks(response.data.data)
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
+			} else {
+				const response = await api.get('/task')
+				if (response?.data?.data) {
+					setTasks(response.data.data)
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
+			}
 			setIsLoading(false)
 		}
 		getScreenData()
-	}, [])
+	}, [route])
 
 	function onButtonNewTaskPress() {
 		navigation.navigate('NewTaskScreen', [])
@@ -30,17 +60,18 @@ export function TasksScreen(props) {
 	function renderContent() {
 		if (isLoading) {
 			return (
-				<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.WHITE }}>
+				<SafeAreaView style={styles.safeArea}>
 					<View style={styles.loaderContainer}>
 						<ActivityIndicator size='large' />
-						{/* <Button label='Nova tarefa' onPress={() => onButtonNewTaskPress()} /> */}
 					</View>
 				</SafeAreaView>
 			)
 		}
 
 		return (
-			<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.WHITE }}>
+			<SafeAreaView style={styles.safeArea}>
+				{hasError ? <Toast label={errorMessage} /> : null}
+
 				<FlatList
 					numColumns={1}
 					data={tasks}
@@ -58,6 +89,16 @@ export function TasksScreen(props) {
 							keyExtractor={item.id}
 						/>
 					)}
+				/>
+				<FAB
+					size='large'
+					placement='right'
+					onPress={() => onButtonNewTaskPress()}
+					color={COLORS.GREEN_PRIM}
+					icon={{
+						name: 'add',
+						color: 'white',
+					}}
 				/>
 			</SafeAreaView>
 		)

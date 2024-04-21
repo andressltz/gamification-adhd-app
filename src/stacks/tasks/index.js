@@ -18,8 +18,9 @@ export function TasksStack() {
 					shadowOpacity: 0,
 					backgroundColor: COLORS.GREEN_PRIM,
 				},
+				headerBackTitleVisible: false,
 			}}>
-			<Stack.Screen component={TasksScreen} name='TasksScreen' options={{ title: 'Tarefas' }} />
+			<Stack.Screen component={TasksScreen} name='TasksScreen' options={{ title: 'Tarefas' }} initialParams={{}} />
 			<Stack.Screen component={NewTaskScreen} name='NewTaskScreen' options={{ title: 'Nova Tarefa' }} />
 		</Stack.Navigator>
 	)

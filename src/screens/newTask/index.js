@@ -66,8 +66,8 @@ export function NewTaskScreen(props) {
 
 	return (
 		<SafeAreaView style={styles.safeArea}>
-			<View style={styles.container}>
-				<ScrollView>
+			<View style={styles.containerScroll}>
+				<ScrollView style={styles.scrollview}>
 					{hasError ? <Toast label={errorMessage} /> : null}
 
 					<Input label='Título da tarefa:' placeholder='Ex: Arrumar guarda roupa' onChangeText={setFormTitle} value={title} />

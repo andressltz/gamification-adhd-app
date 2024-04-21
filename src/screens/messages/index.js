@@ -6,7 +6,7 @@ import { COLORS } from '../../assets'
 
 export function MessagesScreen() {
 	return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.WHITE }}>
+		<SafeAreaView style={styles.safeArea}>
 			<View style={styles.container}>
 				<Text>MessagesScreen</Text>
 			</View>

@@ -1,16 +1,12 @@
 import React from 'react'
 import { View, SafeAreaView, Text } from 'react-native'
+import styles from './styles'
 
-import styles from '../../styles'
-import { COLORS } from '../../assets'
-
-export function ArchivementsScreen() {
+export function SplashScreen(props) {
 	return (
 		<SafeAreaView style={styles.safeArea}>
 			<View style={styles.container}>
-
-				<Text>ArchivementsScreen</Text>
-
+				<Text style={styles.label}>TDAH APP</Text>
 			</View>
 		</SafeAreaView>
 	)

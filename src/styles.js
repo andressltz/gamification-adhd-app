@@ -10,6 +10,16 @@ export default StyleSheet.create({
 		paddingTop: 10,
 		paddingBottom: 10,
 	},
+	containerScroll:{
+		flex: 1,
+		backgroundColor: COLORS.WHITE,
+	},
+	scrollview: {
+		paddingLeft: 15,
+		paddingRight: 15,
+		paddingTop: 10,
+		paddingBottom: 10,
+	},
 	safeArea: {
 		flex: 1,
 		backgroundColor: COLORS.WHITE,
