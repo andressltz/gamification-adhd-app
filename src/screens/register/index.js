@@ -34,11 +34,11 @@ export function RegisterScreen(props) {
 			type: userType,
 		})
 
-		if (response.data.data) {
+		if (response?.data?.data) {
 			navigation.navigate('LoginScreen', [])
 		} else {
 			setHasError(true)
-			setErrorMessage(response.data.error)
+			setErrorMessage(response)
 		}
 	}
 

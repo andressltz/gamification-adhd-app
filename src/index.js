@@ -99,6 +99,7 @@ export default function App() {
 					/>
 					<BottomTab.Screen
 						component={ProfileStack}
+						initialParams={{ setToken }}
 						name='ProfileStack'
 						options={{
 							tabBarIcon: ({ focused, color, size }) => <Icon name='user' size={size} color={color} />,

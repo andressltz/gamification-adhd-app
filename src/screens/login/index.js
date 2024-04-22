@@ -23,18 +23,17 @@ export function LoginScreen(props) {
 			email: email,
 			password: pass,
 		})
-
-		if (response.data.data.token) {
+		if (response?.data?.data?.token) {
 			console.log('token salvando', response. data.data.token)
 			await AsyncStorage.setItem('@App:token', response.data.data.token)
 			await AsyncStorage.setItem('@App:userType', response.data.data.user.type)
 			setTokenStack(response.data.data.token)
 		} else {
-			await AsyncStorage.setItem('@App:token', undefined)
-			await AsyncStorage.setItem('@App:userType', undefined)
+			await AsyncStorage.removeItem('@App:token')
+			await AsyncStorage.removeItem('@App:userType')
 			setTokenStack(undefined)
 			setHasError(true)
-			setErrorMessage(response.data.error)
+			setErrorMessage(response)
 		}
 	}
 

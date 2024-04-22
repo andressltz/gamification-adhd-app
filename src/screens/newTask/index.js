@@ -52,11 +52,11 @@ export function NewTaskScreen(props) {
 			patient: { id: 1 },
 			owner: { id: 2 },
 		})
-		if (response.data.data) {
+		if (response?.data?.data) {
 			navigation.navigate('TasksScreen', [])
 		} else {
 			setHasError(true)
-			setErrorMessage(response.data.error)
+			setErrorMessage(response)
 		}
 	}
 

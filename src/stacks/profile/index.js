@@ -4,13 +4,23 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NewPatientScreen, ProfileScreen } from '../../screens'
 import { COLORS } from '../../assets'
 import { HeaderButton } from '../../components'
-import { Alert } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Stack = createStackNavigator()
 
-export function ProfileStack() {
+export function ProfileStack(props) {
+	const { navigation, route } = props
+	const { setToken } = route.params
+
+
+	const removeToken = async () => {
+		await AsyncStorage.removeItem('@App:token')
+		await AsyncStorage.removeItem('@App:userType')
+		setToken(undefined)
+	}
+
 	function onPressLogout() {
-		Alert.alert('sair')
+		removeToken()
 	}
 
 	return (
