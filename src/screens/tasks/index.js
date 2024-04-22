@@ -4,7 +4,7 @@ import { FAB } from '@rneui/themed'
 
 import styles from '../../styles'
 import { ApiClient } from '../../services'
-import { ItemCard, Toast } from '../../components'
+import { ItemCard, Toast, EmptyList } from '../../components'
 import { COLORS } from '../../assets'
 import { COLORS_DARK } from '../../assets'
 
@@ -15,12 +15,16 @@ export function TasksScreen({ route, navigation }) {
 	// const COLORSCHEME = isDarkMode ? COLORS_DARK : COLORS
 
 	const { patientId, patientName } = route.params
+	const isPatient = false // TODO fix it
 
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
 
 	const [isLoading, setIsLoading] = useState(false)
 	const [tasks, setTasks] = useState([])
+
+	const emptyMsg = 'Nenhuma tarefa cadastrada.'
+	const emptyMsgAdd = 'Para cadastrar, selecione um paciente em Perfil.'
 
 	useLayoutEffect(() => {
 		if (patientName) {
@@ -32,9 +36,10 @@ export function TasksScreen({ route, navigation }) {
 		async function getScreenData() {
 			setIsLoading(true)
 			if (patientId) {
-				const response = await api.get(`/task/${patientId}`)
+				const response = await api.get(`/task/user/${patientId}`)
 				if (response?.data?.data) {
 					setTasks(response.data.data)
+					setHasError(false)
 				} else {
 					setHasError(true)
 					setErrorMessage(response)
@@ -43,6 +48,7 @@ export function TasksScreen({ route, navigation }) {
 				const response = await api.get('/task')
 				if (response?.data?.data) {
 					setTasks(response.data.data)
+					setHasError(false)
 				} else {
 					setHasError(true)
 					setErrorMessage(response)
@@ -56,6 +62,19 @@ export function TasksScreen({ route, navigation }) {
 	function onButtonNewTaskPress() {
 		navigation.navigate('NewTaskScreen', [])
 	}
+
+	// function getUserType(type) {
+		// const token = await AsyncStorage.getItem('@App:token')
+	// 	if (type === 'PARENT' || type === 1) {
+	// 		return 'Responsável'
+	// 	} else if (type === 'PATIENT' || type === 2) {
+	// 		return ''
+	// 	} else if (type === 'PROFESSIONAL' || type === 3) {
+	// 		return 'Profissional'
+	// 	} else {
+	// 		return ''
+	// 	}
+	// }
 
 	function renderContent() {
 		if (isLoading) {
@@ -75,6 +94,7 @@ export function TasksScreen({ route, navigation }) {
 				<FlatList
 					numColumns={1}
 					data={tasks}
+					ListEmptyComponent={() => <EmptyList canAdd={!isPatient} msg={emptyMsg} msgAdd={emptyMsgAdd} />}
 					renderItem={({ item }) => (
 						<ItemCard
 							title={item.title}
@@ -85,7 +105,6 @@ export function TasksScreen({ route, navigation }) {
 							status={item.status}
 							id={item.id}
 							// onPress={() => onButtonPress(item.name, item.id)}
-							// empty={item.empty}
 							keyExtractor={item.id}
 						/>
 					)}
@@ -93,6 +112,7 @@ export function TasksScreen({ route, navigation }) {
 				<FAB
 					size='large'
 					placement='right'
+					visible={!isPatient && patientId ? true : false}
 					onPress={() => onButtonNewTaskPress()}
 					color={COLORS.GREEN_PRIM}
 					icon={{
