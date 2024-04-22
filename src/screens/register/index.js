@@ -20,9 +20,9 @@ export function RegisterScreen(props) {
 	const [userType, setUserType] = useState(null)
 
 	const userTypeOptions = [
-		{ label: 'Responsável', value: '1' },
-		{ label: 'Paciente', value: '2' },
-		{ label: 'Profissional', value: '3' },
+		{ label: 'Responsável', value: '0' },
+		{ label: 'Paciente', value: '1' },
+		{ label: 'Profissional', value: '2' },
 	]
 
 	async function onButtonRegisterPress() {

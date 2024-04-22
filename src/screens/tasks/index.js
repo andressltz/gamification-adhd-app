@@ -1,12 +1,12 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react'
-import { View, SafeAreaView, FlatList, ActivityIndicator, useColorScheme } from 'react-native'
+import { View, SafeAreaView, FlatList, ActivityIndicator } from 'react-native'
 import { FAB } from '@rneui/themed'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import styles from '../../styles'
 import { ApiClient } from '../../services'
 import { ItemCard, Toast, EmptyList } from '../../components'
 import { COLORS } from '../../assets'
-import { COLORS_DARK } from '../../assets'
 
 const api = ApiClient()
 
@@ -15,7 +15,7 @@ export function TasksScreen({ route, navigation }) {
 	// const COLORSCHEME = isDarkMode ? COLORS_DARK : COLORS
 
 	const { patientId, patientName } = route.params
-	const isPatient = false // TODO fix it
+	const [isPatient, setIsPatient] = useState(false)
 
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
@@ -25,6 +25,16 @@ export function TasksScreen({ route, navigation }) {
 
 	const emptyMsg = 'Nenhuma tarefa cadastrada.'
 	const emptyMsgAdd = 'Para cadastrar, selecione um paciente em Perfil.'
+
+	useEffect(() => {
+		getStorageUserType().then((userType) => {
+			if (userType === 'PATIENT') {
+				setIsPatient(true)
+			} else {
+				setIsPatient(false)
+			}
+		})
+	}, [])
 
 	useLayoutEffect(() => {
 		if (patientName) {
@@ -63,18 +73,9 @@ export function TasksScreen({ route, navigation }) {
 		navigation.navigate('NewTaskScreen', [])
 	}
 
-	// function getUserType(type) {
-		// const token = await AsyncStorage.getItem('@App:token')
-	// 	if (type === 'PARENT' || type === 1) {
-	// 		return 'Responsável'
-	// 	} else if (type === 'PATIENT' || type === 2) {
-	// 		return ''
-	// 	} else if (type === 'PROFESSIONAL' || type === 3) {
-	// 		return 'Profissional'
-	// 	} else {
-	// 		return ''
-	// 	}
-	// }
+	const getStorageUserType = async () => {
+		return await AsyncStorage.getItem('@App:userType')
+	}
 
 	function renderContent() {
 		if (isLoading) {

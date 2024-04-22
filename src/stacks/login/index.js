@@ -27,6 +27,7 @@ export function LoginStack(props) {
 					shadowOpacity: 0,
 					backgroundColor: COLORS.GREEN_PRIM,
 				},
+				headerBackTitleVisible: false,
 			}}>
 			<Stack.Screen initialParams={{ setTokenStack }} component={LoginScreen} name='LoginScreen' options={{ title: 'Login' }} />
 			<Stack.Screen

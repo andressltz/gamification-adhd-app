@@ -24,10 +24,10 @@ export function LoginScreen(props) {
 			password: pass,
 		})
 		if (response?.data?.data?.token) {
-			console.log('token salvando', response. data.data.token)
 			await AsyncStorage.setItem('@App:token', response.data.data.token)
 			await AsyncStorage.setItem('@App:userType', response.data.data.user.type)
 			setTokenStack(response.data.data.token)
+			setHasError(false)
 		} else {
 			await AsyncStorage.removeItem('@App:token')
 			await AsyncStorage.removeItem('@App:userType')
