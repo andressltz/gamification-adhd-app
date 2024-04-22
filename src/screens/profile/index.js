@@ -74,7 +74,7 @@ export function ProfileScreen(props) {
 						<View style={style.separator} />
 						<View style={style.detailCard}>
 							<IconF name='phone' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
-							<Text style={style.detailLabel}>{user.phone}</Text>
+							<Text style={style.detailLabel}>{user.phoneFormated}</Text>
 						</View>
 						<View style={style.separator} />
 						<View style={style.detailCard}>
