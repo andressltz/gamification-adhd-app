@@ -10,7 +10,7 @@ import { StarRatingDisplay } from 'react-native-star-rating-widget'
 import { COLORS } from '../../assets/colors'
 
 export function ItemCard(props) {
-	const { title, status, qtyStars, dateToStart, timeToStart, duration, id } = props
+	const { title, status, qtyStars, dateToStart, timeToStart, duration, id, onPress = () => {}, } = props
 
 	function getDateToDo(date, time) {
 		return moment(date).format('L').concat(' - ').concat(moment(time).format('LT'))
@@ -53,6 +53,7 @@ export function ItemCard(props) {
 					label={getButtonLabel()}
 					buttonStyle={{ backgroundColor: getStatusColor(), height: 30, flex: 1 }}
 					textStyle={{ fontSize: 13, fontWeight: '600' }}
+					onPress={() => onPress(id)}
 				/>
 			</View>
 			<View style={styles.secondLine}>

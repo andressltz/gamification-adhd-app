@@ -73,6 +73,14 @@ export function TasksScreen({ route, navigation }) {
 		navigation.navigate('NewTaskScreen', [])
 	}
 
+	function onButtonTaskPress(idTask) {
+		if (isPatient) {
+			navigation.navigate('TaskDetailScreen', {idTask})
+		} else if (!isPatient && patientId) {
+			navigation.navigate('NewTaskScreen', {idTask})
+		}
+	}
+
 	const getStorageUserType = async () => {
 		return await AsyncStorage.getItem('@App:userType')
 	}
@@ -105,7 +113,7 @@ export function TasksScreen({ route, navigation }) {
 							duration={item.timeToDo}
 							status={item.status}
 							id={item.id}
-							// onPress={() => onButtonPress(item.name, item.id)}
+							onPress={() => onButtonTaskPress(item.id)}
 							keyExtractor={item.id}
 						/>
 					)}
