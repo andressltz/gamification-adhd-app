@@ -1,0 +1,1 @@
+export { TaskSinopseModal } from './taskSinopse'

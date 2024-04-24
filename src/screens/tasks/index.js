@@ -1,12 +1,14 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react'
-import { View, SafeAreaView, FlatList, ActivityIndicator } from 'react-native'
+import { View, SafeAreaView, FlatList, ActivityIndicator, Modal, Text, TouchableOpacity } from 'react-native'
 import { FAB } from '@rneui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import styles from '../../styles'
+import style from './styles'
 import { ApiClient } from '../../services'
 import { ItemCard, Toast, EmptyList } from '../../components'
 import { COLORS } from '../../assets'
+import { TaskSinopseModal } from '../../modals'
 
 const api = ApiClient()
 
@@ -22,6 +24,8 @@ export function TasksScreen({ route, navigation }) {
 
 	const [isLoading, setIsLoading] = useState(false)
 	const [tasks, setTasks] = useState([])
+	const [selectedTask, setSelectedTask] = useState(undefined)
+	const [modalTaskVisible, setModalTaskVisible] = useState(false)
 
 	const emptyMsg = 'Nenhuma tarefa cadastrada.'
 	const emptyMsgAdd = 'Para cadastrar, selecione um paciente em Perfil.'
@@ -73,11 +77,18 @@ export function TasksScreen({ route, navigation }) {
 		navigation.navigate('NewTaskScreen', [])
 	}
 
+	function onButtonModalClosePress() {
+		setSelectedTask(undefined)
+		setModalTaskVisible(false)
+	}
+
 	function onButtonTaskPress(idTask) {
 		if (isPatient) {
-			navigation.navigate('TaskDetailScreen', {idTask})
+			// setSelectedTask(task)
+			// setModalTaskVisible(true)
+			navigation.navigate('TaskDetailScreen', { idTask })
 		} else if (!isPatient && patientId) {
-			navigation.navigate('NewTaskScreen', {idTask})
+			navigation.navigate('NewTaskScreen', { idTask })
 		}
 	}
 
@@ -99,6 +110,54 @@ export function TasksScreen({ route, navigation }) {
 		return (
 			<SafeAreaView style={styles.safeArea}>
 				{hasError ? <Toast label={errorMessage} /> : null}
+
+				{/* <TaskSinopseModal
+					visible={() => modalTaskVisible}
+					task={() => selectedTask}
+					onPressClose={() => onButtonModalClosePress()}
+				/> */}
+				{/* onPressStart */}
+
+				{selectedTask ? (
+					<Modal
+						animationType='slide'
+						visible={modalTaskVisible}
+						presentationStyle='formSheet'
+						// transparent={true}
+						onRequestClose={() => {
+							onButtonModalClosePress()
+						}}>
+						<SafeAreaView style={styles.safeArea}>
+							<View style={styles.container}>
+								<Text style={style.title}>Detalhes da tarefa</Text>
+								<Text style={style.title}>({selectedTask.title})</Text>
+
+								{selectedTask.steps ? (
+									<View style={style.itemsContainer}>
+										<FlatList
+											numColumns={1}
+											data={selectedTask.steps}
+											renderItem={({ item }) => <Text style={style.stepItem}>{item}</Text>}
+										/>
+									</View>
+								) : null}
+
+								{selectedTask.description ? (
+									<View style={style.itemsContainer}>
+										<Text style={style.description}>{selectedTask.description}</Text>
+									</View>
+								) : null}
+
+								<TouchableOpacity
+									activeOpacity={0.6}
+									style={[style.actionButton, style.blueBorder]}
+									onPress={() => onButtonModalClosePress()}
+								>
+								</TouchableOpacity>
+							</View>
+						</SafeAreaView>
+					</Modal>
+				) : null}
 
 				<FlatList
 					numColumns={1}
