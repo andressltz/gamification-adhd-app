@@ -1,14 +1,12 @@
-import React, { useLayoutEffect, useState, useEffect } from 'react'
-import { View, SafeAreaView, FlatList, ActivityIndicator, Modal, Text, TouchableOpacity } from 'react-native'
-import { FAB } from '@rneui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
+import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { ActivityIndicator, FlatList, Modal, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
+import { COLORS } from '../../assets'
+import { EmptyList, ItemCard, Toast } from '../../components'
+import { TaskSinopseModal } from '../../modals'
+import { ApiClient } from '../../services'
 import styles from '../../styles'
 import style from './styles'
-import { ApiClient } from '../../services'
-import { ItemCard, Toast, EmptyList } from '../../components'
-import { COLORS } from '../../assets'
-import { TaskSinopseModal } from '../../modals'
 
 const api = ApiClient()
 
@@ -151,9 +149,7 @@ export function TasksScreen({ route, navigation }) {
 								<TouchableOpacity
 									activeOpacity={0.6}
 									style={[style.actionButton, style.blueBorder]}
-									onPress={() => onButtonModalClosePress()}
-								>
-								</TouchableOpacity>
+									onPress={() => onButtonModalClosePress()}></TouchableOpacity>
 							</View>
 						</SafeAreaView>
 					</Modal>
@@ -177,7 +173,7 @@ export function TasksScreen({ route, navigation }) {
 						/>
 					)}
 				/>
-				<FAB
+				{/* <FAB
 					size='large'
 					placement='right'
 					visible={!isPatient && patientId ? true : false}
@@ -187,7 +183,7 @@ export function TasksScreen({ route, navigation }) {
 						name: 'add',
 						color: 'white',
 					}}
-				/>
+				/> */}
 			</SafeAreaView>
 		)
 	}

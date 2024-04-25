@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { View, SafeAreaView, FlatList, ActivityIndicator, Text, TouchableOpacity } from 'react-native'
-import { StarRatingDisplay } from 'react-native-star-rating-widget'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import IconI from 'react-native-vector-icons/Ionicons'
-import { Stopwatch } from 'react-native-stopwatch-timer'
-
+import React, { useEffect, useState } from 'react'
+import { ActivityIndicator, FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
+import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
+import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
+import { COLORS } from '../../assets'
+import { Toast } from '../../components'
+import { ApiClient } from '../../services'
 import styles from '../../styles'
 import style from './styles'
-import { ApiClient } from '../../services'
-import { Toast } from '../../components'
-import { COLORS } from '../../assets'
 
 const api = ApiClient()
 
@@ -52,7 +49,7 @@ export function TaskDetailScreen({ route, navigation }) {
 			setIsLoading(false)
 		}
 		getScreenData()
-	}, [route])
+	}, [route, idTask, task.currentDuration])
 
 	function renderContent() {
 		if (isLoading) {
@@ -74,7 +71,11 @@ export function TaskDetailScreen({ route, navigation }) {
 
 					{task.steps ? (
 						<View style={style.itemsContainer}>
-							<FlatList numColumns={1} data={task.steps} renderItem={({ item }) => <Text style={style.stepItem}>{item}</Text>} />
+							<FlatList
+								numColumns={1}
+								data={task.steps}
+								renderItem={({ item }) => <Text style={style.stepItem}>{item}</Text>}
+							/>
 						</View>
 					) : null}
 
@@ -84,27 +85,10 @@ export function TaskDetailScreen({ route, navigation }) {
 						</View>
 					) : null}
 
-					<View style={style.actions}>
-						<StarRatingDisplay
-							rating={task.qtyStars}
-							starSize={35}
-							emptyColor={COLORS.GREY}
-							color={COLORS.YELLOW}
-							starStyle={{ marginHorizontal: 0 }}
-						/>
-					</View>
+					<View style={style.actions}></View>
 					<View style={style.actions}>
 						<View style={style.clockContainer}>
-							<IconI name='alarm-outline' size={40} color={COLORS.BLACK} />
-							<Stopwatch
-								startTime={startTimeStopWatch}
-								start={isStopwatchStart}
-								reset={resetStopwatch}
-								options={StopwatchOptions}
-								// getTime={(time) => {
-								// 	console.log(time)
-								// }}
-							/>
+							{/* <IoniconsIcon name='alarm-outline' size={40} color={COLORS.BLACK} /> */}
 						</View>
 					</View>
 					<View style={style.actions}>
@@ -115,7 +99,7 @@ export function TaskDetailScreen({ route, navigation }) {
 								setIsStopwatchStart(!isStopwatchStart)
 								setResetStopwatch(false)
 							}}>
-							<Icon name='pause' size={25} color={COLORS.BLUE} />
+							<FontAwesomeIcon name='pause' size={25} color={COLORS.BLUE} />
 						</TouchableOpacity>
 						<TouchableOpacity
 							activeOpacity={0.6}
@@ -124,10 +108,10 @@ export function TaskDetailScreen({ route, navigation }) {
 								setIsStopwatchStart(!isStopwatchStart)
 								setResetStopwatch(false)
 							}}>
-							<Icon name='stop' size={25} color={COLORS.RED} />
+							<FontAwesomeIcon name='stop' size={25} color={COLORS.RED} />
 						</TouchableOpacity>
 						<TouchableOpacity activeOpacity={0.6} style={[style.actionButton, style.greenBorder]}>
-							<Icon name='check' size={25} color={COLORS.GREEN_PRIM} />
+							<FontAwesomeIcon name='check' size={25} color={COLORS.GREEN_PRIM} />
 						</TouchableOpacity>
 					</View>
 					<View style={style.actions}>{/* <Text style={style.title}>progress bar</Text> */}</View>
