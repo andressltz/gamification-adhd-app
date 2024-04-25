@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { View, SafeAreaView, ScrollView } from 'react-native'
 
 import styles from '../../styles'
-import { api } from '../../services'
+import { ApiClient } from '../../services'
 import { Button, Input, Toast, Selection, Check, CompDatePicker } from '../../components'
+
+const api = ApiClient()
 
 export function NewTaskScreen(props) {
 	const { navigation } = props

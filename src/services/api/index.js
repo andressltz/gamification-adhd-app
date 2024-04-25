@@ -1,6 +1,8 @@
-import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-const API_URL = 'http://localhost:8080'
+import axios from 'axios'
+
+// const API_URL = 'http://localhost:8080'
+const API_URL = 'http://192.168.10.105:8080'
 // baseURL: 'http://macBook-pro-de-andres.local:8080',
 
 export const ApiClient = () => {
