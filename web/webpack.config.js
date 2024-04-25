@@ -71,5 +71,8 @@ module.exports = {
 		// module implementations should be written in files using the extension
 		// `.web.js`.
 		extensions: ['.web.js', '.js'],
+		test: /\.ttf$/,
+		loader: 'url-loader', // or directly file-loader
+		include: path.resolve(__dirname, 'node_modules/react-native-vector-icons'),
 	},
 }

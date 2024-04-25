@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
-
-// import '../../icons' // for append icons css
-
-// import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
-// import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
-
+import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
+import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
 import { COLORS } from '../../assets'
 import { Toast } from '../../components'
 import { ApiClient } from '../../services'
 import styles from '../../styles'
-
 import style from './styles'
 
 const api = ApiClient()
@@ -104,7 +99,7 @@ export function TaskDetailScreen({ route, navigation }) {
 								setIsStopwatchStart(!isStopwatchStart)
 								setResetStopwatch(false)
 							}}>
-							{/* <FontAwesomeIcon name='pause' size={25} color={COLORS.BLUE} /> */}
+							<FontAwesomeIcon name='pause' size={25} color={COLORS.BLUE} />
 						</TouchableOpacity>
 						<TouchableOpacity
 							activeOpacity={0.6}
@@ -113,10 +108,10 @@ export function TaskDetailScreen({ route, navigation }) {
 								setIsStopwatchStart(!isStopwatchStart)
 								setResetStopwatch(false)
 							}}>
-							{/* <FontAwesomeIcon name='stop' size={25} color={COLORS.RED} /> */}
+							<FontAwesomeIcon name='stop' size={25} color={COLORS.RED} />
 						</TouchableOpacity>
 						<TouchableOpacity activeOpacity={0.6} style={[style.actionButton, style.greenBorder]}>
-							{/* <FontAwesomeIcon name='check' size={25} color={COLORS.GREEN_PRIM} /> */}
+							<FontAwesomeIcon name='check' size={25} color={COLORS.GREEN_PRIM} />
 						</TouchableOpacity>
 					</View>
 					<View style={style.actions}>{/* <Text style={style.title}>progress bar</Text> */}</View>

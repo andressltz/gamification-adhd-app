@@ -5,11 +5,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
+// import FontAwesomeIcon from '@svgr-iconkit/fontawesome/native'
 import React, { useEffect, useState } from 'react'
 import { useWindowDimensions, View } from 'react-native'
-
-// import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
-
+import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import { COLORS } from './assets'
 import { RegisterScreen, SplashScreen } from './screens'
 import { AchievementsStack, LoginStack, MessagesStack, ProfileStack, TasksStack } from './stacks'
@@ -22,7 +21,6 @@ const getAuth = async () => {
 		return token
 		// return token ? JSON.parse(token) : undefined
 	} catch (error) {
-		Alert.alert('Não foi possível carregar do storage', error)
 		return undefined
 	}
 }
@@ -63,7 +61,7 @@ export default function App() {
 							name='LoginStack'
 							initialParams={{ setToken }}
 							options={{
-								// tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='user' size={size} color={color} />,
+								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='user' size={size} color={color} />,
 								tabBarLabel: 'Login',
 								headerShown: false,
 							}}
@@ -82,7 +80,7 @@ export default function App() {
 							component={TasksStack}
 							name='Tarefas'
 							options={{
-								// tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='tasks' size={size} color={color} />,
+								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='tasks' size={size} color={color} />,
 								tabBarLabel: 'Tarefas',
 								headerShown: false,
 							}}
@@ -91,7 +89,7 @@ export default function App() {
 							component={AchievementsStack}
 							name='AchievementsStack'
 							options={{
-								// tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='child' size={size} color={color} />,
+								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='child' size={size} color={color} />,
 								tabBarLabel: 'Conquistas',
 								headerShown: false,
 							}}
@@ -100,7 +98,7 @@ export default function App() {
 							component={MessagesStack}
 							name='MessagesStack'
 							options={{
-								// tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='wechat' size={size} color={color} />,
+								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='wechat' size={size} color={color} />,
 								tabBarLabel: 'Chat',
 								headerShown: false,
 							}}
@@ -110,7 +108,7 @@ export default function App() {
 							initialParams={{ setToken }}
 							name='ProfileStack'
 							options={{
-								// tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='user' size={size} color={color} />,
+								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='user' size={size} color={color} />,
 								tabBarLabel: 'Perfil',
 								headerShown: false,
 							}}

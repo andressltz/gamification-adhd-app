@@ -1,18 +1,13 @@
 // import { FAB } from '@rneui/themed'
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, Image, SafeAreaView, Text, View } from 'react-native'
-
-// import '../../icons' // for append icons css
-
-// import EvilIconsIcon from 'react-native-vector-icons/dist/EvilIcons'
-// import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
-// import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
-
+import EvilIconsIcon from 'react-native-vector-icons/dist/EvilIcons'
+import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
+import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
 import { COLORS } from '../../assets'
 import { UserCard } from '../../components'
 import { ApiClient } from '../../services'
 import styles from '../../styles'
-
 import style from './styles'
 
 const api = ApiClient()
@@ -68,7 +63,7 @@ export function ProfileScreen(props) {
 					<View style={style.detailContainer}>
 						<View style={style.detailCard}>
 							<View style={style.firstColumn}>
-								{/* <IoniconsIcon name='alarm-outline' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} /> */}
+								<IoniconsIcon name='alarm-outline' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
 								<Text style={style.detailLabel}>TEMPO DE TAREFAS</Text>
 							</View>
 							<View style={style.secondColumn}>
@@ -77,12 +72,12 @@ export function ProfileScreen(props) {
 						</View>
 						<View style={style.separator} />
 						<View style={style.detailCard}>
-							{/* <FontAwesomeIcon name='phone' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} /> */}
+							<FontAwesomeIcon name='phone' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
 							<Text style={style.detailLabel}>{user.phoneFormated}</Text>
 						</View>
 						<View style={style.separator} />
 						<View style={style.detailCard}>
-							{/* <EvilIconsIcon name='envelope' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} /> */}
+							<EvilIconsIcon name='envelope' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
 							<Text style={style.detailLabel}>{user.email}</Text>
 						</View>
 						<View style={style.separator} />
