@@ -1,13 +1,11 @@
 // import 'react-native-gesture-handler'
 
-// import './icons' // for append icons css
-
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 // import FontAwesomeIcon from '@svgr-iconkit/fontawesome/native'
 import React, { useEffect, useState } from 'react'
-import { useWindowDimensions, View } from 'react-native'
+import { SafeAreaView, useWindowDimensions, View } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import { COLORS } from './assets'
 import { RegisterScreen, SplashScreen } from './screens'
@@ -64,6 +62,7 @@ export default function App() {
 								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='user' size={size} color={color} />,
 								tabBarLabel: 'Login',
 								headerShown: false,
+								tabBarStyle: { display: 'none' },
 							}}
 						/>
 					</BottomTab.Navigator>

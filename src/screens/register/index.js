@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { View, SafeAreaView, KeyboardAvoidingView, ScrollView } from 'react-native'
-
-import styles from '../../styles'
-import { Button, Input, Toast, Selection } from '../../components'
+import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, View } from 'react-native'
+import { Button, Input, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
+import styles from '../../styles'
 
 const api = ApiClient()
 
