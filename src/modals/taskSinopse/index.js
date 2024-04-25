@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { View, SafeAreaView, FlatList, Text, TouchableOpacity, Modal } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
-
+import { FlatList, Modal, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
+import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
+import { COLORS } from '../../assets'
 import styles from '../../styles'
 import style from './styles'
-import { COLORS } from '../../assets'
 
 export function TaskSinopseModal(props) {
 	const { visible = false, task = {}, onPressClose = () => {} } = props
@@ -20,8 +19,7 @@ export function TaskSinopseModal(props) {
 				onRequestClose={() => {
 					Alert.alert('Modal has been closed.')
 					setModalVisible(false)
-				}}
-				>
+				}}>
 				<SafeAreaView style={styles.safeArea}>
 					<View style={styles.container}>
 						<Text style={style.title}>{task.title}</Text>
@@ -49,8 +47,8 @@ export function TaskSinopseModal(props) {
 							// onPress={() => {
 							// 	setModalVisible(!modalVisible)
 							// }}>
-							>
-							<Icon name='pause' size={25} color={COLORS.BLUE} />
+						>
+							<FontAwesomeIcon name='pause' size={25} color={COLORS.BLUE} />
 						</TouchableOpacity>
 					</View>
 				</SafeAreaView>
