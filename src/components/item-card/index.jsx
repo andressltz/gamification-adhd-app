@@ -1,16 +1,20 @@
-import React from 'react'
-
-import { View, Text } from 'react-native'
-import styles from './styles'
 import moment from 'moment'
+import React from 'react'
+import { Text, View } from 'react-native'
+
+import styles from './styles'
+
 import 'moment/locale/pt-br'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { Button } from '../button'
-import { StarRatingDisplay } from 'react-native-star-rating-widget'
+
+// import '../../icons' // for append icons css
+
+// import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
+
 import { COLORS } from '../../assets/colors'
+import { Button } from '../button'
 
 export function ItemCard(props) {
-	const { title, status, qtyStars, dateToStart, timeToStart, duration, id, onPress = () => {}, } = props
+	const { title, status, qtyStars, dateToStart, timeToStart, duration, id, onPress = () => {} } = props
 
 	function getDateToDo(date, time) {
 		return moment(date).format('L').concat(' - ').concat(moment(time).format('LT'))
@@ -47,7 +51,7 @@ export function ItemCard(props) {
 	return (
 		<View style={styles.card}>
 			<View style={styles.firstLine}>
-				<Icon name='tasks' size={18} color={getStatusColor()} />
+				{/* <FontAwesomeIcon name='tasks' size={18} color={getStatusColor()} /> */}
 				<Text style={styles.title}>{title}</Text>
 				<Button
 					label={getButtonLabel()}
@@ -56,18 +60,10 @@ export function ItemCard(props) {
 					onPress={() => onPress(id)}
 				/>
 			</View>
-			<View style={styles.secondLine}>
-				<StarRatingDisplay
-					rating={qtyStars}
-					starSize={26}
-					emptyColor={COLORS.GREY}
-					color={COLORS.YELLOW}
-					starStyle={{ marginHorizontal: 0 }}
-				/>
-			</View>
+			<View style={styles.secondLine}></View>
 			<View style={styles.thirdLine}>
 				<View style={styles.date}>
-					<Icon name='calendar' style={styles.dateText} />
+					{/* <FontAwesomeIcon name='calendar' style={styles.dateText} /> */}
 					<Text style={styles.dateText}>{getDateToDo(dateToStart, timeToStart)}</Text>
 				</View>
 				{duration || true ? <Text style={styles.duration}>Tempo da tarefa {moment(duration).format('LT')}</Text> : null}

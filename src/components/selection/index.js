@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { View, Text } from 'react-native'
-import { Dropdown } from 'react-native-element-dropdown'
+// import { Dropdown } from 'react-native-element-dropdown'
 import styles from './styles'
 
 export function Selection(props) {
@@ -10,7 +10,7 @@ export function Selection(props) {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.label}>{label}</Text>
-			<Dropdown
+			{/* <Dropdown
 				data={data}
 				labelField='label'
 				maxHeight={300}
@@ -22,7 +22,7 @@ export function Selection(props) {
 				placeholder={'Selecione...'}
 				iconStyle={styles.iconStyle}
 				{...otherProps}
-			/>
+			/> */}
 		</View>
 	)
 }

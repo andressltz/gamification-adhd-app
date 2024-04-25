@@ -1,12 +1,12 @@
-import React, { useLayoutEffect, useState, useEffect } from 'react'
-import { View, SafeAreaView, FlatList, ActivityIndicator } from 'react-native'
-import { FAB } from '@rneui/themed'
+// import { FAB } from '@rneui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { ActivityIndicator, FlatList, SafeAreaView, View } from 'react-native'
 
-import styles from '../../styles'
-import { ApiClient } from '../../services'
-import { ItemCard, Toast, EmptyList } from '../../components'
 import { COLORS } from '../../assets'
+import { EmptyList, ItemCard, Toast } from '../../components'
+import { ApiClient } from '../../services'
+import styles from '../../styles'
 
 const api = ApiClient()
 
@@ -75,9 +75,9 @@ export function TasksScreen({ route, navigation }) {
 
 	function onButtonTaskPress(idTask) {
 		if (isPatient) {
-			navigation.navigate('TaskDetailScreen', {idTask})
+			navigation.navigate('TaskDetailScreen', { idTask })
 		} else if (!isPatient && patientId) {
-			navigation.navigate('NewTaskScreen', {idTask})
+			navigation.navigate('NewTaskScreen', { idTask })
 		}
 	}
 
@@ -118,7 +118,7 @@ export function TasksScreen({ route, navigation }) {
 						/>
 					)}
 				/>
-				<FAB
+				{/* <FAB
 					size='large'
 					placement='right'
 					visible={!isPatient && patientId ? true : false}
@@ -128,7 +128,7 @@ export function TasksScreen({ route, navigation }) {
 						name: 'add',
 						color: 'white',
 					}}
-				/>
+				/> */}
 			</SafeAreaView>
 		)
 	}

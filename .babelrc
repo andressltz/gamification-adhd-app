@@ -1,0 +1,16 @@
+{
+	"plugins": ["@babel/plugin-syntax-jsx", "@babel/plugin-proposal-logical-assignment-operators"],
+	"presets": [
+		["module:metro-react-native-babel-preset"],
+		["babel-preset-react-native"],
+		["@babel/preset-react"],
+		[
+			"@babel/preset-env",
+			{
+				"targets": {
+					"node": "current"
+				}
+			}
+		]
+	]
+}
