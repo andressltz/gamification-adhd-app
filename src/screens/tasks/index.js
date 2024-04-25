@@ -80,11 +80,11 @@ export function TasksScreen({ route, navigation }) {
 		setModalTaskVisible(false)
 	}
 
-	function onButtonTaskPress(idTask) {
+	function onButtonTaskPress(task, idTask) {
 		if (isPatient) {
-			// setSelectedTask(task)
-			// setModalTaskVisible(true)
-			navigation.navigate('TaskDetailScreen', { idTask })
+			setSelectedTask(task)
+			setModalTaskVisible(true)
+			// navigation.navigate('TaskDetailScreen', { idTask })
 		} else if (!isPatient && patientId) {
 			navigation.navigate('NewTaskScreen', { idTask })
 		}
@@ -168,7 +168,7 @@ export function TasksScreen({ route, navigation }) {
 							duration={item.timeToDo}
 							status={item.status}
 							id={item.id}
-							onPress={() => onButtonTaskPress(item.id)}
+							onPress={() => onButtonTaskPress(item, item.id)}
 							keyExtractor={item.id}
 						/>
 					)}
