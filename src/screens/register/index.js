@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, View } from 'react-native'
+import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native'
 import { Button, Input, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
-import styles from '../../styles'
+import globalStyles from '../../styles'
 
 const api = ApiClient()
 
@@ -42,53 +42,51 @@ export function RegisterScreen(props) {
 	}
 
 	return (
-		<SafeAreaView style={styles.safeArea}>
-			<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
-				<ScrollView>
-					{hasError ? <Toast label={errorMessage} /> : null}
+		<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={globalStyles.container}>
+			<ScrollView>
+				{hasError ? <Toast label={errorMessage} /> : null}
 
-					<Input label='Nome:' placeholder='Insira seu nome' onChangeText={setFormName} autoCorrect={false} value={name} />
-					<Input
-						label='Email:'
-						placeholder='nome@servidor.com.br'
-						type='email-address'
-						onChangeText={setFormEmail}
-						autoCorrect={false}
-						autoCapitalize='none'
-						value={email}
-					/>
-					<Input
-						label='Telefone:'
-						placeholder='(11) 98765-4321'
-						type='phone-pad'
-						onChangeText={setFormPhone}
-						autoCorrect={false}
-						autoCapitalize='none'
-						value={phone}
-					/>
+				<Input label='Nome:' placeholder='Insira seu nome' onChangeText={setFormName} autoCorrect={false} value={name} />
+				<Input
+					label='Email:'
+					placeholder='nome@servidor.com.br'
+					type='email-address'
+					onChangeText={setFormEmail}
+					autoCorrect={false}
+					autoCapitalize='none'
+					value={email}
+				/>
+				<Input
+					label='Telefone:'
+					placeholder='(11) 98765-4321'
+					type='phone-pad'
+					onChangeText={setFormPhone}
+					autoCorrect={false}
+					autoCapitalize='none'
+					value={phone}
+				/>
 
-					<Input
-						label='Senha:'
-						placeholder='Digite uma senha'
-						onChangeText={setFormPass}
-						autoCorrect={false}
-						autoCapitalize='none'
-						secureTextEntry
-						value={pass}
-					/>
+				<Input
+					label='Senha:'
+					placeholder='Digite uma senha'
+					onChangeText={setFormPass}
+					autoCorrect={false}
+					autoCapitalize='none'
+					secureTextEntry
+					value={pass}
+				/>
 
-					<Selection
-						label='Tipo de usuário:'
-						data={userTypeOptions}
-						value={userType}
-						onChange={(item) => {
-							setUserType(item.value)
-						}}
-					/>
+				<Selection
+					label='Tipo de usuário:'
+					data={userTypeOptions}
+					value={userType}
+					onChange={(item) => {
+						setUserType(item.value)
+					}}
+				/>
 
-					<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
-				</ScrollView>
-			</KeyboardAvoidingView>
-		</SafeAreaView>
+				<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
+			</ScrollView>
+		</KeyboardAvoidingView>
 	)
 }

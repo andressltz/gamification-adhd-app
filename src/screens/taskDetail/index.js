@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
 import { COLORS } from '../../assets'
 import { Toast } from '../../components'
 import { ApiClient } from '../../services'
-import styles from '../../styles'
+import globalStyles from '../../styles'
 import style from './styles'
 
 const api = ApiClient()
@@ -54,28 +54,22 @@ export function TaskDetailScreen({ route, navigation }) {
 	function renderContent() {
 		if (isLoading) {
 			return (
-				<SafeAreaView style={styles.safeArea}>
-					<View style={styles.loaderContainer}>
-						<ActivityIndicator size='large' />
-					</View>
-				</SafeAreaView>
+				<View style={globalStyles.loaderContainer}>
+					<ActivityIndicator size='large' />
+				</View>
 			)
 		}
 
 		return (
-			<SafeAreaView style={styles.safeArea}>
+			<View>
 				{hasError ? <Toast label={errorMessage} /> : null}
 
-				<View style={styles.container}>
+				<View style={globalStyles.container}>
 					<Text style={style.title}>{task.title}</Text>
 
 					{task.steps ? (
 						<View style={style.itemsContainer}>
-							<FlatList
-								numColumns={1}
-								data={task.steps}
-								renderItem={({ item }) => <Text style={style.stepItem}>{item}</Text>}
-							/>
+							<FlatList numColumns={1} data={task.steps} renderItem={({ item }) => <Text style={style.stepItem}>{item}</Text>} />
 						</View>
 					) : null}
 
@@ -87,9 +81,7 @@ export function TaskDetailScreen({ route, navigation }) {
 
 					<View style={style.actions}></View>
 					<View style={style.actions}>
-						<View style={style.clockContainer}>
-							{/* <IoniconsIcon name='alarm-outline' size={40} color={COLORS.BLACK} /> */}
-						</View>
+						<View style={style.clockContainer}>{/* <IoniconsIcon name='alarm-outline' size={40} color={COLORS.BLACK} /> */}</View>
 					</View>
 					<View style={style.actions}>
 						<TouchableOpacity
@@ -116,7 +108,7 @@ export function TaskDetailScreen({ route, navigation }) {
 					</View>
 					<View style={style.actions}>{/* <Text style={style.title}>progress bar</Text> */}</View>
 				</View>
-			</SafeAreaView>
+			</View>
 		)
 	}
 

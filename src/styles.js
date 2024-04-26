@@ -10,7 +10,7 @@ export default StyleSheet.create({
 		paddingTop: 10,
 		paddingBottom: 10,
 	},
-	containerScroll:{
+	containerScroll: {
 		flex: 1,
 		backgroundColor: COLORS.WHITE,
 	},
@@ -22,7 +22,7 @@ export default StyleSheet.create({
 	},
 	safeArea: {
 		flex: 1,
-		backgroundColor: COLORS.WHITE,
+		backgroundColor: COLORS.GREEN_PRIM,
 	},
 	loaderContainer: {
 		flex: 1,

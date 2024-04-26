@@ -1,17 +1,12 @@
 import React from 'react'
-import { View, SafeAreaView, Text } from 'react-native'
-
-import styles from '../../styles'
+import { Text, View } from 'react-native'
 import { COLORS } from '../../assets'
+import globalStyles from '../../styles'
 
 export function ArchivementsScreen() {
 	return (
-		<SafeAreaView style={styles.safeArea}>
-			<View style={styles.container}>
-
-				<Text>ArchivementsScreen</Text>
-
-			</View>
-		</SafeAreaView>
+		<View style={globalStyles.container}>
+			<Text>ArchivementsScreen</Text>
+		</View>
 	)
 }

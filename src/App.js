@@ -3,21 +3,19 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
-// import FontAwesomeIcon from '@svgr-iconkit/fontawesome/native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView, useWindowDimensions, View } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import { COLORS } from './assets'
 import { RegisterScreen, SplashScreen } from './screens'
 import { AchievementsStack, LoginStack, MessagesStack, ProfileStack, TasksStack } from './stacks'
+import globalStyles from './styles'
 
 const BottomTab = createBottomTabNavigator()
 
 const getAuth = async () => {
 	try {
-		const token = await AsyncStorage.getItem('@App:token')
-		return token
-		// return token ? JSON.parse(token) : undefined
+		return await AsyncStorage.getItem('@App:token')
 	} catch (error) {
 		return undefined
 	}
@@ -43,6 +41,7 @@ export default function App() {
 	}
 
 	return (
+		// <SafeAreaView style={globalStyles.safeArea}>
 		<View style={[{ height }, StyleSheet.absoluteFill]}>
 			<NavigationContainer>
 				{!token ? (
@@ -116,5 +115,6 @@ export default function App() {
 				)}
 			</NavigationContainer>
 		</View>
+		// </SafeAreaView>
 	)
 }

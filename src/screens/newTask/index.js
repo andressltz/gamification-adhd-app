@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { View, SafeAreaView, ScrollView } from 'react-native'
-
-import styles from '../../styles'
+import { ScrollView, View } from 'react-native'
+import { Button, Check, CompDatePicker, Input, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
-import { Button, Input, Toast, Selection, Check, CompDatePicker } from '../../components'
+import globalStyles from '../../styles'
 
 const api = ApiClient()
 
@@ -67,74 +66,72 @@ export function NewTaskScreen(props) {
 	}
 
 	return (
-		<SafeAreaView style={styles.safeArea}>
-			<View style={styles.containerScroll}>
-				<ScrollView style={styles.scrollview}>
-					{hasError ? <Toast label={errorMessage} /> : null}
+		<View style={globalStyles.containerScroll}>
+			<ScrollView style={globalStyles.scrollview}>
+				{hasError ? <Toast label={errorMessage} /> : null}
 
-					<Input label='Título da tarefa:' placeholder='Ex: Arrumar guarda roupa' onChangeText={setFormTitle} value={title} />
+				<Input label='Título da tarefa:' placeholder='Ex: Arrumar guarda roupa' onChangeText={setFormTitle} value={title} />
 
-					<Input
-						label='Orientações da tarefa:'
-						placeholder='Ex: Dobrar todas as roupas'
-						onChangeText={setFormDescription}
-						value={description}
+				<Input
+					label='Orientações da tarefa:'
+					placeholder='Ex: Dobrar todas as roupas'
+					onChangeText={setFormDescription}
+					value={description}
+				/>
+
+				<Selection
+					label='Quantidade de estrelas:'
+					data={qtyStarOptions}
+					value={qtyStars}
+					onChange={(item) => {
+						setFormQtyStars(item.value)
+					}}
+				/>
+
+				<Check
+					text='Perde estrelas se não realizar a tarefa'
+					value={lostStarDoNotDo}
+					onValueChange={(val) => setLostStarDoNotDo(val)}
+				/>
+
+				<Check text='Perde estrelas se atrasar a tarefa' value={lostStarDelay} onValueChange={(val) => setLostStarDelay(val)} />
+
+				<Check text='Tarefa vale uma conquista' value={hasAchievement} onValueChange={(val) => setFormHasAchievement(val)} />
+
+				<Selection
+					label='Conquista:'
+					data={achievementOptions}
+					value={achievement}
+					onChange={(item) => {
+						setFormAchievement(item.value)
+					}}
+				/>
+
+				<View style={{ flexDirection: 'row' }}>
+					<CompDatePicker
+						useState={myUseState}
+						label='Data inicial:'
+						type='date'
+						dateTimeValue={dtStart}
+						setDateTimeValue={setFormDtStart}
 					/>
-
-					<Selection
-						label='Quantidade de estrelas:'
-						data={qtyStarOptions}
-						value={qtyStars}
-						onChange={(item) => {
-							setFormQtyStars(item.value)
-						}}
+					<CompDatePicker
+						useState={myUseState}
+						label='Hora inicial:'
+						type='time'
+						dateTimeValue={hrStart}
+						setDateTimeValue={setFormHrStart}
 					/>
-
-					<Check
-						text='Perde estrelas se não realizar a tarefa'
-						value={lostStarDoNotDo}
-						onValueChange={(val) => setLostStarDoNotDo(val)}
+					<CompDatePicker
+						useState={myUseState}
+						label='Tempo para realização:'
+						type='time'
+						dateTimeValue={duration}
+						setDateTimeValue={setFormDuration}
 					/>
-
-					<Check text='Perde estrelas se atrasar a tarefa' value={lostStarDelay} onValueChange={(val) => setLostStarDelay(val)} />
-
-					<Check text='Tarefa vale uma conquista' value={hasAchievement} onValueChange={(val) => setFormHasAchievement(val)} />
-
-					<Selection
-						label='Conquista:'
-						data={achievementOptions}
-						value={achievement}
-						onChange={(item) => {
-							setFormAchievement(item.value)
-						}}
-					/>
-
-					<View style={{ flexDirection: 'row' }}>
-						<CompDatePicker
-							useState={myUseState}
-							label='Data inicial:'
-							type='date'
-							dateTimeValue={dtStart}
-							setDateTimeValue={setFormDtStart}
-						/>
-						<CompDatePicker
-							useState={myUseState}
-							label='Hora inicial:'
-							type='time'
-							dateTimeValue={hrStart}
-							setDateTimeValue={setFormHrStart}
-						/>
-						<CompDatePicker
-							useState={myUseState}
-							label='Tempo para realização:'
-							type='time'
-							dateTimeValue={duration}
-							setDateTimeValue={setFormDuration}
-						/>
-					</View>
-					<Button label='Salvar' onPress={() => onButtonSavePress()} />
-				</ScrollView>
-			</View>
-		</SafeAreaView>
+				</View>
+				<Button label='Salvar' onPress={() => onButtonSavePress()} />
+			</ScrollView>
+		</View>
 	)
 }

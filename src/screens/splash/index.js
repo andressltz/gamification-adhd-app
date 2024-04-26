@@ -1,12 +1,12 @@
 import React from 'react'
-import { View, SafeAreaView, Text } from 'react-native'
-import styles from './styles'
+import { SafeAreaView, Text, View } from 'react-native'
+import style from './styles'
 
 export function SplashScreen(props) {
 	return (
-		<SafeAreaView style={styles.safeArea}>
-			<View style={styles.container}>
-				<Text style={styles.label}>TDAH APP</Text>
+		<SafeAreaView style={style.safeArea}>
+			<View style={style.container}>
+				<Text style={style.label}>Tarefas Gamificadas</Text>
 			</View>
 		</SafeAreaView>
 	)

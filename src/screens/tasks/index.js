@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, Modal, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, FlatList, Modal, Text, TouchableOpacity, View } from 'react-native'
 import { COLORS } from '../../assets'
 import { EmptyList, ItemCard, Toast } from '../../components'
 import { TaskSinopseModal } from '../../modals'
 import { ApiClient } from '../../services'
-import styles from '../../styles'
+import globalStyles from '../../styles'
 import style from './styles'
 
 const api = ApiClient()
@@ -97,16 +97,14 @@ export function TasksScreen({ route, navigation }) {
 	function renderContent() {
 		if (isLoading) {
 			return (
-				<SafeAreaView style={styles.safeArea}>
-					<View style={styles.loaderContainer}>
-						<ActivityIndicator size='large' />
-					</View>
-				</SafeAreaView>
+				<View style={globalStyles.loaderContainer}>
+					<ActivityIndicator size='large' />
+				</View>
 			)
 		}
 
 		return (
-			<SafeAreaView style={styles.safeArea}>
+			<View>
 				{hasError ? <Toast label={errorMessage} /> : null}
 
 				{/* <TaskSinopseModal
@@ -151,7 +149,7 @@ export function TasksScreen({ route, navigation }) {
 									style={[style.actionButton, style.blueBorder]}
 									onPress={() => onButtonModalClosePress()}></TouchableOpacity>
 							</View>
-						</SafeAreaView>
+						</View>
 					</Modal>
 				) : null}
 
@@ -184,7 +182,7 @@ export function TasksScreen({ route, navigation }) {
 						color: 'white',
 					}}
 				/> */}
-			</SafeAreaView>
+			</View>
 		)
 	}
 

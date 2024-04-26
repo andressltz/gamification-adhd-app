@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import { View, SafeAreaView } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
-import styles from '../../styles'
+import React, { useState } from 'react'
+import { View } from 'react-native'
 import { Button, Input, Toast } from '../../components'
 import { ApiClient } from '../../services'
+import globalStyles from '../../styles'
 
 const api = ApiClient()
 
@@ -42,33 +41,31 @@ export function LoginScreen(props) {
 	}
 
 	return (
-		<SafeAreaView style={styles.safeArea}>
-			<View style={styles.container}>
-				{hasError ? <Toast label={errorMessage} /> : null}
+		<View style={globalStyles.container}>
+			{hasError ? <Toast label={errorMessage} /> : null}
 
-				<Input
-					label='Email:'
-					placeholder='Insira seu email'
-					type='email-address'
-					onChangeText={setFormEmail}
-					autoCorrect={false}
-					autoCapitalize='none'
-					value={email}
-				/>
+			<Input
+				label='Email:'
+				placeholder='Insira seu email'
+				type='email-address'
+				onChangeText={setFormEmail}
+				autoCorrect={false}
+				autoCapitalize='none'
+				value={email}
+			/>
 
-				<Input
-					label='Senha:'
-					placeholder='Digite sua senha'
-					onChangeText={setFormPass}
-					autoCorrect={false}
-					autoCapitalize='none'
-					secureTextEntry
-					value={pass}
-				/>
+			<Input
+				label='Senha:'
+				placeholder='Digite sua senha'
+				onChangeText={setFormPass}
+				autoCorrect={false}
+				autoCapitalize='none'
+				secureTextEntry
+				value={pass}
+			/>
 
-				<Button label='Entrar' onPress={() => onButtonLoginPress()} />
-				<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
-			</View>
-		</SafeAreaView>
+			<Button label='Entrar' onPress={() => onButtonLoginPress()} />
+			<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
+		</View>
 	)
 }
