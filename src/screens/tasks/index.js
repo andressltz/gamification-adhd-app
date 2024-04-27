@@ -8,7 +8,8 @@ import globalStyles from '../../styles'
 
 const api = ApiClient()
 
-export function TasksScreen({ route, navigation }) {
+export function TasksScreen(props) {
+	const { navigation, route } = props
 	const { patientId, patientName } = route.params
 	const [isPatient, setIsPatient] = useState(false)
 
@@ -31,13 +32,13 @@ export function TasksScreen({ route, navigation }) {
 				setIsPatient(false)
 			}
 		})
-	}, [])
+	}, [props])
 
 	useLayoutEffect(() => {
 		if (patientName) {
 			navigation.setOptions({ title: `Tarefas de ${patientName}` })
 		}
-	}, [patientName, navigation])
+	}, [props])
 
 	useEffect(() => {
 		async function getScreenData() {
@@ -64,7 +65,7 @@ export function TasksScreen({ route, navigation }) {
 			setIsLoading(false)
 		}
 		getScreenData()
-	}, [route])
+	}, [props])
 
 	async function startTaskAction(idTask) {
 		if (selectedTask && idTask) {
@@ -72,7 +73,6 @@ export function TasksScreen({ route, navigation }) {
 			setHasError(false)
 			await api.post(`/task/${idTask}/start`).then((response) => {
 				if (response?.data?.data) {
-					setTasks(response.data.data)
 					setHasError(false)
 					navigation.navigate('TaskDetailScreen', { idTask })
 				} else {

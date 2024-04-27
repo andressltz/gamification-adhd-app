@@ -1,5 +1,4 @@
 // import 'react-native-gesture-handler'
-
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
@@ -9,7 +8,6 @@ import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import { COLORS } from './assets'
 import { RegisterScreen, SplashScreen } from './screens'
 import { AchievementsStack, LoginStack, MessagesStack, ProfileStack, TasksStack } from './stacks'
-import globalStyles from './styles'
 
 const BottomTab = createBottomTabNavigator()
 
