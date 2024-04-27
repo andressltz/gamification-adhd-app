@@ -33,20 +33,22 @@ export function TaskDetailScreen({ route, navigation }) {
 	useEffect(() => {
 		async function getScreenData() {
 			setIsLoading(true)
+			setHasError(false)
 
-			const response = await api.get(`/task/${idTask}`)
-			if (response?.data?.data) {
-				setTask(response.data.data)
-				setStartTimeStopWatch(task.currentDuration ? task.currentDuration : 0)
-				setHasError(false)
-				setIsStopwatchStart(true)
-				setResetStopwatch(false)
-			} else {
-				setHasError(true)
-				setErrorMessage(response)
-			}
+			await api.get(`/task/${idTask}`).then((response) => {
+				if (response?.data?.data) {
+					setTask(response.data.data)
+					setStartTimeStopWatch(task.currentDuration ? task.currentDuration : 0)
+					setHasError(false)
+					setIsStopwatchStart(true)
+					setResetStopwatch(false)
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
 
-			setIsLoading(false)
+				setIsLoading(false)
+			})
 		}
 		getScreenData()
 	}, [route, idTask, task.currentDuration])

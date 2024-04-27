@@ -10,6 +10,7 @@ export default StyleSheet.create({
 		alignItems: 'flex-start',
 		marginVertical: 5,
 		marginBottom: 10,
+		marginHorizontal: 5,
 	},
 	label: {
 		flex: 1,

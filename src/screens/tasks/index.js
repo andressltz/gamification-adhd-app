@@ -9,9 +9,6 @@ import globalStyles from '../../styles'
 const api = ApiClient()
 
 export function TasksScreen({ route, navigation }) {
-	// const isDarkMode = useColorScheme() === 'dark';
-	// const COLORSCHEME = isDarkMode ? COLORS_DARK : COLORS
-
 	const { patientId, patientName } = route.params
 	const [isPatient, setIsPatient] = useState(false)
 
@@ -69,6 +66,26 @@ export function TasksScreen({ route, navigation }) {
 		getScreenData()
 	}, [route])
 
+	async function startTaskAction(idTask) {
+		if (selectedTask && idTask) {
+			setIsLoading(true)
+			setHasError(false)
+			await api.post(`/task/${idTask}/start`).then((response) => {
+				if (response?.data?.data) {
+					setTasks(response.data.data)
+					setHasError(false)
+					navigation.navigate('TaskDetailScreen', { idTask })
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
+				setModalTaskVisible(false)
+				setSelectedTask(undefined)
+				setIsLoading(false)
+			})
+		}
+	}
+
 	function onButtonNewTaskPress() {
 		navigation.navigate('NewTaskScreen', [])
 	}
@@ -79,10 +96,8 @@ export function TasksScreen({ route, navigation }) {
 	}
 
 	function onButtonModalStartPress() {
-		setModalTaskVisible(false)
 		const { id } = selectedTask
-		setSelectedTask(undefined)
-		navigation.navigate('TaskDetailScreen', { id })
+		startTaskAction(id)
 	}
 
 	function onButtonTaskPress(task, idTask) {
