@@ -28,7 +28,7 @@ export function TaskDetailScreen({ route, navigation }) {
 
 	const [isLoading, setIsLoading] = useState(false)
 	const [task, setTask] = useState({})
-	const idTask = route.params.idTask
+	const idTask = route.params.id
 
 	useEffect(() => {
 		async function getScreenData() {

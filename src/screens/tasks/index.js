@@ -1,12 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, Modal, Text, TouchableOpacity, View } from 'react-native'
-import { COLORS } from '../../assets'
+import { ActivityIndicator, FlatList, View } from 'react-native'
 import { EmptyList, ItemCard, Toast } from '../../components'
 import { TaskSinopseModal } from '../../modals'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
-import style from './styles'
 
 const api = ApiClient()
 
@@ -80,11 +78,17 @@ export function TasksScreen({ route, navigation }) {
 		setModalTaskVisible(false)
 	}
 
+	function onButtonModalStartPress() {
+		setModalTaskVisible(false)
+		const { id } = selectedTask
+		setSelectedTask(undefined)
+		navigation.navigate('TaskDetailScreen', { id })
+	}
+
 	function onButtonTaskPress(task, idTask) {
 		if (isPatient) {
 			setSelectedTask(task)
 			setModalTaskVisible(true)
-			// navigation.navigate('TaskDetailScreen', { idTask })
 		} else if (!isPatient && patientId) {
 			navigation.navigate('NewTaskScreen', { idTask })
 		}
@@ -107,50 +111,13 @@ export function TasksScreen({ route, navigation }) {
 			<View>
 				{hasError ? <Toast label={errorMessage} /> : null}
 
-				{/* <TaskSinopseModal
-					visible={() => modalTaskVisible}
-					task={() => selectedTask}
-					onPressClose={() => onButtonModalClosePress()}
-				/> */}
-				{/* onPressStart */}
-
-				{selectedTask ? (
-					<Modal
-						animationType='slide'
-						visible={modalTaskVisible}
-						presentationStyle='formSheet'
-						// transparent={true}
-						onRequestClose={() => {
-							onButtonModalClosePress()
-						}}>
-						<SafeAreaView style={styles.safeArea}>
-							<View style={styles.container}>
-								<Text style={style.title}>Detalhes da tarefa</Text>
-								<Text style={style.title}>({selectedTask.title})</Text>
-
-								{selectedTask.steps ? (
-									<View style={style.itemsContainer}>
-										<FlatList
-											numColumns={1}
-											data={selectedTask.steps}
-											renderItem={({ item }) => <Text style={style.stepItem}>{item}</Text>}
-										/>
-									</View>
-								) : null}
-
-								{selectedTask.description ? (
-									<View style={style.itemsContainer}>
-										<Text style={style.description}>{selectedTask.description}</Text>
-									</View>
-								) : null}
-
-								<TouchableOpacity
-									activeOpacity={0.6}
-									style={[style.actionButton, style.blueBorder]}
-									onPress={() => onButtonModalClosePress()}></TouchableOpacity>
-							</View>
-						</View>
-					</Modal>
+				{selectedTask && modalTaskVisible ? (
+					<TaskSinopseModal
+						modalTaskVisible={modalTaskVisible}
+						task={selectedTask}
+						onPressClose={() => onButtonModalClosePress()}
+						onPressStart={() => onButtonModalStartPress()}
+					/>
 				) : null}
 
 				<FlatList
