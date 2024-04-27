@@ -1,17 +1,15 @@
-import React from 'react'
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createStackNavigator } from '@react-navigation/stack'
-import { NewPatientScreen, ProfileScreen } from '../../screens'
+import React from 'react'
 import { COLORS } from '../../assets'
 import { HeaderButton } from '../../components'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { NewPatientScreen, ProfileScreen } from '../../screens'
 
 const Stack = createStackNavigator()
 
 export function ProfileStack(props) {
 	const { navigation, route } = props
 	const { setToken } = route.params
-
 
 	const removeToken = async () => {
 		await AsyncStorage.removeItem('@App:token')
@@ -38,7 +36,10 @@ export function ProfileStack(props) {
 			<Stack.Screen
 				component={ProfileScreen}
 				name='ProfileScreen'
-				options={{ title: 'Perfil', headerRight: (props) => <HeaderButton icon='sign-out' onPress={onPressLogout} /> }}
+				options={{
+					title: 'Perfil',
+					headerRight: (props) => <HeaderButton icon='sign-out' onPress={onPressLogout} />,
+				}}
 			/>
 			<Stack.Screen component={NewPatientScreen} name='NewPatientScreen' options={{ title: 'Vincular paciente' }} />
 		</Stack.Navigator>

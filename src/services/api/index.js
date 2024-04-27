@@ -49,7 +49,7 @@ export const ApiClient = () => {
 			}
 			return response
 		} catch (error) {
-			return error.message
+			return errorMessage(error)
 		}
 	}
 
@@ -61,7 +61,7 @@ export const ApiClient = () => {
 			}
 			return response
 		} catch (error) {
-			return error.message
+			return errorMessage(error)
 		}
 	}
 
@@ -73,7 +73,7 @@ export const ApiClient = () => {
 			}
 			return response
 		} catch (error) {
-			return error.message
+			return errorMessage(error)
 		}
 	}
 
@@ -82,7 +82,7 @@ export const ApiClient = () => {
 			const response = await api.patch(path, body, params)
 			return response
 		} catch (error) {
-			return error.message
+			return errorMessage(error)
 		}
 	}
 
@@ -94,8 +94,15 @@ export const ApiClient = () => {
 			}
 			return response
 		} catch (error) {
-			return error.message
+			return errorMessage(error)
 		}
+	}
+
+	const errorMessage = (error) => {
+		if (error?.code === 'ERR_NETWORK') {
+			return 'Não foi possível se conectar com o servidor.'
+		}
+		return error?.message
 	}
 
 	return { get, post, patch, put, del }

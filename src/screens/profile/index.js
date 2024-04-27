@@ -5,7 +5,7 @@ import EvilIconsIcon from 'react-native-vector-icons/dist/EvilIcons'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
 import { COLORS } from '../../assets'
-import { UserCard } from '../../components'
+import { Toast, UserCard } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 import style from './styles'
@@ -13,18 +13,28 @@ import style from './styles'
 const api = ApiClient()
 
 export function ProfileScreen(props) {
-	const { navigation } = props
+	const { navigation, route } = props
 
 	const [isPatient, setisPatient] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+
+	const [hasError, setHasError] = useState(false)
+	const [errorMessage, setErrorMessage] = useState(undefined)
+
 	const [user, setUser] = useState({})
 
 	useEffect(() => {
 		async function getScreenData() {
 			setIsLoading(true)
 			await api.get('/user').then((response) => {
-				setUser(response.data.data)
-				setisPatient(response.data.data.type === 'PATIENT' || response.data.data.type === 1)
+				if (response?.data?.data) {
+					setUser(response.data.data)
+					setisPatient(response.data.data.type === 'PATIENT' || response.data.data.type === 1)
+					setHasError(false)
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
 				setIsLoading(false)
 			})
 		}
@@ -54,6 +64,8 @@ export function ProfileScreen(props) {
 	function renderContentPatient() {
 		return (
 			<View style={globalStyles.container}>
+				{hasError ? <Toast label={errorMessage} /> : null}
+
 				<Image resizeMode='cover' source={{ uri: user.image }} style={style.image} />
 				<Text style={style.name}>{user.name}</Text>
 				<Text style={style.name}>Nível Mock</Text>
@@ -88,6 +100,8 @@ export function ProfileScreen(props) {
 	function renderContentNotPatient() {
 		return (
 			<View style={globalStyles.container}>
+				{hasError ? <Toast label={errorMessage} /> : null}
+
 				<Image resizeMode='cover' source={{ uri: user.image }} style={style.image} />
 				<Text style={style.name}>{user.name}</Text>
 				<Text style={style.userType}>{getUserType(user.type)}</Text>
