@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from 'react-native'
+import { StarRatingDisplay } from 'react-native-star-rating-widget'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
 import { COLORS } from '../../assets'
@@ -123,7 +124,15 @@ export function TaskDetailScreen({ route, navigation }) {
 						</View>
 					) : null}
 
-					<View style={style.actions}></View>
+					<View style={style.actions}>
+						<StarRatingDisplay
+							rating={task.qtyStars}
+							starSize={35}
+							emptyColor={COLORS.GREY}
+							color={COLORS.YELLOW}
+							starStyle={{ marginHorizontal: 0 }}
+						/>
+					</View>
 					<View style={style.actions}>
 						<View style={style.clockContainer}>
 							<IoniconsIcon name='alarm-outline' size={40} color={COLORS.BLACK} />

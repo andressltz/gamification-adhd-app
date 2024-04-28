@@ -3,6 +3,7 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import styles from './styles'
 import 'moment/locale/pt-br'
+import { StarRatingDisplay } from 'react-native-star-rating-widget'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import { COLORS } from '../../assets/colors'
 import { Button } from '../button'
@@ -54,7 +55,15 @@ export function ItemCard(props) {
 					onPress={() => onPress(id)}
 				/>
 			</View>
-			<View style={styles.secondLine}></View>
+			<View style={styles.secondLine}>
+				<StarRatingDisplay
+					rating={qtyStars}
+					starSize={26}
+					emptyColor={COLORS.GREY}
+					color={COLORS.YELLOW}
+					starStyle={{ marginHorizontal: 0 }}
+				/>
+			</View>
 			<View style={styles.thirdLine}>
 				<View style={styles.date}>
 					<FontAwesomeIcon name='calendar' style={styles.dateText} />

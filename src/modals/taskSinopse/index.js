@@ -1,5 +1,6 @@
 import React from 'react'
 import { FlatList, Modal, Text, TouchableOpacity, View } from 'react-native'
+import { StarRatingDisplay } from 'react-native-star-rating-widget'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import { COLORS } from '../../assets'
 import style from './styles'
@@ -44,7 +45,13 @@ export function TaskSinopseModal(props) {
 							<Text style={style.achievementTitle}>Conquistas da Tarefa</Text>
 
 							<View style={style.achievementContainer}>
-								<Text>Estrelas mock</Text>
+								<StarRatingDisplay
+									rating={task.qtyStars}
+									starSize={26}
+									emptyColor={COLORS.GREY}
+									color={COLORS.YELLOW}
+									starStyle={{ marginHorizontal: 0 }}
+								/>
 							</View>
 
 							{task.hasAchievement ? (
