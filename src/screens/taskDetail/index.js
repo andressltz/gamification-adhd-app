@@ -28,7 +28,7 @@ export function TaskDetailScreen({ route, navigation }) {
 
 	const [isLoading, setIsLoading] = useState(false)
 	const [task, setTask] = useState({})
-	const idTask = route.params.id
+	const idTask = route.params.idTask
 
 	useEffect(() => {
 		async function getScreenData() {
@@ -52,6 +52,48 @@ export function TaskDetailScreen({ route, navigation }) {
 		}
 		getScreenData()
 	}, [route, idTask, task.currentDuration])
+
+	async function stopTaskAction() {
+		if (idTask) {
+			setIsLoading(true)
+			setHasError(false)
+			await api.post(`/task/${idTask}/stop`).then((response) => {
+				if (response?.data?.data) {
+					setHasError(false)
+					navigation.navigate('TasksScreen')
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
+				setIsLoading(false)
+			})
+		}
+	}
+
+	async function finishTaskAction() {
+		if (idTask) {
+			setIsLoading(true)
+			setHasError(false)
+			await api.post(`/task/${idTask}/finish`).then((response) => {
+				if (response?.data?.data) {
+					setHasError(false)
+					navigation.navigate('TasksScreen')
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
+				setIsLoading(false)
+			})
+		}
+	}
+
+	function onPressStop() {
+		stopTaskAction()
+	}
+
+	function onPressFinish() {
+		finishTaskAction()
+	}
 
 	function renderContent() {
 		if (isLoading) {
@@ -103,10 +145,18 @@ export function TaskDetailScreen({ route, navigation }) {
 							onPress={() => {
 								setIsStopwatchStart(!isStopwatchStart)
 								setResetStopwatch(false)
+								onPressStop()
 							}}>
 							<FontAwesomeIcon name='stop' size={25} color={COLORS.RED} />
 						</TouchableOpacity>
-						<TouchableOpacity activeOpacity={0.6} style={[style.actionButton, style.greenBorder]}>
+						<TouchableOpacity
+							activeOpacity={0.6}
+							style={[style.actionButton, style.greenBorder]}
+							onPress={() => {
+								setIsStopwatchStart(!isStopwatchStart)
+								setResetStopwatch(false)
+								onPressFinish()
+							}}>
 							<FontAwesomeIcon name='check' size={25} color={COLORS.GREEN_PRIM} />
 						</TouchableOpacity>
 					</View>
