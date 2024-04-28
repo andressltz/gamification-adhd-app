@@ -4,7 +4,7 @@ import { StarRatingDisplay } from 'react-native-star-rating-widget'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
 import { COLORS } from '../../assets'
-import { Toast } from '../../components'
+import { StopWatch, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 import style from './styles'
@@ -136,6 +136,15 @@ export function TaskDetailScreen({ route, navigation }) {
 					<View style={style.actions}>
 						<View style={style.clockContainer}>
 							<IoniconsIcon name='alarm-outline' size={40} color={COLORS.BLACK} />
+							<StopWatch
+								startTime={startTimeStopWatch}
+								start={isStopwatchStart}
+								reset={resetStopwatch}
+								options={StopwatchOptions}
+								// getTime={(time) => {
+								// 	console.log(time)
+								// }}
+							/>
 						</View>
 					</View>
 					<View style={style.actions}>
