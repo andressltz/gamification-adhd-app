@@ -70,10 +70,10 @@ export function NewTaskScreen(props) {
 			<ScrollView style={globalStyles.scrollview}>
 				{hasError ? <Toast label={errorMessage} /> : null}
 
-				<Input label='Título da tarefa:' placeholder='Ex: Arrumar guarda roupa' onChangeText={setFormTitle} value={title} />
+				<Input label='Título da tarefa:*' placeholder='Ex: Arrumar guarda roupa' onChangeText={setFormTitle} value={title} />
 
 				<Input
-					label='Orientações da tarefa:'
+					label='Orientações da tarefa:*'
 					placeholder='Ex: Dobrar todas as roupas'
 					onChangeText={setFormDescription}
 					value={description}
@@ -110,14 +110,14 @@ export function NewTaskScreen(props) {
 				<View style={{ flexDirection: 'row' }}>
 					<CompDatePicker
 						useState={myUseState}
-						label='Data inicial:'
+						label='Data inicial:*'
 						type='date'
 						dateTimeValue={dtStart}
 						setDateTimeValue={setFormDtStart}
 					/>
 					<CompDatePicker
 						useState={myUseState}
-						label='Hora inicial:'
+						label='Hora inicial:*'
 						type='time'
 						dateTimeValue={hrStart}
 						setDateTimeValue={setFormHrStart}
