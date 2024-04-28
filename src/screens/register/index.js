@@ -78,9 +78,9 @@ export function RegisterScreen(props) {
 
 				<Selection
 					label='Tipo de usuário:'
-					data={userTypeOptions}
+					values={userTypeOptions}
 					value={userType}
-					onChange={(item) => {
+					onSelect={(item) => {
 						setUserType(item.value)
 					}}
 				/>

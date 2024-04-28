@@ -81,9 +81,9 @@ export function NewTaskScreen(props) {
 
 				<Selection
 					label='Quantidade de estrelas:'
-					data={qtyStarOptions}
+					values={qtyStarOptions}
 					value={qtyStars}
-					onChange={(item) => {
+					onSelect={(item) => {
 						setFormQtyStars(item.value)
 					}}
 				/>
@@ -100,9 +100,9 @@ export function NewTaskScreen(props) {
 
 				<Selection
 					label='Conquista:'
-					data={achievementOptions}
+					values={achievementOptions}
 					value={achievement}
-					onChange={(item) => {
+					onSelect={(item) => {
 						setFormAchievement(item.value)
 					}}
 				/>
