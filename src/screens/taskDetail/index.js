@@ -83,7 +83,9 @@ export function TaskDetailScreen({ route, navigation }) {
 
 					<View style={style.actions}></View>
 					<View style={style.actions}>
-						<View style={style.clockContainer}>{/* <IoniconsIcon name='alarm-outline' size={40} color={COLORS.BLACK} /> */}</View>
+						<View style={style.clockContainer}>
+							<IoniconsIcon name='alarm-outline' size={40} color={COLORS.BLACK} />
+						</View>
 					</View>
 					<View style={style.actions}>
 						<TouchableOpacity
