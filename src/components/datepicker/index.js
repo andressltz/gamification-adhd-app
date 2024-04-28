@@ -1,36 +1,65 @@
-import React from 'react'
-
-import { Text, View, TouchableOpacity, TextInput } from 'react-native'
-// import DateTimePicker from '@react-native-community/datetimepicker'
+import dayjs from 'dayjs'
+import locale from 'dayjs/locale/pt-br'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import PropTypes from 'prop-types'
-import moment from 'moment'
-import 'moment/locale/pt-br'
+import React, { useRef } from 'react'
+import { Modal, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import DateTimePicker from 'react-native-ui-datepicker'
 import styles from './styles'
 
-export function CompDatePicker({ useState, label, type, dateTimeValue, setDateTimeValue }) {
+export function CompDatePicker({ useState, label, type, date, setDate, styleProps = {} }) {
+	dayjs.extend(relativeTime)
+	dayjs.locale(locale)
+
+	const ComponentButton = useRef()
 	const [show, setShow] = useState(false)
+	const [componentTop, setComponentTop] = useState(0)
 
-	const onChangeDate = (event, selectedDate) => {
-		const currentDate = selectedDate
-		setShow(false)
-		setDateTimeValue(currentDate)
-	}
-
-	const showDatepicker = () => {
+	const openModal = () => {
+		// ComponentButton.current.measure((_fx, _fy, _w, h, _px, py) => {
+		// 	setComponentTop(py + h)
+		// })
 		setShow(true)
 	}
 
-	return (
-		<View style={styles.container}>
-			<TouchableOpacity onPress={showDatepicker}>
-				<Text style={styles.label}>{label}</Text>
-				{/* {show && <DateTimePicker mode={type} is24Hour={true} value={dateTimeValue} onChange={onChangeDate} />} */}
+	const onChangeDate = (selectedDate) => {
+		setDate(selectedDate)
+		setShow(false)
+	}
 
+	const showDatepicker = () => {
+		show ? setShow(false) : openModal()
+	}
+
+	return (
+		<View style={[styles.container, styleProps]}>
+			<Text style={styles.label}>{label}</Text>
+			<TouchableOpacity ref={ComponentButton} onPress={showDatepicker}>
 				<TextInput
 					editable={false}
 					style={styles.input}
-					value={type === 'date' ? moment(dateTimeValue).format('L') : moment(dateTimeValue).format('LT')}
+					value={
+						type === 'date'
+							? dayjs(date).locale(locale).format('L')
+							: type === 'time'
+							? dayjs(date).locale(locale).format('LT')
+							: dayjs(date).locale(locale).format('DD/MM/YYYY HH:mm')
+					}
 				/>
+				<Modal visible={show} transparent animationType='none'>
+					<TouchableOpacity style={styles.overlay} onPress={() => setShow(false)}>
+						<View style={[styles.viewModal]}>
+							{/* { top: componentTop } */}
+							<DateTimePicker
+								mode='single'
+								timePicker={type === 'time' || type === 'datetime'}
+								date={date}
+								locale='pt'
+								onChange={(params) => onChangeDate(params.date)}
+							/>
+						</View>
+					</TouchableOpacity>
+				</Modal>
 			</TouchableOpacity>
 		</View>
 	)

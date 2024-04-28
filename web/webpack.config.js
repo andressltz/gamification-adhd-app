@@ -59,8 +59,27 @@ module.exports = {
 	// ...the rest of your config
 
 	module: {
-		rules: [babelLoaderConfiguration, imageLoaderConfiguration],
+		rules: [
+			babelLoaderConfiguration,
+			imageLoaderConfiguration,
+			// {
+			// 	test: /\.js$/,
+			// 	enforce: 'pre',
+			// 	use: ['source-map-loader'],
+			// },
+		],
 	},
+
+	// plugins: [
+	// 	new HtmlWebpackPlugin({
+	// 		template: path.join(__dirname, 'index.html'),
+	// 	}),
+	// 	new webpack.HotModuleReplacementPlugin(),
+	// 	new webpack.DefinePlugin({
+	// 		// See: <https://github.com/necolas/react-native-web/issues/349>
+	// 		__DEV__: JSON.stringify(true),
+	// 	}),
+	// ],
 
 	resolve: {
 		// This will only alias the exact import "react-native"

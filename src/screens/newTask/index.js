@@ -110,24 +110,27 @@ export function NewTaskScreen(props) {
 				<View style={{ flexDirection: 'row' }}>
 					<CompDatePicker
 						useState={myUseState}
-						label='Data inicial:*'
-						type='date'
-						dateTimeValue={dtStart}
-						setDateTimeValue={setFormDtStart}
+						label='Data e hora inicial:*'
+						type='datetime'
+						date={dtStart}
+						setDate={setFormDtStart}
+						styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
 					/>
-					<CompDatePicker
+					{/* <CompDatePicker
 						useState={myUseState}
 						label='Hora inicial:*'
 						type='time'
-						dateTimeValue={hrStart}
-						setDateTimeValue={setFormHrStart}
-					/>
+						date={hrStart}
+						setDate={setFormHrStart}
+					/> */}
+
 					<CompDatePicker
 						useState={myUseState}
 						label='Tempo para realização:'
 						type='time'
-						dateTimeValue={duration}
-						setDateTimeValue={setFormDuration}
+						date={duration}
+						setDate={setFormDuration}
+						styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
 					/>
 				</View>
 				<Button label='Salvar' onPress={() => onButtonSavePress()} />

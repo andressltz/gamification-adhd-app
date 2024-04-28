@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ScrollView, Text, View } from 'react-native'
-import { Button, Check, CompDatePicker, Input, Selection, Toast } from '../../components'
+import { Button, Input, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 import style from './styles'
