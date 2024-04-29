@@ -1,11 +1,46 @@
 {
-	"extends": "@tsconfig/react-native/tsconfig.json",
+	// "extends": "@tsconfig/react-native/tsconfig.json",
 	"compilerOptions": {
-		"jsx": "react-jsx",
+		"baseUrl": "./",
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"jsx": "react",
+		"lib": ["esnext", "dom"],
+		"module": "esnext",
+		"moduleResolution": "node",
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noImplicitUseStrict": false,
+		"noStrictGenericChecks": false,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
 		"strict": true,
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["./src/*"]
-		}
-	}
+		"target": "esnext",
+	  },
+	// "compilerOptions": {
+	// 	"jsx": "react-jsx",
+	// 	"strict": true,
+	// 	"baseUrl": ".",
+	// 	"paths": {
+	// 		"@/*": ["./src/*"]
+	// 	},
+	// },
+	// "compilerOptions": {
+	// 	"allowJs": true,
+	// 	"allowSyntheticDefaultImports": true,
+	// 	"esModuleInterop": true,
+	// 	"isolatedModules": true,
+	// 	"jsx": "react-native",
+	// 	"lib": ["es2017", "dom"],
+	// 	"moduleResolution": "node",
+	// 	"noEmit": false,
+	// 	"strict": true,
+	// 	"target": "esnext",
+	// 	"resolveJsonModule": true
+	// },
+	"exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }

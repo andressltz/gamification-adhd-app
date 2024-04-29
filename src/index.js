@@ -7,6 +7,8 @@ import iconEvilIcons from 'react-native-vector-icons/Fonts/EvilIcons.ttf'
 // Generate the required CSS
 import iconFontAwesome from 'react-native-vector-icons/Fonts/FontAwesome.ttf'
 import iconIonicons from 'react-native-vector-icons/Fonts/Ionicons.ttf'
+// import { pt, registerTranslation } from 'react-native-paper-dates'
+// registerTranslation('pt', pt)
 import App from './App'
 
 AppRegistry.registerComponent('App', () => App)
