@@ -107,7 +107,7 @@ export function TasksScreen(props) {
 			setSelectedTask(task)
 			setModalTaskVisible(true)
 		} else if (!isPatient && patientId) {
-			navigation.navigate('NewTaskScreen', { idTask })
+			navigation.navigate('EditTaskScreen', { idTask })
 		}
 	}
 
