@@ -10,10 +10,10 @@
 		"start": "react-app-rewired start",
 		"build": "react-app-rewired build",
 		"test": "react-app-rewired test --env=jsdom",
-		"web": "react-scripts start",
-		"build-web": "react-scripts build",
-		"web-rewired": "react-app-rewired start",
-		"build-web-rewired": "react-app-rewired build",
+		"web": "react-app-rewired start",
+		"build-web": "react-app-rewired build",
+		"web-scripts": "react-scripts start",
+		"build-web-scripts": "react-scripts build",
 		"serve-build": "serve -s build"
 	},
 	"dependencies": {
@@ -21,6 +21,9 @@
 		"@react-navigation/bottom-tabs": "^6.5.20",
 		"@react-navigation/native": "^6.1.17",
 		"@react-navigation/stack": "^6.3.29",
+		"@rneui/base": "4.0.0-rc.7",
+		"@rneui/themed": "4.0.0-rc.7",
+		"add": "^2.0.6",
 		"axios": "^1.6.8",
 		"moment": "^2.30.1",
 		"react": "18.2.0",
@@ -38,7 +41,8 @@
 		"react-native-ui-datepicker": "^2.0.2",
 		"react-native-vector-icons": "^10.0.3",
 		"react-native-web": "^0.19.11",
-		"react-scripts": "^5.0.1"
+		"react-scripts": "^5.0.1",
+		"yarn": "^1.22.22"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.0",
@@ -46,6 +50,7 @@
 		"@babel/plugin-proposal-logical-assignment-operators": "^7.20.7",
 		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"@babel/plugin-syntax-jsx": "^7.24.1",
+		"@babel/plugin-transform-nullish-coalescing-operator": "^7.24.1",
 		"@babel/plugin-transform-react-jsx": "^7.23.4",
 		"@babel/preset-env": "^7.20.0",
 		"@babel/preset-react": "^7.24.1",
@@ -62,6 +67,7 @@
 		"babel-plugin-module-resolver": "^5.0.2",
 		"babel-plugin-react-native-web": "^0.19.11",
 		"babel-preset-react-native": "^4.0.1",
+		"customize-cra": "^1.0.0",
 		"eslint": "^8.19.0",
 		"jest": "^29.2.1",
 		"metro-react-native-babel-preset": "^0.77.0",
@@ -71,9 +77,9 @@
 		"reactotron-react-native": "^5.1.6",
 		"typescript": "4.8.4",
 		"url-loader": "^4.1.1",
-		"webpack": "4.47.0",
-		"webpack-cli": "4.10.0",
-		"webpack-dev-server": "4.15.1"
+		"webpack": "^5.91.0",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^5.0.4"
 	},
 	"engines": {
 		"node": ">=16"

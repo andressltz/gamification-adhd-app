@@ -1,4 +1,4 @@
-// import { FAB } from '@rneui/themed'
+import { FAB } from '@rneui/themed'
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native'
 import EvilIconsIcon from 'react-native-vector-icons/dist/EvilIcons'
@@ -121,17 +121,17 @@ export function ProfileScreen(props) {
 						/>
 					)}
 				/>
-				{/* <FAB
-						size='large'
-						placement='right'
-						visible={!isPatient}
-						onPress={() => onButtonNewRelatedPatientPress()}
-						color={COLORS.GREEN_PRIM}
-						icon={{
-							name: 'add',
-							color: 'white',
-						}}
-					/> */}
+				<FAB
+					size='large'
+					placement='right'
+					visible={!isPatient}
+					onPress={() => onButtonNewRelatedPatientPress()}
+					color={COLORS.GREEN_PRIM}
+					icon={{
+						name: 'add',
+						color: 'white',
+					}}
+				/>
 			</View>
 		)
 	}

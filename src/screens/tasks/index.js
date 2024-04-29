@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { FAB } from '@rneui/themed'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, View } from 'react-native'
+import { COLORS } from '../../assets'
 import { EmptyList, ItemCard, Toast } from '../../components'
 import { TaskSinopseModal } from '../../modals'
 import { ApiClient } from '../../services'
@@ -123,7 +125,7 @@ export function TasksScreen(props) {
 		}
 
 		return (
-			<View>
+			<View style={[globalStyles.container, { paddingLeft: 1, paddingRight: 1 }]}>
 				{hasError ? <Toast label={errorMessage} /> : null}
 
 				{selectedTask && modalTaskVisible ? (
@@ -153,7 +155,7 @@ export function TasksScreen(props) {
 						/>
 					)}
 				/>
-				{/* <FAB
+				<FAB
 					size='large'
 					placement='right'
 					visible={!isPatient && patientId ? true : false}
@@ -163,7 +165,7 @@ export function TasksScreen(props) {
 						name: 'add',
 						color: 'white',
 					}}
-				/> */}
+				/>
 			</View>
 		)
 	}

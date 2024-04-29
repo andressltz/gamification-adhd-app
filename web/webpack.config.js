@@ -42,6 +42,12 @@ const imageLoaderConfiguration = {
 	},
 }
 
+const fontMyAppConfiguration = {
+	test: /\.ttf$/,
+	loader: 'file-loader',
+	include: path.resolve(appDirectory, './static/media/[name].[ext]'),
+}
+
 module.exports = {
 	entry: [
 		// load any web API polyfills
@@ -62,6 +68,7 @@ module.exports = {
 		rules: [
 			babelLoaderConfiguration,
 			imageLoaderConfiguration,
+			// fontMyAppConfiguration,
 			// {
 			// 	test: /\.js$/,
 			// 	enforce: 'pre',

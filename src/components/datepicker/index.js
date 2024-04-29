@@ -93,8 +93,8 @@ export function CompDatePicker({ useState, label, type = 'date', date, setDate, 
 						}
 					/>
 					<TimePickerModal
-						keyboardIcon={undefined}
-						clockIcon={undefined}
+						// keyboardIcon={undefined}
+						// clockIcon={undefined}
 						use24HourClock={true}
 						visible={show}
 						onDismiss={onDismiss}
