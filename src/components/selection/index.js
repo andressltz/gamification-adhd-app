@@ -4,12 +4,24 @@ import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import styles from './styles'
 
 export function Selection(props) {
-	const { style = {}, label = '', values = [], onSelect = () => {}, ...otherProps } = props
+	const { style = {}, label = '', values = [], onSelect = () => {}, value = undefined } = props
 
 	const DropdownButton = useRef()
 	const [visible, setVisible] = useState(false)
-	const [selected, setSelected] = useState(undefined)
+	const [selected, setSelected] = useState(getElementByValue(value))
 	const [dropdownTop, setDropdownTop] = useState(0)
+
+	function getElementByValue(value) {
+		if (value) {
+			for (let i = 0; i < values.length; i++) {
+				const element = values[i];
+				if (element.value === value) {
+					return element
+				}
+			}
+		}
+		return {}
+	}
 
 	const toggleDropdown = () => {
 		visible ? setVisible(false) : openDropdown()

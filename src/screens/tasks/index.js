@@ -89,7 +89,7 @@ export function TasksScreen(props) {
 	}
 
 	function onButtonNewTaskPress() {
-		navigation.navigate('NewTaskScreen', [])
+		navigation.navigate('NewTaskScreen', { patientId, patientName })
 	}
 
 	function onButtonModalClosePress() {
@@ -107,7 +107,7 @@ export function TasksScreen(props) {
 			setSelectedTask(task)
 			setModalTaskVisible(true)
 		} else if (!isPatient && patientId) {
-			navigation.navigate('EditTaskScreen', { idTask })
+			navigation.navigate('EditTaskScreen', { idTask, patientId, patientName })
 		}
 	}
 

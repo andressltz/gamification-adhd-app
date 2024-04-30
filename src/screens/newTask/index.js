@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ScrollView, View } from 'react-native'
+import { ActivityIndicator, ScrollView, View } from 'react-native'
 import { Button, Check, CompDatePicker, Input, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
@@ -7,18 +7,19 @@ import globalStyles from '../../styles'
 const api = ApiClient()
 
 export function NewTaskScreen(props) {
-	const { navigation } = props
+	const { navigation, route } = props
+	const { patientId, patientName } = route.params
 
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
+	const [isLoading, setIsLoading] = useState(false)
 
 	const [title, setFormTitle] = useState(null)
 	const [description, setFormDescription] = useState(null)
 	const [qtyStars, setFormQtyStars] = useState(null)
 	const [lostStarDoNotDo, setLostStarDoNotDo] = useState(null)
 	const [lostStarDelay, setLostStarDelay] = useState(null)
-	const [dtStart, setFormDtStart] = useState(new Date())
-	const [hrStart, setFormHrStart] = useState(new Date())
+	const [dateToStart, setDateToStart] = useState(new Date())
 	const [duration, setFormDuration] = useState(new Date())
 	const [hasAchievement, setFormHasAchievement] = useState(null)
 	const [achievement, setFormAchievement] = useState(null)
@@ -38,6 +39,9 @@ export function NewTaskScreen(props) {
 	]
 
 	async function onButtonSavePress() {
+		setIsLoading(true)
+		setHasError(false)
+
 		const response = await api.post('/task', {
 			status: 1,
 			title: title,
@@ -45,78 +49,89 @@ export function NewTaskScreen(props) {
 			qtyStars: qtyStars,
 			lostStarDoNotDo: lostStarDoNotDo,
 			lostStarDelay: lostStarDelay,
-			dateToStart: dtStart,
-			timeToStart: hrStart,
+			dateToStart: dateToStart,
+			timeToStart: dateToStart,
 			// timeToDo: duration,
 			hasAchievement: hasAchievement,
 			achievement: achievement,
-			patient: { id: 1 },
-			owner: { id: 2 },
+			patient: { id: patientId },
+			ownerId: 1,
 		})
 		if (response?.data?.data) {
-			navigation.navigate('TasksScreen', [])
+			setHasError(false)
+			navigation.navigate('TasksScreen', { patientId: patientId, patientName: patientName })
 		} else {
 			setHasError(true)
 			setErrorMessage(response)
 		}
+		setIsLoading(false)
 	}
 
 	function myUseState(bool) {
 		return useState(bool)
 	}
 
-	return (
-		<View style={globalStyles.containerScroll}>
-			<ScrollView style={globalStyles.scrollview}>
-				{hasError ? <Toast label={errorMessage} /> : null}
+	function renderContent() {
+		if (isLoading) {
+			return (
+				<View style={globalStyles.loaderContainer}>
+					<ActivityIndicator size='large' />
+				</View>
+			)
+		}
 
-				<Input label='Título da tarefa:*' placeholder='Ex: Arrumar guarda roupa' onChangeText={setFormTitle} value={title} />
+		return (
+			<View style={globalStyles.containerScroll}>
+				<ScrollView style={globalStyles.scrollview}>
+					{hasError ? <Toast label={errorMessage} /> : null}
 
-				<Input
-					label='Orientações da tarefa:*'
-					placeholder='Ex: Dobrar todas as roupas'
-					onChangeText={setFormDescription}
-					value={description}
-				/>
+					<Input label='Título da tarefa:*' placeholder='Ex: Arrumar guarda roupa' onChangeText={setFormTitle} value={title} />
 
-				<Selection
-					label='Quantidade de estrelas:'
-					values={qtyStarOptions}
-					value={qtyStars}
-					onSelect={(item) => {
-						setFormQtyStars(item.value)
-					}}
-				/>
-
-				<Check
-					text='Perde estrelas se não realizar a tarefa'
-					value={lostStarDoNotDo}
-					onValueChange={(val) => setLostStarDoNotDo(val)}
-				/>
-
-				<Check text='Perde estrelas se atrasar a tarefa' value={lostStarDelay} onValueChange={(val) => setLostStarDelay(val)} />
-
-				<Check text='Tarefa vale uma conquista' value={hasAchievement} onValueChange={(val) => setFormHasAchievement(val)} />
-
-				<Selection
-					label='Conquista:'
-					values={achievementOptions}
-					value={achievement}
-					onSelect={(item) => {
-						setFormAchievement(item.value)
-					}}
-				/>
-
-				<View style={{ flexDirection: 'row' }}>
-					<CompDatePicker
-						useState={myUseState}
-						label='Data e hora inicial:*'
-						type='datetime'
-						date={dtStart}
-						setDate={setFormDtStart}
-						styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
+					<Input
+						label='Orientações da tarefa:*'
+						placeholder='Ex: Dobrar todas as roupas'
+						onChangeText={setFormDescription}
+						value={description}
 					/>
-					{/* <CompDatePicker
+
+					<Selection
+						label='Quantidade de estrelas:'
+						values={qtyStarOptions}
+						value={qtyStars}
+						onSelect={(item) => {
+							setFormQtyStars(item.value)
+						}}
+					/>
+
+					<Check
+						text='Perde estrelas se não realizar a tarefa'
+						value={lostStarDoNotDo}
+						onValueChange={(val) => setLostStarDoNotDo(val)}
+					/>
+
+					<Check text='Perde estrelas se atrasar a tarefa' value={lostStarDelay} onValueChange={(val) => setLostStarDelay(val)} />
+
+					<Check text='Tarefa vale uma conquista' value={hasAchievement} onValueChange={(val) => setFormHasAchievement(val)} />
+
+					<Selection
+						label='Conquista:'
+						values={achievementOptions}
+						value={achievement}
+						onSelect={(item) => {
+							setFormAchievement(item.value)
+						}}
+					/>
+
+					<View style={{ flexDirection: 'row' }}>
+						<CompDatePicker
+							useState={myUseState}
+							label='Data e hora inicial:*'
+							type='datetime'
+							date={dateToStart}
+							setDate={setDateToStart}
+							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
+						/>
+						{/* <CompDatePicker
 						useState={myUseState}
 						label='Hora inicial:*'
 						type='time'
@@ -124,17 +139,20 @@ export function NewTaskScreen(props) {
 						setDate={setFormHrStart}
 					/> */}
 
-					<CompDatePicker
-						useState={myUseState}
-						label='Tempo para realização:'
-						type='time'
-						date={duration}
-						setDate={setFormDuration}
-						styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
-					/>
-				</View>
-				<Button label='Salvar' onPress={() => onButtonSavePress()} />
-			</ScrollView>
-		</View>
-	)
+						<CompDatePicker
+							useState={myUseState}
+							label='Tempo para realização:'
+							type='time'
+							date={duration}
+							setDate={setFormDuration}
+							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
+						/>
+					</View>
+					<Button label='Salvar' onPress={() => onButtonSavePress()} />
+				</ScrollView>
+			</View>
+		)
+	}
+
+	return renderContent()
 }
