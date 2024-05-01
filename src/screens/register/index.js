@@ -72,7 +72,7 @@ export function RegisterScreen(props) {
 					onChangeText={setFormPass}
 					autoCorrect={false}
 					autoCapitalize='none'
-					secureTextEntry
+					secureTextEntry={true}
 					value={pass}
 				/>
 

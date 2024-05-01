@@ -60,7 +60,7 @@ export function LoginScreen(props) {
 				onChangeText={setFormPass}
 				autoCorrect={false}
 				autoCapitalize='none'
-				secureTextEntry
+				secureTextEntry={true}
 				value={pass}
 			/>
 

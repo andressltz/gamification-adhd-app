@@ -3,7 +3,17 @@ import { Text, TextInput, View } from 'react-native'
 import styles from './styles'
 
 export function Input(props) {
-	const { style = {}, label = '', type = 'default', value = '', placeholder = '', onChangeText = () => {} } = props
+	const {
+		style = {},
+		label = '',
+		type = 'default',
+		value = '',
+		placeholder = '',
+		autoCorrect = true,
+		autoCapitalize = 'sentences',
+		secureTextEntry = false,
+		onChangeText = () => {},
+	} = props
 
 	return (
 		<View>
@@ -14,6 +24,9 @@ export function Input(props) {
 				placeholder={placeholder}
 				value={value}
 				onChangeText={onChangeText}
+				autoCorrect={autoCorrect}
+				autoCapitalize={autoCapitalize}
+				secureTextEntry={secureTextEntry}
 			/>
 		</View>
 	)
