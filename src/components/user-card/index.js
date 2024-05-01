@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
 import { COLORS } from '../../assets/colors'
 import { Button } from '../button'
 import styles from './styles'
@@ -11,9 +11,18 @@ export function UserCard(props) {
 		<View style={styles.card}>
 			<View style={styles.firstRow}>
 				<View style={styles.firstColumn}>
-					<Text style={styles.name}>{name}</Text>
+					<View style={{ height: 65 }}>
+						<Image
+							resizeMode='contain'
+							source={{ uri: `https://avatar.iran.liara.run/public/boy?username=${name}` }}
+							style={{ flex: 1 }}
+						/>
+					</View>
 				</View>
 				<View style={styles.secondColumn}>
+					<Text style={styles.name}>{name}</Text>
+				</View>
+				<View style={styles.thirdColumn}>
 					<Text>Nível Mock</Text>
 				</View>
 			</View>

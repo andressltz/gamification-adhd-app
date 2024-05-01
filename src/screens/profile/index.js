@@ -53,6 +53,18 @@ export function ProfileScreen(props) {
 		}
 	}
 
+	function getUserImageType(type) {
+		if (type === 'PARENT' || type === 0) {
+			return '/avatar/resp_m.png'
+		} else if (type === 'PATIENT' || type === 1) {
+			return undefined
+		} else if (type === 'PROFESSIONAL' || type === 2) {
+			return '/avatar/doctor_m.png'
+		} else {
+			return undefined
+		}
+	}
+
 	function onButtonNewRelatedPatientPress() {
 		navigation.navigate('NewPatientScreen', [])
 	}
@@ -70,7 +82,13 @@ export function ProfileScreen(props) {
 			<View style={globalStyles.container}>
 				{hasError ? <Toast label={errorMessage} /> : null}
 
-				<Image resizeMode='cover' source={{ uri: user.image }} style={style.image} />
+				<View style={{ height: 110 }}>
+					<Image
+						resizeMode='contain'
+						source={{ uri: `https://avatar.iran.liara.run/public/boy?username=${user.name}` }}
+						style={{ flex: 1 }}
+					/>
+				</View>
 				<Text style={style.name}>{user.name}</Text>
 				<Text style={style.name}>Nível Mock</Text>
 				<Text style={style.name}>Estrelas Mock</Text>
@@ -103,10 +121,12 @@ export function ProfileScreen(props) {
 
 	function renderContentNotPatient() {
 		return (
-			<View style={globalStyles.container}>
+			<View style={[globalStyles.container, { paddingLeft: 5, paddingRight: 5 }]}>
 				{hasError ? <Toast label={errorMessage} /> : null}
 
-				<Image resizeMode='cover' source={{ uri: user.image }} style={style.image} />
+				<View style={{ height: 110 }}>
+					<Image resizeMode='contain' source={{ uri: getUserImageType(user.type) }} style={{ flex: 1 }} />
+				</View>
 				<Text style={style.name}>{user.name}</Text>
 				<Text style={style.userType}>{getUserType(user.type)}</Text>
 

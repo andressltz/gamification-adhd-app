@@ -3,17 +3,13 @@ import { COLORS } from '../../assets'
 
 export default StyleSheet.create({
 	card: {
-		paddingTop: 2,
+		paddingTop: 5,
 	},
 	firstRow: {
-		paddingLeft: 10,
-		paddingRight: 10,
 		flexDirection: 'row',
-		justifyContent: 'space-between',
 		alignItems: 'center',
 	},
 	secondRow: {
-		paddingRight: 10,
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 		alignItems: 'center',
@@ -27,5 +23,17 @@ export default StyleSheet.create({
 		height: 1,
 		backgroundColor: COLORS.GREY,
 		marginVertical: 5,
+	},
+	firstColumn: {
+		flex: 0.2,
+		marginHorizontal: 5,
+	},
+	secondColumn: {
+		flex: 0.4,
+		marginHorizontal: 5,
+	},
+	thirdColumn: {
+		flex: 0.4,
+		marginHorizontal: 5,
 	},
 })
