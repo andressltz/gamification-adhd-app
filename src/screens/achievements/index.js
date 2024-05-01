@@ -19,6 +19,7 @@ export function AchievementsScreen(props) {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const [achievements, setAchievements] = useState([])
+	const [achievementsFormated, setAchievementsFormated] = useState([])
 
 	const emptyMsg = 'Nenhuma conquista cadastrada.'
 	const emptyMsgAdd = 'Para cadastrar, selecione um paciente em Perfil.'
@@ -48,6 +49,7 @@ export function AchievementsScreen(props) {
 				const response = await api.get(`/achievement/user/${patientId}`)
 				if (response?.data?.data) {
 					setAchievements(response.data.data)
+					setAchievementsFormated(formatData(response.data.data, 3))
 					setHasError(false)
 				} else {
 					setHasError(true)
@@ -57,6 +59,7 @@ export function AchievementsScreen(props) {
 				const response = await api.get('/achievement')
 				if (response?.data?.data) {
 					setAchievements(response.data.data)
+					setAchievementsFormated(formatData(response.data.data, 3))
 					setHasError(false)
 				} else {
 					setHasError(true)
@@ -77,11 +80,14 @@ export function AchievementsScreen(props) {
 	}
 
 	function formatData(data, numColumns) {
-		const emptyQty = numColumns - (data.length % numColumns)
-		for (let id = 0; id < emptyQty; id++) {
-			data.push({ id: `blank-${id}`, empty: true })
+		if (data.length > 0) {
+			const emptyQty = numColumns - (data.length % numColumns)
+			for (let id = 0; id < emptyQty; id++) {
+				data.push({ id: `blank-${id}`, empty: true })
+			}
+			return data
 		}
-		return data
+		return []
 	}
 
 	function renderContent() {
@@ -99,7 +105,7 @@ export function AchievementsScreen(props) {
 
 				<FlatList
 					numColumns={3}
-					data={formatData(achievements, 3)}
+					data={achievementsFormated}
 					ListEmptyComponent={() => <EmptyList canAdd={!isPatient} msg={emptyMsg} msgAdd={emptyMsgAdd} />}
 					renderItem={({ item }) => (
 						<AchievementCard title={item.title} status={item.status} id={item.id} empty={item.empty} keyExtractor={item.id} />

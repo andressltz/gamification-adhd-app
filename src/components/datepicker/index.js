@@ -24,7 +24,7 @@ export function CompDatePicker({ useState, label, type = 'date', date, setDate, 
 	const onConfirm = React.useCallback(
 		({ hours, minutes }) => {
 			setShow(false)
-			console.log({ hours, minutes })
+			// console.log({ hours, minutes })
 		},
 		[setShow],
 	)
