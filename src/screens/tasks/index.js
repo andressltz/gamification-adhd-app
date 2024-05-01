@@ -17,8 +17,8 @@ export function TasksScreen(props) {
 
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
-
 	const [isLoading, setIsLoading] = useState(false)
+
 	const [tasks, setTasks] = useState([])
 	const [selectedTask, setSelectedTask] = useState(undefined)
 	const [modalTaskVisible, setModalTaskVisible] = useState(false)

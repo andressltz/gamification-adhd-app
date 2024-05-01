@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native'
+import { ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native'
 import { Button, Input, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
@@ -11,6 +11,7 @@ export function RegisterScreen(props) {
 
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
+	const [isLoading, setIsLoading] = useState(false)
 
 	const [name, setFormName] = useState(null)
 	const [email, setFormEmail] = useState(null)
@@ -25,6 +26,8 @@ export function RegisterScreen(props) {
 	]
 
 	async function onButtonRegisterPress() {
+		setIsLoading(true)
+		setHasError(false)
 		const response = await api.post('/user', {
 			name: name,
 			email: email,
@@ -35,58 +38,72 @@ export function RegisterScreen(props) {
 
 		if (response?.data?.data) {
 			navigation.navigate('LoginScreen', [])
+			setHasError(false)
 		} else {
 			setHasError(true)
 			setErrorMessage(response)
 		}
+		setIsLoading(false)
 	}
 
-	return (
-		<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={globalStyles.container}>
-			<ScrollView>
-				{hasError ? <Toast label={errorMessage} /> : null}
+	function renderContent() {
+		if (isLoading) {
+			return (
+				<View style={globalStyles.loaderContainer}>
+					<ActivityIndicator size='large' />
+				</View>
+			)
+		}
 
-				<Input label='Nome:' placeholder='Insira seu nome' onChangeText={setFormName} autoCorrect={false} value={name} />
-				<Input
-					label='Email:'
-					placeholder='nome@servidor.com.br'
-					type='email-address'
-					onChangeText={setFormEmail}
-					autoCorrect={false}
-					autoCapitalize='none'
-					value={email}
-				/>
-				<Input
-					label='Telefone:'
-					placeholder='(11) 98765-4321'
-					type='phone-pad'
-					onChangeText={setFormPhone}
-					autoCorrect={false}
-					autoCapitalize='none'
-					value={phone}
-				/>
+		return (
+			<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={globalStyles.container}>
+				<ScrollView>
+					{hasError ? <Toast label={errorMessage} /> : null}
 
-				<Input
-					label='Senha:'
-					placeholder='Digite uma senha'
-					onChangeText={setFormPass}
-					autoCorrect={false}
-					autoCapitalize='none'
-					secureTextEntry={true}
-					value={pass}
-				/>
+					<Input label='Nome:' placeholder='Insira seu nome' onChangeText={setFormName} autoCorrect={false} value={name} />
+					<Input
+						label='Email:'
+						placeholder='nome@servidor.com.br'
+						type='email-address'
+						onChangeText={setFormEmail}
+						autoCorrect={false}
+						autoCapitalize='none'
+						value={email}
+					/>
+					<Input
+						label='Telefone:'
+						placeholder='(11) 98765-4321'
+						type='phone-pad'
+						onChangeText={setFormPhone}
+						autoCorrect={false}
+						autoCapitalize='none'
+						value={phone}
+					/>
 
-				<Selection
-					label='Tipo de usuário:'
-					values={userTypeOptions}
-					value={userType}
-					onSelect={(item) => {
-						setUserType(item.value)
-					}}
-				/>
+					<Input
+						label='Senha:'
+						placeholder='Digite uma senha'
+						onChangeText={setFormPass}
+						autoCorrect={false}
+						autoCapitalize='none'
+						secureTextEntry={true}
+						value={pass}
+					/>
 
-				<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
-			</ScrollView>
-		</KeyboardAvoidingView>
-	)
+					<Selection
+						label='Tipo de usuário:'
+						values={userTypeOptions}
+						value={userType}
+						onSelect={(item) => {
+							setUserType(item.value)
+						}}
+					/>
+
+					<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
+				</ScrollView>
+			</KeyboardAvoidingView>
+		)
+	}
+
+	return renderContent()
 }

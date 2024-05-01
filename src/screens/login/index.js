@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useState } from 'react'
-import { View } from 'react-native'
+import { ActivityIndicator, View } from 'react-native'
 import { Button, Input, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
@@ -13,11 +13,14 @@ export function LoginScreen(props) {
 
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
+	const [isLoading, setIsLoading] = useState(false)
 
 	const [email, setFormEmail] = useState(null)
 	const [pass, setFormPass] = useState(null)
 
 	async function onButtonLoginPress() {
+		setIsLoading(true)
+		setHasError(false)
 		const response = await api.post('/login', {
 			email: email,
 			password: pass,
@@ -34,38 +37,51 @@ export function LoginScreen(props) {
 			setHasError(true)
 			setErrorMessage(response)
 		}
+		setIsLoading(false)
 	}
 
 	function onButtonRegisterPress() {
 		navigation.navigate('RegisterScreen', [])
 	}
 
-	return (
-		<View style={globalStyles.container}>
-			{hasError ? <Toast label={errorMessage} /> : null}
+	function renderContent() {
+		if (isLoading) {
+			return (
+				<View style={globalStyles.loaderContainer}>
+					<ActivityIndicator size='large' />
+				</View>
+			)
+		}
 
-			<Input
-				label='Email:'
-				placeholder='Insira seu email'
-				type='email-address'
-				onChangeText={setFormEmail}
-				autoCorrect={false}
-				autoCapitalize='none'
-				value={email}
-			/>
+		return (
+			<View style={[globalStyles.container]}>
+				{hasError ? <Toast label={errorMessage} /> : null}
 
-			<Input
-				label='Senha:'
-				placeholder='Digite sua senha'
-				onChangeText={setFormPass}
-				autoCorrect={false}
-				autoCapitalize='none'
-				secureTextEntry={true}
-				value={pass}
-			/>
+				<Input
+					label='Email:'
+					placeholder='Insira seu email'
+					type='email-address'
+					onChangeText={setFormEmail}
+					autoCorrect={false}
+					autoCapitalize='none'
+					value={email}
+				/>
 
-			<Button label='Entrar' onPress={() => onButtonLoginPress()} />
-			<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
-		</View>
-	)
+				<Input
+					label='Senha:'
+					placeholder='Digite sua senha'
+					onChangeText={setFormPass}
+					autoCorrect={false}
+					autoCapitalize='none'
+					secureTextEntry={true}
+					value={pass}
+				/>
+
+				<Button label='Entrar' onPress={() => onButtonLoginPress()} />
+				<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
+			</View>
+		)
+	}
+
+	return renderContent()
 }

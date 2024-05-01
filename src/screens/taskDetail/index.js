@@ -14,6 +14,7 @@ const api = ApiClient()
 export function TaskDetailScreen({ route, navigation }) {
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
+	const [isLoading, setIsLoading] = useState(false)
 
 	const [isStopwatchStart, setIsStopwatchStart] = useState(false)
 	const [resetStopwatch, setResetStopwatch] = useState(false)
@@ -27,7 +28,6 @@ export function TaskDetailScreen({ route, navigation }) {
 		},
 	}
 
-	const [isLoading, setIsLoading] = useState(false)
 	const [task, setTask] = useState({})
 	const idTask = route.params.idTask
 
