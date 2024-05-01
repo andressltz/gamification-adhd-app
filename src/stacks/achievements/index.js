@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { createStackNavigator } from '@react-navigation/stack'
-import { ArchivementsScreen } from '../../screens'
+import { AchievementsScreen, NewAchievementScreen } from '../../screens'
 import { COLORS } from '../../assets'
 
 const Stack = createStackNavigator()
@@ -18,7 +18,8 @@ export function AchievementsStack() {
 					backgroundColor: COLORS.GREEN_PRIM,
 				},
 			}}>
-			<Stack.Screen component={ArchivementsScreen} name='ArchivementsScreen' options={{ title: 'Conquistas' }} />
+			<Stack.Screen component={AchievementsScreen} name='AchievementsScreen' options={{ title: 'Conquistas' }} initialParams={{}} />
+			<Stack.Screen component={NewAchievementScreen} name='NewAchievementScreen' options={{ title: 'Nova Conquista' }} />
 		</Stack.Navigator>
 	)
 }

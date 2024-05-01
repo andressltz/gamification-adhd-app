@@ -1,4 +1,5 @@
-export { ArchivementsScreen } from './achievements'
+export { AchievementsScreen } from './achievements'
+export { NewAchievementScreen } from './newAchievement'
 export { LoginScreen } from './login'
 export { MessagesScreen } from './messages'
 export { ProfileScreen } from './profile'

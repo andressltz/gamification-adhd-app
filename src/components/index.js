@@ -1,6 +1,7 @@
 export { Button } from './button'
 export { Input } from './input'
 export { ItemCard } from './item-card'
+export { AchievementCard } from './achievement-card'
 export { UserCard } from './user-card'
 export { Toast } from './toast'
 export { Selection } from './selection'

@@ -61,6 +61,10 @@ export function ProfileScreen(props) {
 		navigation.navigate('TasksScreen', { patientId: id, patientName: name })
 	}
 
+	function onButtonAchievementPress(id, name) {
+		navigation.navigate('AchievementsScreen', { patientId: id, patientName: name })
+	}
+
 	function renderContentPatient() {
 		return (
 			<View style={globalStyles.container}>
@@ -117,7 +121,8 @@ export function ProfileScreen(props) {
 							id={item.id}
 							image={item.image}
 							keyExtractor={item.id}
-							onPress={() => onButtonTasksPress(item.id, item.name)}
+							onPressTask={() => onButtonTasksPress(item.id, item.name)}
+							onPressAchievement={() => onButtonAchievementPress(item.id, item.name)}
 						/>
 					)}
 				/>

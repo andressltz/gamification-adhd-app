@@ -1,12 +1,11 @@
 import React from 'react'
-
-import { View, Text } from 'react-native'
-import styles from './styles'
-import { Button } from '../button'
+import { Text, View } from 'react-native'
 import { COLORS } from '../../assets/colors'
+import { Button } from '../button'
+import styles from './styles'
 
 export function UserCard(props) {
-	const { name, level, qtyStars, id, image, ...otherProps } = props
+	const { name, level, qtyStars, id, image, onPressTask = () => {}, onPressAchievement = () => {}, ...otherProps } = props
 
 	return (
 		<View style={styles.card}>
@@ -25,6 +24,7 @@ export function UserCard(props) {
 					textStyle={{ fontSize: 13, fontWeight: '600' }}
 					hasIcon={true}
 					icon='th-list'
+					onPress={onPressTask}
 					{...otherProps}
 				/>
 				<Button
@@ -33,6 +33,7 @@ export function UserCard(props) {
 					textStyle={{ fontSize: 13, fontWeight: '600' }}
 					hasIcon={true}
 					icon='child'
+					onPress={onPressAchievement}
 					{...otherProps}
 				/>
 				{/* <Button
