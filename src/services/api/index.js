@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // const API_URL = 'http://localhost:8080'
 // const API_URL = 'http://192.168.10.105:8080'
-const API_URL = 'task-gamification-api.azurewebsites.net'
+const API_URL = 'https://task-gamification-api.azurewebsites.net'
 
 export const ApiClient = () => {
 	// var token = undefined
