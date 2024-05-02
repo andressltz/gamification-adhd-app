@@ -23,7 +23,7 @@ export function NewAchievementScreen(props) {
 		const response = await api.post('/achievement', {
 			status: 0,
 			title: title,
-			patient: { id: patientId },
+			patientId: patientId,
 			ownerId: 1,
 		})
 		if (response?.data?.data) {

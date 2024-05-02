@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, ScrollView, View } from 'react-native'
-import { Button, Check, CompDatePicker, Input, Selection, Toast } from '../../components'
+import { Button, Check, CompDatePicker, CompDurationPicker, Input, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 
@@ -22,7 +22,7 @@ export function NewTaskScreen(props) {
 	const [lostStarDoNotDo, setLostStarDoNotDo] = useState(null)
 	const [lostStarDelay, setLostStarDelay] = useState(null)
 	const [dateToStart, setDateToStart] = useState(new Date())
-	const [duration, setFormDuration] = useState(new Date())
+	const [duration, setFormDuration] = useState(0)
 	const [hasAchievement, setFormHasAchievement] = useState(null)
 	const [achievement, setFormAchievement] = useState(null)
 
@@ -71,7 +71,7 @@ export function NewTaskScreen(props) {
 			timeToStart: dateToStart,
 			timeToDo: duration,
 			hasAchievement: hasAchievement,
-			achievement: { id: achievement },
+			achievementId: achievement,
 			patient: { id: patientId },
 			ownerId: 1,
 		})
@@ -157,10 +157,10 @@ export function NewTaskScreen(props) {
 						setDate={setFormHrStart}
 					/> */}
 
-						<CompDatePicker
+						<CompDurationPicker
 							useState={myUseState}
 							label='Tempo para realização:'
-							type='time'
+							type='duration'
 							date={duration}
 							setDate={setFormDuration}
 							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}

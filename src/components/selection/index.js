@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { FlatList, Modal, Text, TouchableOpacity, View } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import styles from './styles'
@@ -8,7 +8,7 @@ export function Selection(props) {
 
 	const DropdownButton = useRef()
 	const [visible, setVisible] = useState(false)
-	const [selected, setSelected] = useState(getElementByValue(value))
+	const [selected, setSelected] = useState(undefined)
 	const [dropdownTop, setDropdownTop] = useState(0)
 
 	function getElementByValue(value) {
@@ -22,6 +22,13 @@ export function Selection(props) {
 		}
 		return {}
 	}
+
+	useEffect(() => {
+		async function setValueOnSelection() {
+			setSelected(getElementByValue(value))
+		}
+		setValueOnSelection()
+	}, [value])
 
 	const toggleDropdown = () => {
 		visible ? setVisible(false) : openDropdown()

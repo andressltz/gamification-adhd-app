@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, ScrollView, View } from 'react-native'
-import { Button, Check, CompDatePicker, Input, Selection, Toast } from '../../components'
+import { Button, Check, CompDatePicker, CompDurationPicker, Input, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 
@@ -14,6 +14,8 @@ export function EditTaskScreen(props) {
 	const [errorMessage, setErrorMessage] = useState(undefined)
 	const [isLoading, setIsLoading] = useState(false)
 
+	const [achievementOptions, setAchievementOptions] = useState([])
+
 	const [task, setTask] = useState(null)
 	const [title, setFormTitle] = useState(null)
 	const [description, setFormDescription] = useState(null)
@@ -21,7 +23,7 @@ export function EditTaskScreen(props) {
 	const [lostStarDoNotDo, setLostStarDoNotDo] = useState(null)
 	const [lostStarDelay, setLostStarDelay] = useState(null)
 	const [dateToStart, setDateToStart] = useState(new Date())
-	const [duration, setFormDuration] = useState(new Date())
+	const [duration, setFormDuration] = useState(0)
 	const [hasAchievement, setFormHasAchievement] = useState(null)
 	const [achievement, setFormAchievement] = useState(null)
 
@@ -33,11 +35,27 @@ export function EditTaskScreen(props) {
 		{ label: '5 estrelas', value: 5 },
 	]
 
-	const achievementOptions = [
-		{ label: 'Mock A', value: 'A' },
-		{ label: 'Mock B', value: 'B' },
-		{ label: 'Mock C', value: 'C' },
-	]
+	useEffect(() => {
+		async function getAchievementOptions() {
+			setIsLoading(true)
+			if (patientId) {
+				const response = await api.get(`/achievement/user/${patientId}/available`)
+				if (response?.data?.data) {
+					const newArray = []
+					response.data.data.forEach((element) => {
+						newArray.push({ label: element.title, value: element.id })
+					})
+					setAchievementOptions(newArray)
+					setHasError(false)
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
+			}
+			setIsLoading(false)
+		}
+		getAchievementOptions()
+	}, [props])
 
 	useEffect(() => {
 		async function getScreenData() {
@@ -53,9 +71,9 @@ export function EditTaskScreen(props) {
 					setLostStarDoNotDo(response.data.data.lostStarDoNotDo)
 					setLostStarDelay(response.data.data.lostStarDelay)
 					setDateToStart(response.data.data.dateToStart)
-					setFormDuration(response.data.data.duration)
+					setFormDuration(response.data.data.timeToDo)
 					setFormHasAchievement(response.data.data.hasAchievement)
-					setFormAchievement(response.data.data.achievement)
+					setFormAchievement(response.data.data.achievementId)
 
 					setHasError(false)
 				} else {
@@ -80,9 +98,9 @@ export function EditTaskScreen(props) {
 			lostStarDelay: lostStarDelay,
 			dateToStart: dateToStart,
 			timeToStart: dateToStart,
-			// timeToDo: duration,
+			timeToDo: duration,
 			hasAchievement: hasAchievement,
-			achievement: achievement,
+			achievementId: achievement,
 			patient: { id: patientId },
 			ownerId: 1,
 		})
@@ -166,10 +184,10 @@ export function EditTaskScreen(props) {
 						setDate={setFormHrStart}
 					/> */}
 
-						<CompDatePicker
+						<CompDurationPicker
 							useState={myUseState}
 							label='Tempo para realização:'
-							type='time'
+							type='duration'
 							date={duration}
 							setDate={setFormDuration}
 							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
