@@ -21,10 +21,14 @@ export function AchievementCard(props) {
 	return (
 		<View style={styles.container}>
 			<View style={{ height: 96 }}>
-				<Image resizeMode='contain' source={{ uri: image }} style={{ flex: 1, opacity: isConquered() ? 1 : 0.5 }} />
+				<Image
+					resizeMode='contain'
+					source={{ uri: `https://avatar.iran.liara.run/username?username=${title}&size=96` }}
+					style={{ flex: 1, opacity: isConquered() ? 1 : 0.5 }}
+				/>
 			</View>
 			<View style={styles.label}>
-				<Text style={styles.title}>{title}</Text>
+				<Text style={isConquered() ? styles.title : styles.titleDisable}>{title}</Text>
 			</View>
 		</View>
 	)

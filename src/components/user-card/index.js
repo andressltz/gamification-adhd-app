@@ -12,6 +12,7 @@ export function UserCard(props) {
 			<View style={styles.firstRow}>
 				<View style={styles.firstColumn}>
 					<View style={{ height: 65 }}>
+					{/* https://avatar.iran.liara.run/username?username=${user.name}&size=65 */}
 						<Image
 							resizeMode='contain'
 							source={{ uri: `https://avatar.iran.liara.run/public/boy?username=${name}` }}

@@ -69,7 +69,7 @@ export function ItemCard(props) {
 					<FontAwesomeIcon name='calendar' style={styles.dateText} />
 					<Text style={styles.dateText}>{getDateToDo(dateToStart, timeToStart)}</Text>
 				</View>
-				{duration || true ? <Text style={styles.duration}>Tempo da tarefa {moment(duration).format('LT')}</Text> : null}
+				{duration || true ? <Text style={styles.duration}>Tempo da tarefa {duration}</Text> : null}
 			</View>
 			<View style={styles.separator} />
 		</View>

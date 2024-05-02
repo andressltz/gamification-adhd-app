@@ -147,7 +147,7 @@ export function TasksScreen(props) {
 							qtyStars={item.qtyStars}
 							dateToStart={item.dateToStart}
 							timeToStart={item.timeToStart}
-							duration={item.timeToDo}
+							duration={item.timeToDoFormated}
 							status={item.status}
 							id={item.id}
 							onPress={() => onButtonTaskPress(item, item.id)}

@@ -24,7 +24,6 @@ export function CompDatePicker({ useState, label, type = 'date', date, setDate, 
 	const onConfirm = React.useCallback(
 		({ hours, minutes }) => {
 			setShow(false)
-			// console.log({ hours, minutes })
 		},
 		[setShow],
 	)
@@ -37,7 +36,7 @@ export function CompDatePicker({ useState, label, type = 'date', date, setDate, 
 	}
 
 	const onChangeDate = (selectedDate) => {
-		setDate(selectedDate)
+		setDate(dayjs(selectedDate).toISOString())
 		setShow(false)
 	}
 
@@ -81,25 +80,8 @@ export function CompDatePicker({ useState, label, type = 'date', date, setDate, 
 		return (
 			<View>
 				<TouchableOpacity onPress={() => setShow(true)}>
-					<TextInput
-						editable={false}
-						style={styles.input}
-						value={
-							type === 'date'
-								? dayjs(date).locale(locale).format('L')
-								: type === 'time'
-								? dayjs(date).locale(locale).format('LT')
-								: dayjs(date).locale(locale).format('DD/MM/YYYY HH:mm')
-						}
-					/>
-					<TimePickerModal
-						// keyboardIcon={undefined}
-						// clockIcon={undefined}
-						use24HourClock={true}
-						visible={show}
-						onDismiss={onDismiss}
-						onConfirm={onConfirm}
-					/>
+					<TextInput editable={false} style={styles.input} value={dayjs(date).locale(locale).format('LT')} />
+					<TimePickerModal use24HourClock={true} visible={show} onDismiss={onDismiss} onConfirm={onConfirm} />
 				</TouchableOpacity>
 			</View>
 		)

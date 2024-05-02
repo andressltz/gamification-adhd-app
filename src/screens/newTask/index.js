@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, ScrollView, View } from 'react-native'
 import { Button, Check, CompDatePicker, Input, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
@@ -13,6 +13,8 @@ export function NewTaskScreen(props) {
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
 	const [isLoading, setIsLoading] = useState(false)
+
+	const [achievementOptions, setAchievementOptions] = useState([])
 
 	const [title, setFormTitle] = useState(null)
 	const [description, setFormDescription] = useState(null)
@@ -32,11 +34,27 @@ export function NewTaskScreen(props) {
 		{ label: '5 estrelas', value: '5' },
 	]
 
-	const achievementOptions = [
-		{ label: 'Mock A', value: 'A' },
-		{ label: 'Mock B', value: 'B' },
-		{ label: 'Mock C', value: 'C' },
-	]
+	useEffect(() => {
+		async function getAchievementOptions() {
+			setIsLoading(true)
+			if (patientId) {
+				const response = await api.get(`/achievement/user/${patientId}/available`)
+				if (response?.data?.data) {
+					const newArray = []
+					response.data.data.forEach((element) => {
+						newArray.push({ label: element.title, value: element.id })
+					})
+					setAchievementOptions(newArray)
+					setHasError(false)
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
+			}
+			setIsLoading(false)
+		}
+		getAchievementOptions()
+	}, [props])
 
 	async function onButtonSavePress() {
 		setIsLoading(true)
@@ -51,9 +69,9 @@ export function NewTaskScreen(props) {
 			lostStarDelay: lostStarDelay,
 			dateToStart: dateToStart,
 			timeToStart: dateToStart,
-			// timeToDo: duration,
+			timeToDo: duration,
 			hasAchievement: hasAchievement,
-			achievement: achievement,
+			achievement: { id: achievement },
 			patient: { id: patientId },
 			ownerId: 1,
 		})
