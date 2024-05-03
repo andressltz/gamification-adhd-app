@@ -120,7 +120,7 @@ export function TaskDetailScreen({ route, navigation }) {
 
 					{task.description ? (
 						<View style={style.itemsContainer}>
-							<Text style={style.description}>{task.description}</Text>
+							<Text style={style.description}>- {task.description}</Text>
 						</View>
 					) : null}
 

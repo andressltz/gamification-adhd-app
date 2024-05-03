@@ -6,6 +6,7 @@ export default StyleSheet.create({
 		marginVertical: 10,
 		marginHorizontal: 5,
 		flex: 1,
+		alignItems: 'center',
 	},
 	empty: {
 		backgroundColor: 'transparent',

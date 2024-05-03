@@ -18,11 +18,18 @@ export function RegisterScreen(props) {
 	const [phone, setFormPhone] = useState(null)
 	const [pass, setFormPass] = useState(null)
 	const [userType, setUserType] = useState(null)
+	const [gender, setGender] = useState(null)
 
 	const userTypeOptions = [
 		{ label: 'Responsável', value: '0' },
 		{ label: 'Paciente', value: '1' },
 		{ label: 'Profissional', value: '2' },
+	]
+
+	const genderOptions = [
+		{ label: 'Não informado', value: '0' },
+		{ label: 'Feminino', value: '1' },
+		{ label: 'Masculino', value: '2' },
 	]
 
 	async function onButtonRegisterPress() {
@@ -34,6 +41,7 @@ export function RegisterScreen(props) {
 			phone: phone,
 			password: pass,
 			type: userType,
+			gender: gender
 		})
 
 		if (response?.data?.data) {
@@ -60,9 +68,10 @@ export function RegisterScreen(props) {
 				<ScrollView>
 					{hasError ? <Toast label={errorMessage} /> : null}
 
-					<Input label='Nome:' placeholder='Insira seu nome' onChangeText={setFormName} autoCorrect={false} value={name} />
+					<Input label='Nome:*' placeholder='Insira seu nome' onChangeText={setFormName} autoCorrect={false} value={name} />
+
 					<Input
-						label='Email:'
+						label='Email:*'
 						placeholder='nome@servidor.com.br'
 						type='email-address'
 						onChangeText={setFormEmail}
@@ -70,10 +79,12 @@ export function RegisterScreen(props) {
 						autoCapitalize='none'
 						value={email}
 					/>
+
 					<Input
 						label='Telefone:'
 						placeholder='(11) 98765-4321'
 						type='phone-pad'
+						inputMode='numeric'
 						onChangeText={setFormPhone}
 						autoCorrect={false}
 						autoCapitalize='none'
@@ -81,7 +92,7 @@ export function RegisterScreen(props) {
 					/>
 
 					<Input
-						label='Senha:'
+						label='Senha:*'
 						placeholder='Digite uma senha'
 						onChangeText={setFormPass}
 						autoCorrect={false}
@@ -96,6 +107,15 @@ export function RegisterScreen(props) {
 						value={userType}
 						onSelect={(item) => {
 							setUserType(item.value)
+						}}
+					/>
+
+					<Selection
+						label='Gênero:'
+						values={genderOptions}
+						value={gender}
+						onSelect={(item) => {
+							setGender(item.value)
 						}}
 					/>
 

@@ -20,7 +20,9 @@ export default StyleSheet.create({
 		elevation: 5,
 	},
 	container: {
-		padding: 35,
+		paddingHorizontal: 35,
+		paddingBottom: 25,
+		paddingTop: 15,
 	},
 	actionContainer: {
 		paddingHorizontal: 20,

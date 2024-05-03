@@ -3,15 +3,19 @@ import { Image, Text, View } from 'react-native'
 import styles from './styles'
 
 export function AchievementCard(props) {
-	const { title = '', status = '', image = '', id, empty = false } = props
+	const { title = '', status = '', image = '', id, alwaysEnabled = false, empty = false } = props
 
 	function isConquered() {
-		if (status === 'DO_NOT_CONQUERED') {
-			return false
-		} else if (status === 'CONQUERED') {
+		if (alwaysEnabled) {
 			return true
+		} else {
+			if (status === 'DO_NOT_CONQUERED') {
+				return false
+			} else if (status === 'CONQUERED') {
+				return true
+			}
+			return false
 		}
-		return false
 	}
 
 	if (empty) {
@@ -20,7 +24,7 @@ export function AchievementCard(props) {
 
 	return (
 		<View style={styles.container}>
-			<View style={{ height: 96 }}>
+			<View style={{ height: 96, width: 96 }}>
 				<Image
 					resizeMode='contain'
 					source={{ uri: `https://avatar.iran.liara.run/username?username=${title}&size=96` }}

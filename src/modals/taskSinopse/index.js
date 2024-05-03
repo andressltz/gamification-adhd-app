@@ -3,6 +3,7 @@ import { FlatList, Modal, Text, TouchableOpacity, View } from 'react-native'
 import { StarRatingDisplay } from 'react-native-star-rating-widget'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import { COLORS } from '../../assets'
+import { AchievementCard } from '../../components'
 import style from './styles'
 
 export function TaskSinopseModal(props) {
@@ -22,7 +23,7 @@ export function TaskSinopseModal(props) {
 						<View style={style.container}>
 							<Text style={style.title}>Detalhes da tarefa</Text>
 							<Text style={style.title}>({task.title})</Text>
-							{task.timeToDo ? <Text style={style.duration}>Tempo proposto {task.timeToDo}</Text> : null}
+							{task.timeToDo ? <Text style={style.duration}>Tempo proposto {task.timeToDoFormated}</Text> : null}
 
 							{task.steps ? (
 								<View style={style.itemsContainer}>
@@ -47,16 +48,22 @@ export function TaskSinopseModal(props) {
 							<View style={style.achievementContainer}>
 								<StarRatingDisplay
 									rating={task.qtyStars}
-									starSize={26}
+									starSize={30}
 									emptyColor={COLORS.GREY}
 									color={COLORS.YELLOW}
 									starStyle={{ marginHorizontal: 0 }}
 								/>
 							</View>
 
-							{task.hasAchievement ? (
+							{task.hasAchievement && task.achievement ? (
 								<View style={style.achievementContainer}>
-									<Text>Conquistas mock</Text>
+									<AchievementCard
+										alwaysEnabled={true}
+										title={task.achievement.title}
+										status={task.achievement.status}
+										id={task.achievement.id}
+										keyExtractor={task.achievement.id}
+									/>
 								</View>
 							) : null}
 						</View>

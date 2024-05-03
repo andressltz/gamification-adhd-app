@@ -90,7 +90,7 @@ export default function App() {
 								headerShown: false,
 							}}
 						/>
-						<BottomTab.Screen
+						{/* <BottomTab.Screen
 							component={MessagesStack}
 							name='MessagesStack'
 							options={{
@@ -98,7 +98,7 @@ export default function App() {
 								tabBarLabel: 'Chat',
 								headerShown: false,
 							}}
-						/>
+						/> */}
 						<BottomTab.Screen
 							component={ProfileStack}
 							initialParams={{ setToken }}

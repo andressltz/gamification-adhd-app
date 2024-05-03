@@ -7,6 +7,7 @@ export function Input(props) {
 		style = {},
 		label = '',
 		type = 'default',
+		inputMode = undefined,
 		value = '',
 		placeholder = '',
 		autoCorrect = true,
@@ -21,6 +22,7 @@ export function Input(props) {
 			<TextInput
 				style={[styles.mainInput, style]}
 				keyboardType={type}
+				inputMode={inputMode}
 				placeholder={placeholder}
 				value={value}
 				onChangeText={onChangeText}

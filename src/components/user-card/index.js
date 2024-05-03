@@ -5,19 +5,38 @@ import { Button } from '../button'
 import styles from './styles'
 
 export function UserCard(props) {
-	const { name, level, qtyStars, id, image, onPressTask = () => {}, onPressAchievement = () => {}, ...otherProps } = props
+	const {
+		name,
+		level,
+		qtyStars,
+		id,
+		image,
+		gender = undefined,
+		onPressTask = () => {},
+		onPressAchievement = () => {},
+		...otherProps
+	} = props
 
 	return (
 		<View style={styles.card}>
 			<View style={styles.firstRow}>
 				<View style={styles.firstColumn}>
 					<View style={{ height: 65 }}>
-					{/* https://avatar.iran.liara.run/username?username=${user.name}&size=65 */}
-						<Image
-							resizeMode='contain'
-							source={{ uri: `https://avatar.iran.liara.run/public/boy?username=${name}` }}
-							style={{ flex: 1 }}
-						/>
+						{/* https://avatar.iran.liara.run/username?username=${user.name}&size=65 */}
+
+						{gender && gender === 'FEMALE' ? (
+							<Image
+								resizeMode='contain'
+								source={{ uri: `https://avatar.iran.liara.run/public/girl?username=${name}` }}
+								style={{ flex: 1 }}
+							/>
+						) : (
+							<Image
+								resizeMode='contain'
+								source={{ uri: `https://avatar.iran.liara.run/public/boy?username=${name}` }}
+								style={{ flex: 1 }}
+							/>
+						)}
 					</View>
 				</View>
 				<View style={styles.secondColumn}>
