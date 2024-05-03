@@ -5,6 +5,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
 import { COLORS } from '../../assets'
 import { StopWatch, Toast } from '../../components'
+import { TaskFinishModal } from '../../modals'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 import style from './styles'
@@ -16,6 +17,7 @@ export function TaskDetailScreen({ route, navigation }) {
 	const [errorMessage, setErrorMessage] = useState(undefined)
 	const [isLoading, setIsLoading] = useState(false)
 
+	const [modalTaskFinishVisible, setModalTaskFinishVisible] = useState(false)
 	const [isStopwatchStart, setIsStopwatchStart] = useState(false)
 	const [resetStopwatch, setResetStopwatch] = useState(false)
 	const [startTimeStopWatch, setStartTimeStopWatch] = useState(0)
@@ -78,10 +80,11 @@ export function TaskDetailScreen({ route, navigation }) {
 			await api.post(`/task/${idTask}/finish`).then((response) => {
 				if (response?.data?.data) {
 					setHasError(false)
-					navigation.navigate('TasksScreen')
+					setModalTaskFinishVisible(true)
 				} else {
 					setHasError(true)
 					setErrorMessage(response)
+					setModalTaskFinishVisible(false)
 				}
 				setIsLoading(false)
 			})
@@ -96,6 +99,15 @@ export function TaskDetailScreen({ route, navigation }) {
 		finishTaskAction()
 	}
 
+	function onButtonModalClosePress() {
+		setModalTaskFinishVisible(false)
+	}
+
+	function onButtonModalFinishPress() {
+		setModalTaskFinishVisible(false)
+		navigation.navigate('TasksScreen')
+	}
+
 	function renderContent() {
 		if (isLoading) {
 			return (
@@ -108,6 +120,15 @@ export function TaskDetailScreen({ route, navigation }) {
 		return (
 			<View>
 				{hasError ? <Toast label={errorMessage} /> : null}
+
+				{task && modalTaskFinishVisible ? (
+					<TaskFinishModal
+						modalTaskVisible={modalTaskFinishVisible}
+						task={task}
+						onPressBack={() => onButtonModalClosePress()}
+						onPressFinish={() => onButtonModalFinishPress()}
+					/>
+				) : null}
 
 				<View style={globalStyles.container}>
 					<Text style={style.title}>{task.title}</Text>
