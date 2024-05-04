@@ -56,10 +56,10 @@ export default function App() {
 							name='LoginStack'
 							initialParams={{ setToken }}
 							options={{
-								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='user' size={size} color={color} />,
-								tabBarLabel: 'Login',
+								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='user' size={0} color={color} />,
+								tabBarLabel: '',
 								headerShown: false,
-								tabBarStyle: { display: 'none' },
+								tabBarStyle: { height: 2 },
 							}}
 						/>
 					</BottomTab.Navigator>
@@ -87,6 +87,8 @@ export default function App() {
 							options={{
 								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='child' size={size} color={color} />,
 								tabBarLabel: 'Conquistas',
+								lazy: false,
+								// unmountOnBlur: true,
 								headerShown: false,
 							}}
 						/>
@@ -105,6 +107,7 @@ export default function App() {
 							name='ProfileStack'
 							options={{
 								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='user' size={size} color={color} />,
+								unmountOnBlur: true,
 								tabBarLabel: 'Perfil',
 								headerShown: false,
 							}}

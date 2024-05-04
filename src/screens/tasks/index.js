@@ -24,7 +24,8 @@ export function TasksScreen(props) {
 	const [modalTaskVisible, setModalTaskVisible] = useState(false)
 
 	const emptyMsg = 'Nenhuma tarefa cadastrada.'
-	const emptyMsgAdd = 'Para cadastrar, selecione um paciente em Perfil.'
+	const emptyMsgSelect = 'Para cadastrar, selecione um paciente em Perfil.'
+	const emptyMsgAdd = 'Para cadastrar, clique no botão + .'
 
 	useEffect(() => {
 		getStorageUserType().then((userType) => {
@@ -140,7 +141,7 @@ export function TasksScreen(props) {
 				<FlatList
 					numColumns={1}
 					data={tasks}
-					ListEmptyComponent={() => <EmptyList canAdd={!isPatient} msg={emptyMsg} msgAdd={emptyMsgAdd} />}
+					ListEmptyComponent={() => <EmptyList canAdd={!isPatient} msg={emptyMsg} msgAdd={patientId ? emptyMsgAdd : emptyMsgSelect} />}
 					renderItem={({ item }) => (
 						<ItemCard
 							title={item.title}

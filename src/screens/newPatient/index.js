@@ -45,8 +45,8 @@ export function NewPatientScreen(props) {
 		}
 
 		return (
-			<View style={globalStyles.container}>
-				<ScrollView>
+			<View style={globalStyles.containerScroll}>
+				<ScrollView style={globalStyles.scrollview}>
 					{hasError ? <Toast label={errorMessage} /> : null}
 
 					<Text style={style.title}>Busque pelo email ou pelo telefone</Text>

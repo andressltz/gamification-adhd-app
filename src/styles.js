@@ -19,6 +19,7 @@ export default StyleSheet.create({
 		paddingRight: 15,
 		paddingTop: 10,
 		paddingBottom: 10,
+		backgroundColor: COLORS.WHITE,
 	},
 	safeArea: {
 		flex: 1,

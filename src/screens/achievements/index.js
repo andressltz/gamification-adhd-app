@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useIsFocused } from '@react-navigation/native'
 import { FAB } from '@rneui/themed'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, View } from 'react-native'
@@ -17,12 +18,14 @@ export function AchievementsScreen(props) {
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
 	const [isLoading, setIsLoading] = useState(false)
+	const isFocused = useIsFocused()
 
 	const [achievements, setAchievements] = useState([])
 	const [achievementsFormated, setAchievementsFormated] = useState([])
 
 	const emptyMsg = 'Nenhuma conquista cadastrada.'
-	const emptyMsgAdd = 'Para cadastrar, selecione um paciente em Perfil.'
+	const emptyMsgSelect = 'Para cadastrar, selecione um paciente em Perfil.'
+	const emptyMsgAdd = 'Para cadastrar, clique no botão + .'
 
 	useEffect(() => {
 		getStorageUserType().then((userType) => {
@@ -32,14 +35,6 @@ export function AchievementsScreen(props) {
 				setIsPatient(false)
 			}
 		})
-	}, [props])
-
-	useLayoutEffect(() => {
-		if (isPatient) {
-			navigation.setOptions({ title: `Minhas conquistas` })
-		} else if (patientName) {
-			navigation.setOptions({ title: `Conquistas de ${patientName}` })
-		}
 	}, [props])
 
 	useEffect(() => {
@@ -69,6 +64,14 @@ export function AchievementsScreen(props) {
 			setIsLoading(false)
 		}
 		getScreenData()
+	}, [isFocused])
+
+	useLayoutEffect(() => {
+		if (isPatient) {
+			navigation.setOptions({ title: `Minhas conquistas` })
+		} else if (patientName) {
+			navigation.setOptions({ title: `Conquistas de ${patientName}` })
+		}
 	}, [props])
 
 	function onButtonNewAchievementPress() {
@@ -106,7 +109,7 @@ export function AchievementsScreen(props) {
 				<FlatList
 					numColumns={3}
 					data={achievementsFormated}
-					ListEmptyComponent={() => <EmptyList canAdd={!isPatient} msg={emptyMsg} msgAdd={emptyMsgAdd} />}
+					ListEmptyComponent={() => <EmptyList canAdd={!isPatient} msg={emptyMsg} msgAdd={patientId ? emptyMsgAdd : emptyMsgSelect} />}
 					renderItem={({ item }) => (
 						<AchievementCard title={item.title} status={item.status} id={item.id} empty={item.empty} keyExtractor={item.id} />
 					)}

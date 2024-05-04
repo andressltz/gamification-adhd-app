@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native'
+import { ActivityIndicator, ScrollView, View } from 'react-native'
 import { Button, Input, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
@@ -41,7 +41,7 @@ export function RegisterScreen(props) {
 			phone: phone,
 			password: pass,
 			type: userType,
-			gender: gender
+			gender: gender,
 		})
 
 		if (response?.data?.data) {
@@ -64,8 +64,9 @@ export function RegisterScreen(props) {
 		}
 
 		return (
-			<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={globalStyles.container}>
-				<ScrollView>
+			// <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={globalStyles.container}>
+			<View style={globalStyles.containerScroll}>
+				<ScrollView style={globalStyles.scrollview}>
 					{hasError ? <Toast label={errorMessage} /> : null}
 
 					<Input label='Nome:*' placeholder='Insira seu nome' onChangeText={setFormName} autoCorrect={false} value={name} />
@@ -121,7 +122,8 @@ export function RegisterScreen(props) {
 
 					<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
 				</ScrollView>
-			</KeyboardAvoidingView>
+				{/* </KeyboardAvoidingView> */}
+			</View>
 		)
 	}
 

@@ -1,6 +1,6 @@
 import { FAB } from '@rneui/themed'
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, Image, ScrollView, Text, View } from 'react-native'
 import EvilIconsIcon from 'react-native-vector-icons/dist/EvilIcons'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
@@ -85,50 +85,51 @@ export function ProfileScreen(props) {
 
 	function renderContentPatient() {
 		return (
-			<View style={globalStyles.container}>
-				{hasError ? <Toast label={errorMessage} /> : null}
-
-				<View style={{ height: 110 }}>
-					{user.gender && user.gender === 'FEMALE' ? (
-						<Image
-							resizeMode='contain'
-							source={{ uri: `https://avatar.iran.liara.run/public/girl?username=${user.name}` }}
-							style={{ flex: 1 }}
-						/>
-					) : (
-						<Image
-							resizeMode='contain'
-							source={{ uri: `https://avatar.iran.liara.run/public/boy?username=${user.name}` }}
-							style={{ flex: 1 }}
-						/>
-					)}
-				</View>
-				<Text style={style.name}>{user.name}</Text>
-				<Text style={style.name}>Nível Mock</Text>
-				<Text style={style.name}>Estrelas Mock</Text>
-
-				<View style={style.detailContainer}>
-					<View style={style.detailCard}>
-						<View style={style.firstColumn}>
-							<IoniconsIcon name='alarm-outline' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
-							<Text style={style.detailLabel}>TEMPO DE TAREFAS</Text>
+			<View style={globalStyles.containerScroll}>
+				<ScrollView style={globalStyles.scrollview}>
+					{hasError ? <Toast label={errorMessage} /> : null}
+					<View style={{ height: 110 }}>
+						{user.gender && user.gender === 'FEMALE' ? (
+							<Image
+								resizeMode='contain'
+								source={{ uri: `https://avatar.iran.liara.run/public/girl?username=${user.name}` }}
+								style={{ flex: 1 }}
+							/>
+						) : (
+							<Image
+								resizeMode='contain'
+								source={{ uri: `https://avatar.iran.liara.run/public/boy?username=${user.name}` }}
+								style={{ flex: 1 }}
+							/>
+						)}
+					</View>
+					<Text style={style.name}>{user.name}</Text>
+					<Text style={style.name}>Nível Mock</Text>
+					<Text style={style.name}>Estrelas Mock</Text>
+					<Text style={style.name}>{user.qtyStars}</Text>
+					<View style={style.detailContainer}>
+						<View style={style.detailCard}>
+							<View style={style.firstColumn}>
+								<IoniconsIcon name='alarm-outline' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
+								<Text style={style.detailLabel}>TEMPO DE TAREFAS</Text>
+							</View>
+							<View style={style.secondColumn}>
+								<Text style={style.detailLabel}>xx h</Text>
+							</View>
 						</View>
-						<View style={style.secondColumn}>
-							<Text style={style.detailLabel}>xx h</Text>
+						<View style={style.separator} />
+						<View style={style.detailCard}>
+							<FontAwesomeIcon name='phone' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
+							<Text style={style.detailLabel}>{user.phoneFormated}</Text>
 						</View>
+						<View style={style.separator} />
+						<View style={style.detailCard}>
+							<EvilIconsIcon name='envelope' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
+							<Text style={style.detailLabel}>{user.email}</Text>
+						</View>
+						<View style={style.separator} />
 					</View>
-					<View style={style.separator} />
-					<View style={style.detailCard}>
-						<FontAwesomeIcon name='phone' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
-						<Text style={style.detailLabel}>{user.phoneFormated}</Text>
-					</View>
-					<View style={style.separator} />
-					<View style={style.detailCard}>
-						<EvilIconsIcon name='envelope' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
-						<Text style={style.detailLabel}>{user.email}</Text>
-					</View>
-					<View style={style.separator} />
-				</View>
+				</ScrollView>
 			</View>
 		)
 	}
