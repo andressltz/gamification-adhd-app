@@ -44,6 +44,7 @@ export function UserCard(props) {
 				</View>
 				<View style={styles.thirdColumn}>
 					<Text>Nível Mock</Text>
+					<Text>Estrelas Mock</Text>
 				</View>
 			</View>
 			<View style={styles.secondRow}>

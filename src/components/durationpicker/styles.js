@@ -3,12 +3,15 @@ import { COLORS } from '../../assets'
 
 export default StyleSheet.create({
 	container: {
+		paddingTop: 10,
 		padding: 5,
 		flexWrap: 'nowrap',
 	},
 	label: {
 		fontSize: 16,
 		flexWrap: 'wrap',
+		// flex: 1,
+		backgroundColor: COLORS.WHITE,
 	},
 	input: {
 		color: COLORS.GREY,

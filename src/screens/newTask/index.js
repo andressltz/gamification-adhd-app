@@ -135,6 +135,7 @@ export function NewTaskScreen(props) {
 						label='Conquista:'
 						values={achievementOptions}
 						value={achievement}
+						modal={true}
 						onSelect={(item) => {
 							setFormAchievement(item.value)
 						}}

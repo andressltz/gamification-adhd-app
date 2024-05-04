@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FlatList, Modal, Text, TouchableOpacity, View } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import styles from './styles'
 
 export function Selection(props) {
-	const { style = {}, label = '', values = [], onSelect = () => {}, value = undefined } = props
+	const { style = {}, label = '', values = [], onSelect = () => {}, value = undefined, modal = false } = props
 
 	const DropdownButton = useRef()
 	const [visible, setVisible] = useState(false)
@@ -14,7 +14,7 @@ export function Selection(props) {
 	function getElementByValue(value) {
 		if (value) {
 			for (let i = 0; i < values.length; i++) {
-				const element = values[i];
+				const element = values[i]
 				if (element.value === value) {
 					return element
 				}
@@ -31,7 +31,15 @@ export function Selection(props) {
 	}, [value])
 
 	const toggleDropdown = () => {
-		visible ? setVisible(false) : openDropdown()
+		if (modal) {
+			visible ? setVisible(false) : openModal()
+		} else {
+			visible ? setVisible(false) : openDropdown()
+		}
+	}
+
+	const openModal = () => {
+		setVisible(true)
 	}
 
 	const openDropdown = () => {
@@ -56,11 +64,19 @@ export function Selection(props) {
 	const renderDropdown = () => {
 		return (
 			<Modal visible={visible} transparent animationType='none'>
-				<TouchableOpacity style={styles.overlay} onPress={() => setVisible(false)}>
-					<View style={[styles.dropdown, { top: dropdownTop }]}>
-						<FlatList data={values} renderItem={renderItem} keyExtractor={(item, index) => index.toString()} />
-					</View>
-				</TouchableOpacity>
+				{modal ? (
+					<TouchableOpacity style={styles.overlayModal} onPress={() => setVisible(false)}>
+						<View style={[styles.dropdownModal]}>
+							<FlatList data={values} renderItem={renderItem} keyExtractor={(item, index) => index.toString()} />
+						</View>
+					</TouchableOpacity>
+				) : (
+					<TouchableOpacity style={styles.overlay} onPress={() => setVisible(false)}>
+						<View style={[styles.dropdown, { top: dropdownTop }]}>
+							<FlatList data={values} renderItem={renderItem} keyExtractor={(item, index) => index.toString()} />
+						</View>
+					</TouchableOpacity>
+				)}
 			</Modal>
 		)
 	}
