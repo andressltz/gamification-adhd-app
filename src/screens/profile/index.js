@@ -114,7 +114,7 @@ export function ProfileScreen(props) {
 								<Text style={style.detailLabel}>TEMPO DE TAREFAS</Text>
 							</View>
 							<View style={style.secondColumn}>
-								<Text style={style.detailLabel}>xx h</Text>
+								<Text style={style.detailLabel}>{user.totalDurationFormatted}</Text>
 							</View>
 						</View>
 						<View style={style.separator} />

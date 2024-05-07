@@ -65,7 +65,7 @@ export function NewTaskScreen(props) {
 			title: title,
 			description: description,
 			qtyStars: qtyStars,
-			lostStarDoNotDo: lostStarDoNotDo,
+			// lostStarDoNotDo: lostStarDoNotDo,
 			lostStarDelay: lostStarDelay,
 			dateToStart: dateToStart,
 			timeToStart: dateToStart,
@@ -121,11 +121,11 @@ export function NewTaskScreen(props) {
 						}}
 					/>
 
-					<Check
+					{/* <Check
 						text='Perde estrelas se não realizar a tarefa'
 						value={lostStarDoNotDo}
 						onValueChange={(val) => setLostStarDoNotDo(val)}
-					/>
+					/> */}
 
 					<Check text='Perde estrelas se atrasar a tarefa' value={lostStarDelay} onValueChange={(val) => setLostStarDelay(val)} />
 

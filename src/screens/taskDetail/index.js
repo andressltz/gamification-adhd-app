@@ -41,7 +41,7 @@ export function TaskDetailScreen({ route, navigation }) {
 			await api.get(`/task/${idTask}`).then((response) => {
 				if (response?.data?.data) {
 					setTask(response.data.data)
-					setStartTimeStopWatch(task.currentDuration ? task.currentDuration : 0)
+					setStartTimeStopWatch(task.currentDuration ? task.currentDuration * 60000 : 0)
 					setHasError(false)
 					setIsStopwatchStart(true)
 					setResetStopwatch(false)
@@ -62,8 +62,43 @@ export function TaskDetailScreen({ route, navigation }) {
 			setHasError(false)
 			await api.post(`/task/${idTask}/stop`).then((response) => {
 				if (response?.data?.data) {
+					setStartTimeStopWatch(task.currentDuration ? task.currentDuration * 60000 : 0)
 					setHasError(false)
 					navigation.navigate('TasksScreen')
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
+				setIsLoading(false)
+			})
+		}
+	}
+
+	async function playTaskAction() {
+		if (idTask) {
+			setIsLoading(true)
+			setHasError(false)
+			await api.post(`/task/${idTask}/play`).then((response) => {
+				if (response?.data?.data) {
+					setStartTimeStopWatch(task.currentDuration ? task.currentDuration * 60000 : 0)
+					setHasError(false)
+				} else {
+					setHasError(true)
+					setErrorMessage(response)
+				}
+				setIsLoading(false)
+			})
+		}
+	}
+
+	async function pauseTaskAction() {
+		if (idTask) {
+			setIsLoading(true)
+			setHasError(false)
+			await api.post(`/task/${idTask}/pause`).then((response) => {
+				if (response?.data?.data) {
+					setStartTimeStopWatch(task.currentDuration ? task.currentDuration * 60000 : 0)
+					setHasError(false)
 				} else {
 					setHasError(true)
 					setErrorMessage(response)
@@ -79,6 +114,7 @@ export function TaskDetailScreen({ route, navigation }) {
 			setHasError(false)
 			await api.post(`/task/${idTask}/finish`).then((response) => {
 				if (response?.data?.data) {
+					setStartTimeStopWatch(task.currentDuration ? task.currentDuration * 60000 : 0)
 					setHasError(false)
 					setModalTaskFinishVisible(true)
 				} else {
@@ -89,6 +125,14 @@ export function TaskDetailScreen({ route, navigation }) {
 				setIsLoading(false)
 			})
 		}
+	}
+
+	function onPressPlay() {
+		playTaskAction()
+	}
+
+	function onPressPause() {
+		pauseTaskAction()
 	}
 
 	function onPressStop() {
@@ -169,22 +213,37 @@ export function TaskDetailScreen({ route, navigation }) {
 						</View>
 					</View>
 					<View style={style.actions}>
-						<TouchableOpacity
-							activeOpacity={0.6}
-							style={[style.actionButton, style.blueBorder]}
-							onPress={() => {
-								setIsStopwatchStart(!isStopwatchStart)
-								setResetStopwatch(false)
-							}}>
-							<FontAwesomeIcon name='pause' size={25} color={COLORS.BLUE} />
-						</TouchableOpacity>
+						{isStopwatchStart ? (
+							<TouchableOpacity
+								activeOpacity={0.6}
+								style={[style.actionButton, style.blueBorder]}
+								onPress={() => {
+									setIsStopwatchStart(!isStopwatchStart)
+									onPressPause()
+									setResetStopwatch(false)
+								}}>
+								<FontAwesomeIcon name='pause' size={25} color={COLORS.BLUE} />
+							</TouchableOpacity>
+						) : (
+							<TouchableOpacity
+								activeOpacity={0.6}
+								style={[style.actionButton, style.blueBorder]}
+								onPress={() => {
+									setIsStopwatchStart(!isStopwatchStart)
+									onPressPlay()
+									setResetStopwatch(false)
+								}}>
+								<FontAwesomeIcon name='play' size={25} color={COLORS.BLUE} />
+							</TouchableOpacity>
+						)}
+
 						<TouchableOpacity
 							activeOpacity={0.6}
 							style={[style.actionButton, style.redBorder]}
 							onPress={() => {
+								onPressStop()
 								setIsStopwatchStart(!isStopwatchStart)
 								setResetStopwatch(false)
-								onPressStop()
 							}}>
 							<FontAwesomeIcon name='stop' size={25} color={COLORS.RED} />
 						</TouchableOpacity>
@@ -192,9 +251,9 @@ export function TaskDetailScreen({ route, navigation }) {
 							activeOpacity={0.6}
 							style={[style.actionButton, style.greenBorder]}
 							onPress={() => {
+								onPressFinish()
 								setIsStopwatchStart(!isStopwatchStart)
 								setResetStopwatch(false)
-								onPressFinish()
 							}}>
 							<FontAwesomeIcon name='check' size={25} color={COLORS.GREEN_PRIM} />
 						</TouchableOpacity>

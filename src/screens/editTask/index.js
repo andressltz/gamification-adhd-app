@@ -68,7 +68,7 @@ export function EditTaskScreen(props) {
 					setFormTitle(response.data.data.title)
 					setFormDescription(response.data.data.description)
 					setFormQtyStars(response.data.data.qtyStars)
-					setLostStarDoNotDo(response.data.data.lostStarDoNotDo)
+					// setLostStarDoNotDo(response.data.data.lostStarDoNotDo)
 					setLostStarDelay(response.data.data.lostStarDelay)
 					setDateToStart(response.data.data.dateToStart)
 					setFormDuration(response.data.data.timeToDo)
@@ -148,11 +148,11 @@ export function EditTaskScreen(props) {
 						}}
 					/>
 
-					<Check
+					{/* <Check
 						text='Perde estrelas se não realizar a tarefa'
 						value={lostStarDoNotDo}
 						onValueChange={(val) => setLostStarDoNotDo(val)}
-					/>
+					/> */}
 
 					<Check text='Perde estrelas se atrasar a tarefa' value={lostStarDelay} onValueChange={(val) => setLostStarDelay(val)} />
 
