@@ -35,5 +35,12 @@ export default StyleSheet.create({
 	thirdColumn: {
 		flex: 0.4,
 		marginHorizontal: 5,
+		alignItems: 'center',
+		justifyContent: 'center',
+		alignContent: 'center',
+	},
+	achievement: {
+		textAlign: 'center',
+		fontSize: 15,
 	},
 })

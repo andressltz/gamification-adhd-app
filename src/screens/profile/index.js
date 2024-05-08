@@ -104,9 +104,8 @@ export function ProfileScreen(props) {
 						)}
 					</View>
 					<Text style={style.name}>{user.name}</Text>
-					<Text style={style.name}>Nível Mock</Text>
-					<Text style={style.name}>Estrelas Mock</Text>
-					<Text style={style.name}>{user.qtyStars}</Text>
+					<Text style={style.achievement}>Nível: {user.level}/30</Text>
+					<Text style={style.achievement}>Estrelas: {user.qtyStars}</Text>
 					<View style={style.detailContainer}>
 						<View style={style.detailCard}>
 							<View style={style.firstColumn}>

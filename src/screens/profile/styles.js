@@ -7,6 +7,10 @@ export default StyleSheet.create({
 		fontSize: 30,
 		fontWeight: 'bold',
 	},
+	achievement: {
+		textAlign: 'center',
+		fontSize: 30,
+	},
 	userType: {
 		textAlign: 'center',
 		fontSize: 20,

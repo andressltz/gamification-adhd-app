@@ -43,8 +43,8 @@ export function UserCard(props) {
 					<Text style={styles.name}>{name}</Text>
 				</View>
 				<View style={styles.thirdColumn}>
-					<Text>Nível Mock</Text>
-					<Text>Estrelas Mock</Text>
+					<Text style={styles.achievement}>Nível: {level ? level : 1}/30</Text>
+					<Text style={styles.achievement}>Estrelas: {qtyStars ? qtyStars : 0}</Text>
 				</View>
 			</View>
 			<View style={styles.secondRow}>
