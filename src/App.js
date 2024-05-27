@@ -3,13 +3,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView, useWindowDimensions, View } from 'react-native'
+import { Dimensions, useWindowDimensions, View } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import { COLORS } from './assets'
 import { RegisterScreen, SplashScreen } from './screens'
 import { AchievementsStack, LoginStack, MessagesStack, ProfileStack, TasksStack } from './stacks'
 
 const BottomTab = createBottomTabNavigator()
+const constHeight = Dimensions.get('window').height
 
 const getAuth = async () => {
 	try {
@@ -22,7 +23,8 @@ const getAuth = async () => {
 export default function App() {
 	const [token, setToken] = useState(undefined)
 	const [isLoading, setIsLoading] = useState(false)
-	const { height } = useWindowDimensions()
+	// const { height } = useWindowDimensions()
+	// const tempHeight = constHeight ? constHeight : height
 
 	useEffect(() => {
 		setIsLoading(true)
@@ -40,7 +42,7 @@ export default function App() {
 
 	return (
 		// <SafeAreaView style={globalStyles.safeArea}>
-		<View style={[{ height }, StyleSheet.absoluteFill]}>
+		<View style={[{ height: constHeight }, StyleSheet.absoluteFill]}>
 			<NavigationContainer>
 				{!token ? (
 					<BottomTab.Navigator
