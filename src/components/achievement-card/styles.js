@@ -29,4 +29,14 @@ export default StyleSheet.create({
 		marginTop: 5,
 		color: COLORS.GREY_DARK,
 	},
+	badge: {
+		height: 96,
+		width: 96,
+		backgroundColor: COLORS.BLUE,
+		borderRadius: 50,
+		alignItems: 'center',
+		alignContent: 'center',
+		margin: 5,
+		justifyContent: 'center',
+	},
 })

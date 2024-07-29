@@ -84,7 +84,11 @@ export function AchievementsScreen(props) {
 
 	function formatData(data, numColumns) {
 		if (data.length > 0) {
-			const emptyQty = numColumns - (data.length % numColumns)
+			const res = data.length % numColumns
+			if (res === 0) {
+				return data
+			}
+			const emptyQty = numColumns - res
 			for (let id = 0; id < emptyQty; id++) {
 				data.push({ id: `blank-${id}`, empty: true })
 			}
@@ -109,9 +113,18 @@ export function AchievementsScreen(props) {
 				<FlatList
 					numColumns={3}
 					data={achievementsFormated}
-					ListEmptyComponent={() => <EmptyList canAdd={!isPatient} msg={emptyMsg} msgAdd={patientId ? emptyMsgAdd : emptyMsgSelect} />}
+					ListEmptyComponent={() => (
+						<EmptyList canAdd={!isPatient} msg={emptyMsg} msgAdd={patientId ? emptyMsgAdd : emptyMsgSelect} />
+					)}
 					renderItem={({ item }) => (
-						<AchievementCard title={item.title} status={item.status} id={item.id} empty={item.empty} keyExtractor={item.id} />
+						<AchievementCard
+							title={item.title}
+							status={item.status}
+							id={item.id}
+							empty={item.empty}
+							iconCode={item.icon}
+							keyExtractor={item.id}
+						/>
 					)}
 				/>
 				<FAB

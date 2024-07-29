@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, ScrollView, View } from 'react-native'
-import { Button, Input, Toast } from '../../components'
+import { BadgeBoard, Button, Input, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 
@@ -15,6 +15,11 @@ export function NewAchievementScreen(props) {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const [title, setFormTitle] = useState(null)
+	const [icon, setFormIcon] = useState({ family: 'ant', color: 'BLUE', name: 'star', code: 'ant_star_BLUE' })
+
+	function onSelect(selectedIcon) {
+		setFormIcon(selectedIcon)
+	}
 
 	async function onButtonSavePress() {
 		setIsLoading(true)
@@ -25,6 +30,7 @@ export function NewAchievementScreen(props) {
 			title: title,
 			patientId: patientId,
 			ownerId: 1,
+			icon: icon.code,
 		})
 		if (response?.data?.data) {
 			setHasError(false)
@@ -56,6 +62,8 @@ export function NewAchievementScreen(props) {
 						onChangeText={setFormTitle}
 						value={title}
 					/>
+
+					<BadgeBoard label='Selecione um ícone:*' onSelect={onSelect} />
 
 					<Button label='Salvar' onPress={() => onButtonSavePress()} />
 				</ScrollView>
