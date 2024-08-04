@@ -100,7 +100,7 @@ export function BadgeBoard(props) {
 
 	function setIcon(familyName, name, color) {
 		setSelectedIcon({ family: familyName, color: color, name: name, code: `${familyName}_d${name}_d${color}` })
-		onSelect(selectedIcon)
+		onSelect({ family: familyName, color: color, name: name, code: `${familyName}_d${name}_d${color}` })
 	}
 
 	function setColor(color) {
@@ -128,7 +128,6 @@ export function BadgeBoard(props) {
 			<Text style={styles.label}>Ícone selecionado:</Text>
 
 			<View style={styles.board}>
-				<Text>{selectedIcon.code}</Text>
 				<View style={[styles.selectedIcon, { backgroundColor: selectedColor.color }]}>
 					{selectedIcon.family === 'ant' ? (
 						<AntDesignIcon name={selectedIcon.name} size={35} color={COLORS.WHITE} />
