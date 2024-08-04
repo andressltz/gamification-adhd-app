@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import AntDesignIcon from 'react-native-vector-icons/dist/AntDesign'
 import EntypoIcon from 'react-native-vector-icons/dist/Entypo'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
@@ -7,17 +7,17 @@ import { COLORS } from '../../assets'
 import styles from './styles'
 
 export function AchievementCard(props) {
-	const { title = '', status = '', iconCode = 'ant_star_BLUE', id, alwaysEnabled = false, empty = false } = props
+	const { title = '', status = '', iconCode = 'ant_dstar_dBLUE', id, alwaysEnabled = false, empty = false } = props
 
 	const icon = splitIcon(iconCode)
 	const iconSize = 45
 
 	function splitIcon(iconCode) {
 		if (iconCode) {
-			const array = iconCode.trim().split('_')
+			const array = iconCode.trim().split('_d')
 			return { family: array[0], color: array[2], name: array[1], code: iconCode }
 		}
-		return { family: 'ant', color: 'BLUE', name: 'star', code: 'ant_star_BLUE' }
+		return { family: 'ant', color: 'BLUE', name: 'star', code: 'ant_dstar_dBLUE' }
 	}
 
 	function isConquered() {

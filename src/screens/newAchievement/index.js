@@ -15,7 +15,7 @@ export function NewAchievementScreen(props) {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const [title, setFormTitle] = useState(null)
-	const [icon, setFormIcon] = useState({ family: 'ant', color: 'BLUE', name: 'star', code: 'ant_star_BLUE' })
+	const [icon, setFormIcon] = useState({ family: 'ant', color: 'BLUE', name: 'star', code: 'ant_dstar_dBLUE' })
 
 	function onSelect(selectedIcon) {
 		setFormIcon(selectedIcon)
@@ -30,7 +30,7 @@ export function NewAchievementScreen(props) {
 			title: title,
 			patientId: patientId,
 			ownerId: 1,
-			icon: icon.code,
+			image: icon.code,
 		})
 		if (response?.data?.data) {
 			setHasError(false)

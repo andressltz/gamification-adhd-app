@@ -122,7 +122,7 @@ export function AchievementsScreen(props) {
 							status={item.status}
 							id={item.id}
 							empty={item.empty}
-							iconCode={item.icon}
+							iconCode={item.image}
 							keyExtractor={item.id}
 						/>
 					)}
