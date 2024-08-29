@@ -6,7 +6,7 @@ import { COLORS } from '../../assets'
 import styles from './styles'
 
 export function LevelStarStatus(props) {
-	const { currentLevel = '1', currentStars = '0', maxLevel = '30', maxStars = '2500' } = props
+	const { currentLevel = 1, currentStars = 0, maxLevel = 30, maxStars = 1500 } = props
 
 	function pad(width, string, padding) {
 		return width <= string.length ? string : pad(width, padding + string, padding)
@@ -24,7 +24,7 @@ export function LevelStarStatus(props) {
 				</View>
 				<View style={styles.secondColumn}>
 					<Text style={styles.achievement}>
-						NÍVEL: {pad(2, currentLevel, '0')}/{pad(2, maxLevel, '0')}
+						NÍVEL: {pad(2, currentLevel.toString(), '0')}/{pad(2, maxLevel.toString(), '0')}
 					</Text>
 					<ProgressBar
 						progress={getProgress(currentLevel, maxLevel)}
@@ -44,7 +44,7 @@ export function LevelStarStatus(props) {
 				</View>
 				<View style={styles.secondColumn}>
 					<Text style={styles.achievement}>
-						ESTRELAS: {pad(2, currentStars, '0')}/{pad(2, maxStars, '0')}
+						ESTRELAS: {pad(2, currentStars.toString(), '0')}/{pad(2, maxStars.toString(), '0')}
 					</Text>
 					<ProgressBar
 						progress={getProgress(currentStars, maxStars)}
