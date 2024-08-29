@@ -6,6 +6,7 @@ export default StyleSheet.create({
 		textAlign: 'center',
 		fontSize: 30,
 		fontWeight: 'bold',
+		marginBottom: 20,
 	},
 	achievement: {
 		textAlign: 'center',
@@ -24,6 +25,9 @@ export default StyleSheet.create({
 	},
 	detailContainer: {
 		paddingTop: 15,
+	},
+	statusContainer: {
+		paddingHorizontal: 35,
 	},
 	detailCard: {
 		flexDirection: 'row',

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 import { COLORS } from '../../assets/colors'
+import { LevelStarStatus } from '../../components'
 import { Button } from '../button'
 import styles from './styles'
 
@@ -9,6 +10,8 @@ export function UserCard(props) {
 		name,
 		level,
 		qtyStars,
+		maxLevel,
+		maxStars,
 		id,
 		image,
 		gender = undefined,
@@ -22,8 +25,6 @@ export function UserCard(props) {
 			<View style={styles.firstRow}>
 				<View style={styles.firstColumn}>
 					<View style={{ height: 65 }}>
-						{/* https://avatar.iran.liara.run/username?username=${user.name}&size=65 */}
-
 						{gender && gender === 'FEMALE' ? (
 							<Image
 								resizeMode='contain'
@@ -43,8 +44,7 @@ export function UserCard(props) {
 					<Text style={styles.name}>{name}</Text>
 				</View>
 				<View style={styles.thirdColumn}>
-					<Text style={styles.achievement}>Nível: {level ? level : 1}/30</Text>
-					<Text style={styles.achievement}>Estrelas: {qtyStars ? qtyStars : 0}</Text>
+					<LevelStarStatus currentLevel={level} currentStars={qtyStars} maxLevel={maxLevel} maxStars={maxStars} />
 				</View>
 			</View>
 			<View style={styles.secondRow}>

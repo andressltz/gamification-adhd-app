@@ -15,9 +15,8 @@ export default StyleSheet.create({
 		alignItems: 'center',
 	},
 	name: {
-		marginHorizontal: 10,
+		marginHorizontal: 5,
 		fontSize: 20,
-		flex: 2,
 	},
 	separator: {
 		height: 1,
@@ -26,21 +25,12 @@ export default StyleSheet.create({
 	},
 	firstColumn: {
 		flex: 0.2,
-		marginHorizontal: 5,
 	},
 	secondColumn: {
-		flex: 0.4,
-		marginHorizontal: 5,
+		flex: 0.3,
 	},
 	thirdColumn: {
-		flex: 0.4,
-		marginHorizontal: 5,
+		flex: 0.5,
 		alignItems: 'center',
-		justifyContent: 'center',
-		alignContent: 'center',
-	},
-	achievement: {
-		textAlign: 'center',
-		fontSize: 15,
 	},
 })

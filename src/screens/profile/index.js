@@ -5,7 +5,7 @@ import EvilIconsIcon from 'react-native-vector-icons/dist/EvilIcons'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import IoniconsIcon from 'react-native-vector-icons/dist/Ionicons'
 import { COLORS } from '../../assets'
-import { Toast, UserCard } from '../../components'
+import { LevelStarStatus, Toast, UserCard } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 import style from './styles'
@@ -104,8 +104,14 @@ export function ProfileScreen(props) {
 						)}
 					</View>
 					<Text style={style.name}>{user.name}</Text>
-					<Text style={style.achievement}>Nível: {user.level}/30</Text>
-					<Text style={style.achievement}>Estrelas: {user.qtyStars}</Text>
+					<View style={style.statusContainer}>
+						<LevelStarStatus
+							currentLevel={user.level}
+							currentStars={user.qtyStars}
+							maxLevel={user.maxLevel}
+							maxStars={user.maxStars}
+						/>
+					</View>
 					<View style={style.detailContainer}>
 						<View style={style.detailCard}>
 							<View style={style.firstColumn}>
@@ -155,6 +161,8 @@ export function ProfileScreen(props) {
 							id={item.id}
 							image={item.image}
 							gender={item.gender}
+							maxLevel={item.maxLevel}
+							maxStars={item.maxStars}
 							keyExtractor={item.id}
 							onPressTask={() => onButtonTasksPress(item.id, item.name)}
 							onPressAchievement={() => onButtonAchievementPress(item.id, item.name)}
