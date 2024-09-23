@@ -18,4 +18,10 @@ export default StyleSheet.create({
 		fontSize: 18,
 		marginBottom: 5,
 	},
+	disabled: {
+		color: COLORS.GREY,
+	},
+	enabled: {
+		color: COLORS.BLACK,
+	},
 })

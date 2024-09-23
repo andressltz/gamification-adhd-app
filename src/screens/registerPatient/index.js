@@ -6,25 +6,18 @@ import globalStyles from '../../styles'
 
 const api = ApiClient()
 
-export function RegisterScreen(props) {
-	const { navigation } = props
+export function RegisterPatientScreen(props) {
+	const { navigation, route } = props
+	const userLogged = route.params.userLogged
 
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
 	const [isLoading, setIsLoading] = useState(false)
 
 	const [name, setFormName] = useState(null)
-	const [email, setFormEmail] = useState(null)
+	const [email, setFormEmail] = useState(userLogged.email)
 	const [phone, setFormPhone] = useState(null)
-	const [pass, setFormPass] = useState(null)
-	const [userType, setUserType] = useState(null)
 	const [gender, setGender] = useState(null)
-
-	const userTypeOptions = [
-		{ label: 'Responsável', value: '0' },
-		{ label: 'Paciente', value: '1' },
-		{ label: 'Profissional', value: '2' },
-	]
 
 	const genderOptions = [
 		{ label: 'Não informado', value: '0' },
@@ -35,17 +28,15 @@ export function RegisterScreen(props) {
 	async function onButtonRegisterPress() {
 		setIsLoading(true)
 		setHasError(false)
-		const response = await api.post('/user', {
+		const response = await api.post('/user/patient/new', {
 			name: name,
-			email: email,
 			phone: phone,
-			password: pass,
-			type: userType,
+			type: '1',
 			gender: gender,
 		})
 
 		if (response?.data?.data) {
-			navigation.navigate('LoginScreen', [])
+			navigation.navigate('ProfileScreen', [])
 			setHasError(false)
 		} else {
 			setHasError(true)
@@ -71,7 +62,7 @@ export function RegisterScreen(props) {
 
 					<Input
 						label='Nome Completo:*'
-						placeholder='Insira seu nome completo'
+						placeholder='Insira o nome completo do paciente'
 						onChangeText={setFormName}
 						autoCorrect={false}
 						value={name}
@@ -85,6 +76,7 @@ export function RegisterScreen(props) {
 						autoCorrect={false}
 						autoCapitalize='none'
 						value={email}
+						readOnly={true}
 					/>
 
 					<Input
@@ -96,25 +88,6 @@ export function RegisterScreen(props) {
 						autoCorrect={false}
 						autoCapitalize='none'
 						value={phone}
-					/>
-
-					<Input
-						label='Senha:*'
-						placeholder='Digite uma senha'
-						onChangeText={setFormPass}
-						autoCorrect={false}
-						autoCapitalize='none'
-						secureTextEntry={true}
-						value={pass}
-					/>
-
-					<Selection
-						label='Tipo de usuário:'
-						values={userTypeOptions}
-						value={userType}
-						onSelect={(item) => {
-							setUserType(item.value)
-						}}
 					/>
 
 					<Selection

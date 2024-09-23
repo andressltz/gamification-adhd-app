@@ -9,7 +9,7 @@ const api = ApiClient()
 
 export function LoginScreen(props) {
 	const { navigation, route } = props
-	const { setTokenStack } = route.params
+	const { setTokenStack, setUserTypeStack } = route.params
 
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
@@ -29,11 +29,13 @@ export function LoginScreen(props) {
 			await AsyncStorage.setItem('@App:token', response.data.data.token)
 			await AsyncStorage.setItem('@App:userType', response.data.data.user.type)
 			setTokenStack(response.data.data.token)
+			setUserTypeStack(response.data.data.user.type)
 			setHasError(false)
 		} else {
 			await AsyncStorage.removeItem('@App:token')
 			await AsyncStorage.removeItem('@App:userType')
 			setTokenStack(undefined)
+			setUserTypeStack(undefined)
 			setHasError(true)
 			setErrorMessage(response)
 		}
@@ -78,6 +80,13 @@ export function LoginScreen(props) {
 				/>
 
 				<Button label='Entrar' onPress={() => onButtonLoginPress()} />
+
+				<Toast
+					type='info'
+					title='Para realizar o cadastro, é necessário um email.'
+					label='Se o usuário for um paciente e não possuir email, realize o login com a conta do responsável.'
+				/>
+
 				<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
 			</View>
 		)

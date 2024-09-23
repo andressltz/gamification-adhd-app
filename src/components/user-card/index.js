@@ -14,9 +14,11 @@ export function UserCard(props) {
 		maxStars,
 		id,
 		image,
+		profile,
 		gender = undefined,
 		onPressTask = () => {},
 		onPressAchievement = () => {},
+		onPressLogin = () => {},
 		...otherProps
 	} = props
 
@@ -48,6 +50,18 @@ export function UserCard(props) {
 				</View>
 			</View>
 			<View style={styles.secondRow}>
+				{/* {profile ? (
+					<Button
+						label='Login'
+						buttonStyle={{ backgroundColor: COLORS.GREEN_BUTTON, height: 30, flex: 0.3, marginRight: 5 }}
+						textStyle={{ fontSize: 13, fontWeight: '600' }}
+						hasIcon={true}
+						icon='sign-out'
+						onPress={onPressLogin}
+						{...otherProps}
+					/>
+				) : null} */}
+
 				<Button
 					label='Tarefas'
 					buttonStyle={{ backgroundColor: COLORS.BLUE, height: 30, flex: 0.3, marginRight: 5 }}

@@ -14,13 +14,14 @@ export function Input(props) {
 		autoCapitalize = 'sentences',
 		secureTextEntry = false,
 		onChangeText = () => {},
+		readOnly = false,
 	} = props
 
 	return (
 		<View>
-			<Text style={styles.label}>{label}</Text>
+			<Text style={[styles.label, readOnly ? styles.disabled : styles.enabled]}>{label}</Text>
 			<TextInput
-				style={[styles.mainInput, style]}
+				style={[styles.mainInput, style, readOnly ? styles.disabled : styles.enabled]}
 				keyboardType={type}
 				inputMode={inputMode}
 				placeholder={placeholder}
@@ -29,6 +30,7 @@ export function Input(props) {
 				autoCorrect={autoCorrect}
 				autoCapitalize={autoCapitalize}
 				secureTextEntry={secureTextEntry}
+				readOnly={readOnly}
 			/>
 		</View>
 	)

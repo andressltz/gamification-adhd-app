@@ -14,6 +14,7 @@ const api = ApiClient()
 
 export function ProfileScreen(props) {
 	const { navigation, route } = props
+	const { setProfilesStack } = route.params
 
 	const [isPatient, setisPatient] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
@@ -30,8 +31,10 @@ export function ProfileScreen(props) {
 				if (response?.data?.data) {
 					setUser(response.data.data)
 					setisPatient(response.data.data.type === 'PATIENT' || response.data.data.type === 1)
+					setProfilesStack(response.data.data.profiles)
 					setHasError(false)
 				} else {
+					setProfilesStack(undefined)
 					setHasError(true)
 					setErrorMessage(response)
 				}
@@ -72,7 +75,7 @@ export function ProfileScreen(props) {
 	}
 
 	function onButtonNewRelatedPatientPress() {
-		navigation.navigate('NewPatientScreen', [])
+		navigation.navigate('NewPatientScreen', { user: user })
 	}
 
 	function onButtonTasksPress(id, name) {
@@ -125,7 +128,7 @@ export function ProfileScreen(props) {
 						<View style={style.separator} />
 						<View style={style.detailCard}>
 							<FontAwesomeIcon name='phone' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
-							<Text style={style.detailLabel}>{user.phoneFormated}</Text>
+							<Text style={style.detailLabel}>{user.phoneFormatted}</Text>
 						</View>
 						<View style={style.separator} />
 						<View style={style.detailCard}>
@@ -163,6 +166,7 @@ export function ProfileScreen(props) {
 							gender={item.gender}
 							maxLevel={item.maxLevel}
 							maxStars={item.maxStars}
+							profile={item.profile}
 							keyExtractor={item.id}
 							onPressTask={() => onButtonTasksPress(item.id, item.name)}
 							onPressAchievement={() => onButtonAchievementPress(item.id, item.name)}

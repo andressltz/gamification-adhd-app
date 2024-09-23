@@ -8,8 +8,8 @@ export function HeaderButton(props) {
 	const { icon = '', onPress = () => {} } = props
 
 	return (
-		<TouchableOpacity activeOpacity={0.6} onPress={() => onPress()}>
-			<FontAwesomeIcon name={icon} size={18} color={COLORS.WHITE} style={styles.icon} />
+		<TouchableOpacity style={styles.touch} activeOpacity={0.6} onPress={() => onPress()}>
+			<FontAwesomeIcon name={icon} size={25} color={COLORS.WHITE} style={styles.icon} />
 		</TouchableOpacity>
 	)
 }

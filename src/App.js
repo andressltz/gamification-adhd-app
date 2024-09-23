@@ -6,7 +6,9 @@ import React, { useEffect, useState } from 'react'
 import { Dimensions, useWindowDimensions, View } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import { COLORS } from './assets'
+import { ProfileSwitchModal } from './modals'
 import { RegisterScreen, SplashScreen } from './screens'
+import { ApiClient } from './services'
 import { AchievementsStack, LoginStack, MessagesStack, ProfileStack, TasksStack } from './stacks'
 
 const BottomTab = createBottomTabNavigator()
@@ -20,8 +22,21 @@ const getAuth = async () => {
 	}
 }
 
+const getType = async () => {
+	try {
+		return await AsyncStorage.getItem('@App:userType')
+	} catch (error) {
+		return undefined
+	}
+}
+
+const api = ApiClient()
+
 export default function App() {
 	const [token, setToken] = useState(undefined)
+	const [userType, setUserType] = useState(undefined)
+	const [profiles, setProfiles] = useState(undefined)
+	const [showModalProfile, setShowModalProfile] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	// const { height } = useWindowDimensions()
 	// const tempHeight = constHeight ? constHeight : height
@@ -32,17 +47,57 @@ export default function App() {
 			if (data) {
 				setToken(data)
 			}
+		})
+		getType().then((data) => {
+			if (data) {
+				setUserType(data)
+			}
 			setIsLoading(false)
 		})
 	}, [])
+
+	async function doLogin(idProfile) {
+		setIsLoading(true)
+		const response = await api.post('/login/profile', {
+			id: idProfile,
+		})
+		await AsyncStorage.removeItem('@App:token')
+		await AsyncStorage.removeItem('@App:userType')
+		setToken(undefined)
+		setUserType(undefined)
+		setProfiles(undefined)
+		if (response?.data?.data?.token) {
+			await AsyncStorage.setItem('@App:token', response.data.data.token)
+			await AsyncStorage.setItem('@App:userType', response.data.data.user.type)
+			setToken(response.data.data.token)
+			setUserType(response.data.data.user.type)
+		}
+		setIsLoading(false)
+	}
 
 	if (isLoading) {
 		return <SplashScreen />
 	}
 
+	function onPressChangeProfile(idProfile) {
+		setShowModalProfile(false)
+		doLogin(idProfile)
+	}
+
+	function onButtonModalClosePress() {
+		setShowModalProfile(false)
+	}
+
 	return (
 		// <SafeAreaView style={globalStyles.safeArea}>
 		<View style={[{ height: constHeight }, StyleSheet.absoluteFill]}>
+			<ProfileSwitchModal
+				modalVisible={showModalProfile}
+				onPressProfile={onPressChangeProfile}
+				onPressClose={onButtonModalClosePress}
+				profilesList={profiles}
+			/>
+
 			<NavigationContainer>
 				{!token ? (
 					<BottomTab.Navigator
@@ -56,7 +111,7 @@ export default function App() {
 						<BottomTab.Screen
 							component={LoginStack}
 							name='LoginStack'
-							initialParams={{ setToken }}
+							initialParams={{ setToken, setUserType, userType }}
 							options={{
 								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='user' size={0} color={color} />,
 								tabBarLabel: '',
@@ -105,7 +160,7 @@ export default function App() {
 						/> */}
 						<BottomTab.Screen
 							component={ProfileStack}
-							initialParams={{ setToken }}
+							initialParams={{ setToken, setShowModalProfile, setUserType, userType, setProfiles }}
 							name='ProfileStack'
 							options={{
 								tabBarIcon: ({ focused, color, size }) => <FontAwesomeIcon name='user' size={size} color={color} />,

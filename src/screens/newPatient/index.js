@@ -8,7 +8,8 @@ import style from './styles'
 const api = ApiClient()
 
 export function NewPatientScreen(props) {
-	const { navigation } = props
+	const { navigation, route } = props
+	const userLogged = route.params.user
 
 	const [hasError, setHasError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
@@ -33,6 +34,10 @@ export function NewPatientScreen(props) {
 			setErrorMessage(response)
 			setIsLoading(false)
 		}
+	}
+
+	async function onButtonNewPatientPress() {
+		navigation.navigate('RegisterPatientScreen', { userLogged: userLogged })
 	}
 
 	function renderContent() {
@@ -72,6 +77,10 @@ export function NewPatientScreen(props) {
 					/>
 
 					<Button label='Vincular paciente' onPress={() => onButtonSavePress()} />
+
+					<Toast type='info' label='Se o paciente não tiver email, cadastre um novo paciente utilizando sua conta.' />
+
+					<Button label='Cadastrar Novo Paciente' onPress={() => onButtonNewPatientPress()} />
 				</ScrollView>
 			</View>
 		)

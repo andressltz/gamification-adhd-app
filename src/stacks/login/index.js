@@ -1,21 +1,28 @@
-import React, { useState, useEffect } from 'react'
-
 import { createStackNavigator } from '@react-navigation/stack'
-import { LoginScreen, RegisterScreen } from '../../screens'
+import React, { useEffect, useState } from 'react'
 import { COLORS } from '../../assets'
+import { LoginScreen, RegisterScreen } from '../../screens'
 
 const Stack = createStackNavigator()
 
 export function LoginStack(props) {
 	const { navigation, route } = props
 	const { setToken } = route.params
+	const { setUserType } = route.params
 	const [tokenStack, setTokenStack] = useState(undefined)
+	const [userTypeStack, setUserTypeStack] = useState(undefined)
 
 	useEffect(() => {
 		if (tokenStack) {
 			setToken(tokenStack)
 		}
 	}, [tokenStack])
+
+	useEffect(() => {
+		if (userTypeStack) {
+			setUserType(userTypeStack)
+		}
+	}, [userTypeStack])
 
 	return (
 		<Stack.Navigator
@@ -29,9 +36,14 @@ export function LoginStack(props) {
 				},
 				headerBackTitleVisible: false,
 			}}>
-			<Stack.Screen initialParams={{ setTokenStack }} component={LoginScreen} name='LoginScreen' options={{ title: 'Login' }} />
 			<Stack.Screen
-				initialParams={{ setTokenStack }}
+				initialParams={{ setTokenStack, setUserTypeStack }}
+				component={LoginScreen}
+				name='LoginScreen'
+				options={{ title: 'Login' }}
+			/>
+			<Stack.Screen
+				initialParams={{ setTokenStack, setUserTypeStack }}
 				component={RegisterScreen}
 				name='RegisterScreen'
 				options={{ title: 'Cadastro' }}

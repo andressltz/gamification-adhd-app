@@ -18,7 +18,7 @@ export default StyleSheet.create({
 	},
 	secondColumn: {
 		flex: 0.9,
-		marginLeft: 5,
+		marginLeft: 8,
 	},
 	achievement: {
 		textAlign: 'center',
