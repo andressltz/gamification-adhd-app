@@ -1,3 +1,4 @@
+import PWAInstall from '@khmyznikov/pwa-install/react-legacy'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useState } from 'react'
 import { ActivityIndicator, View } from 'react-native'
@@ -88,6 +89,7 @@ export function LoginScreen(props) {
 				/>
 
 				<Button label='Cadastrar' onPress={() => onButtonRegisterPress()} />
+				<PWAInstall></PWAInstall>
 			</View>
 		)
 	}
