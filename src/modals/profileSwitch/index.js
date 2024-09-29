@@ -1,6 +1,5 @@
 import React from 'react'
 import { FlatList, Modal, Text, TouchableOpacity, View } from 'react-native'
-import { StarRatingDisplay } from 'react-native-star-rating-widget'
 import FontAwesomeIcon from 'react-native-vector-icons/dist/FontAwesome'
 import { COLORS } from '../../assets'
 import { EmptyList } from '../../components'
@@ -32,9 +31,7 @@ export function ProfileSwitchModal(props) {
 								renderItem={({ item }) => (
 									<View>
 										<View style={style.profileItem}>
-											<Text style={style.stepItem}>
-												{item.name} - {item.id}
-											</Text>
+											<Text style={style.stepItem}>{item.name}</Text>
 											<TouchableOpacity
 												activeOpacity={0.6}
 												style={[style.actionButton, style.greenBorder]}

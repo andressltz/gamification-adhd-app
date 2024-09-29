@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, TextInput, View } from 'react-native'
+import { COLORS } from '../../assets'
 import styles from './styles'
 
 export function Input(props) {
@@ -25,13 +26,17 @@ export function Input(props) {
 				keyboardType={type}
 				inputMode={inputMode}
 				placeholder={placeholder}
+				placeholderTextColor={COLORS.GREY_DARK}
 				value={value}
 				onChangeText={onChangeText}
 				autoCorrect={autoCorrect}
 				autoCapitalize={autoCapitalize}
 				secureTextEntry={secureTextEntry}
 				readOnly={readOnly}
+				disabled={readOnly}
 			/>
 		</View>
 	)
+
+	// to show password on form: https://www.geeksforgeeks.org/how-to-show-and-hide-password-in-react-native/
 }

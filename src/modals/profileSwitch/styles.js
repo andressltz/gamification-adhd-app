@@ -5,6 +5,7 @@ export default StyleSheet.create({
 	modal: {
 		flex: 1,
 		justifyContent: 'center',
+		backgroundColor: 'rgba(50,47,55,0.4)',
 	},
 	modalContainer: {
 		backgroundColor: COLORS.WHITE,
@@ -18,11 +19,13 @@ export default StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 4,
 		elevation: 5,
+		flex: 0.9,
 	},
 	container: {
 		paddingHorizontal: 35,
 		paddingBottom: 25,
 		paddingTop: 15,
+		flex: 1,
 	},
 	actionContainer: {
 		paddingHorizontal: 20,

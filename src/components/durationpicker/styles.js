@@ -21,6 +21,8 @@ export default StyleSheet.create({
 		marginTop: 2,
 		paddingLeft: 5,
 		paddingRight: 5,
+		backgroundColor: COLORS.WHITE,
+		paddingVertical: 10,
 	},
 	overlay: {
 		width: '100%',

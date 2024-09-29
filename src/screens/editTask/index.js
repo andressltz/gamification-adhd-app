@@ -174,7 +174,7 @@ export function EditTaskScreen(props) {
 							type='datetime'
 							date={dateToStart}
 							setDate={setDateToStart}
-							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
+							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 1 }}
 						/>
 						{/* <CompDatePicker
 						useState={myUseState}

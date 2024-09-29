@@ -21,6 +21,8 @@ export default StyleSheet.create({
 		marginTop: 2,
 		paddingLeft: 5,
 		paddingRight: 5,
+		backgroundColor: COLORS.WHITE,
+		paddingVertical: 10,
 	},
 	overlay: {
 		width: '100%',
@@ -28,6 +30,7 @@ export default StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
+		backgroundColor: 'rgba(50,47,55,0.4)',
 	},
 	viewModal: {
 		// position: 'absolute',
