@@ -23,7 +23,7 @@ export function TaskSinopseModal(props) {
 						<View style={style.container}>
 							<Text style={style.title}>Detalhes da tarefa</Text>
 							<Text style={style.title}>({task.title})</Text>
-							{task.timeToDo ? <Text style={style.duration}>Tempo proposto {task.timeToDoFormated}</Text> : null}
+							{task.timeToDo ? <Text style={style.duration}>Tempo proposto {task.timeToDoFormatted}</Text> : null}
 
 							{task.steps ? (
 								<View style={style.itemsContainer}>

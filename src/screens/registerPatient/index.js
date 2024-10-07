@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, ScrollView, View } from 'react-native'
-import { Button, Input, Selection, Toast } from '../../components'
+import { Button, Input, InputMask, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 
@@ -79,7 +79,7 @@ export function RegisterPatientScreen(props) {
 						readOnly={true}
 					/>
 
-					<Input
+					<InputMask
 						label='Telefone:'
 						placeholder='(11) 98765-4321'
 						type='phone-pad'
@@ -88,6 +88,7 @@ export function RegisterPatientScreen(props) {
 						autoCorrect={false}
 						autoCapitalize='none'
 						value={phone}
+						mask={['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
 					/>
 
 					<Selection

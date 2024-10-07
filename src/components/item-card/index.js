@@ -9,7 +9,7 @@ import { COLORS } from '../../assets/colors'
 import { Button } from '../button'
 
 export function ItemCard(props) {
-	const { title, status, qtyStars, dateToStart, timeToStart, duration, id, onPress = () => {} } = props
+	const { title, status, qtyStars, dateTimeToStart, duration, id, onPress = () => {} } = props
 
 	function getDateToDo(date, time) {
 		return moment(date).format('L').concat(' - ').concat(moment(time).format('LT'))
@@ -67,7 +67,7 @@ export function ItemCard(props) {
 			<View style={styles.thirdLine}>
 				<View style={styles.date}>
 					<FontAwesomeIcon name='calendar' style={styles.dateText} />
-					<Text style={styles.dateText}>{getDateToDo(dateToStart, timeToStart)}</Text>
+					<Text style={styles.dateText}>{getDateToDo(dateTimeToStart, dateTimeToStart)}</Text>
 				</View>
 				{duration ? <Text style={styles.duration}>Tempo da tarefa {duration}</Text> : null}
 			</View>

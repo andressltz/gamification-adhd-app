@@ -1,5 +1,7 @@
 export { Button } from './button'
 export { Input } from './input'
+export { InputMask } from './input-mask'
+export { InputDateMask } from './input-date-mask'
 export { ItemCard } from './item-card'
 export { AchievementCard } from './achievement-card'
 export { UserCard } from './user-card'

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, ScrollView, View } from 'react-native'
-import { Button, Check, CompDatePicker, CompDurationPicker, Input, Selection, Toast } from '../../components'
+import { Button, Check, Input, InputDateMask, Selection, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 
@@ -21,8 +21,8 @@ export function NewTaskScreen(props) {
 	const [qtyStars, setFormQtyStars] = useState(null)
 	const [lostStarDoNotDo, setLostStarDoNotDo] = useState(null)
 	const [lostStarDelay, setLostStarDelay] = useState(null)
-	const [dateToStart, setDateToStart] = useState(new Date())
-	const [duration, setFormDuration] = useState(0)
+	const [dateToStart, setDateToStart] = useState(null)
+	const [duration, setFormDuration] = useState(null)
 	const [hasAchievement, setFormHasAchievement] = useState(null)
 	const [achievement, setFormAchievement] = useState(null)
 
@@ -33,6 +33,75 @@ export function NewTaskScreen(props) {
 		{ label: '4 estrelas', value: '4' },
 		{ label: '5 estrelas', value: '5' },
 	]
+
+	const DATE_DDMMYYYY_HHMM = (text) => {
+		let secondDigitDayMask = /\d/
+
+		let secondDigitMonthMask = /\d/
+
+		let secondDigitHourMask = /\d/
+
+		if (text) {
+			const cleanText = text.replace(/\D+/g, '')
+
+			if (cleanText.charAt(0) === '0') {
+				secondDigitDayMask = /[1-9]/
+			}
+			if (cleanText.charAt(0) === '3') {
+				secondDigitDayMask = /[01]/
+			}
+
+			if (cleanText.charAt(2) === '0') {
+				secondDigitMonthMask = /[1-9]/
+			}
+			if (cleanText.charAt(2) === '1') {
+				secondDigitMonthMask = /[012]/
+			}
+
+			if (cleanText.charAt(8) === '0') {
+				secondDigitHourMask = /[0-9]/
+			}
+			if (cleanText.charAt(8) === '2') {
+				secondDigitHourMask = /[03]/
+			}
+		}
+
+		return [
+			/[0-3]/,
+			secondDigitDayMask,
+			'/',
+			/[0-1]/,
+			secondDigitMonthMask,
+			'/',
+			/[0-2]/,
+			/\d/,
+			/\d/,
+			/\d/,
+			' ',
+			/[0-2]/,
+			secondDigitHourMask,
+			':',
+			/[0-5]/,
+			/\d/,
+		]
+	}
+
+	const DATE_HHMM = (text) => {
+		let secondDigitHourMask = /\d/
+
+		if (text) {
+			const cleanText = text.replace(/\D+/g, '')
+
+			if (cleanText.charAt(0) === '0') {
+				secondDigitHourMask = /[0-9]/
+			}
+			if (cleanText.charAt(0) === '2') {
+				secondDigitHourMask = /[03]/
+			}
+		}
+
+		return [/[0-2]/, secondDigitHourMask, ':', /[0-5]/, /\d/]
+	}
 
 	useEffect(() => {
 		async function getAchievementOptions() {
@@ -142,22 +211,32 @@ export function NewTaskScreen(props) {
 					/>
 
 					<View style={{ flexDirection: 'row' }}>
-						<CompDatePicker
-							useState={myUseState}
+						<InputDateMask
+							autoCorrect={false}
+							autoCapitalize='none'
+							placeholder='Ex: 15/10/2024 19:35'
+							// type='phone-pad'
+							// inputMode='numeric'
 							label='Data e hora inicial:*'
-							type='datetime'
-							date={dateToStart}
-							setDate={setDateToStart}
+							onChangeText={setDateToStart}
+							value={dateToStart}
+							mask={DATE_DDMMYYYY_HHMM}
 							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 1 }}
 						/>
-						{/* <CompDatePicker
-						useState={myUseState}
-						label='Hora inicial:*'
-						type='time'
-						date={hrStart}
-						setDate={setFormHrStart}
-					/> */}
 
+						<InputDateMask
+							autoCorrect={false}
+							autoCapitalize='none'
+							placeholder='Ex: 01:30'
+							// type='phone-pad'
+							// inputMode='numeric'
+							label='Tempo para realização:'
+							onChangeText={setFormDuration}
+							value={duration}
+							mask={[/\d/, /\d/, ':', /[0-5]/, /\d/]}
+							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
+						/>
+						{/*
 						<CompDurationPicker
 							useState={myUseState}
 							label='Tempo para realização:'
@@ -165,7 +244,7 @@ export function NewTaskScreen(props) {
 							date={duration}
 							setDate={setFormDuration}
 							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
-						/>
+						/> */}
 					</View>
 					<Button label='Salvar' onPress={() => onButtonSavePress()} />
 				</ScrollView>

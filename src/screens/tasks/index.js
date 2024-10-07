@@ -141,14 +141,15 @@ export function TasksScreen(props) {
 				<FlatList
 					numColumns={1}
 					data={tasks}
-					ListEmptyComponent={() => <EmptyList canAdd={!isPatient} msg={emptyMsg} msgAdd={patientId ? emptyMsgAdd : emptyMsgSelect} />}
+					ListEmptyComponent={() => (
+						<EmptyList canAdd={!isPatient} msg={emptyMsg} msgAdd={patientId ? emptyMsgAdd : emptyMsgSelect} />
+					)}
 					renderItem={({ item }) => (
 						<ItemCard
 							title={item.title}
 							qtyStars={item.qtyStars}
-							dateToStart={item.dateToStart}
-							timeToStart={item.timeToStart}
-							duration={item.timeToDoFormated}
+							dateTimeToStart={item.dateToStartDate}
+							duration={item.timeToDoFormatted}
 							status={item.status}
 							id={item.id}
 							onPress={() => onButtonTaskPress(item, item.id)}

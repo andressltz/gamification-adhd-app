@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native'
-import { Button, Input, Toast } from '../../components'
+import { Button, Input, InputMask, Toast } from '../../components'
 import { ApiClient } from '../../services'
 import globalStyles from '../../styles'
 import style from './styles'
@@ -66,15 +66,17 @@ export function NewPatientScreen(props) {
 						autoCapitalize='none'
 					/>
 
-					<Input
+					{/* <InputMask
 						label='Informe o telefone do paciente:'
 						placeholder='(11) 98765-4321'
-						onChangeText={setTelephone}
-						value={telephone}
 						type='phone-pad'
+						inputMode='numeric'
+						onChangeText={setTelephone}
 						autoCorrect={false}
 						autoCapitalize='none'
-					/>
+						value={telephone}
+						mask={['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+					/> */}
 
 					<Button label='Vincular paciente' onPress={() => onButtonSavePress()} />
 
