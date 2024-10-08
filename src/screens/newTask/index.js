@@ -236,15 +236,6 @@ export function NewTaskScreen(props) {
 							mask={[/\d/, /\d/, ':', /[0-5]/, /\d/]}
 							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
 						/>
-						{/*
-						<CompDurationPicker
-							useState={myUseState}
-							label='Tempo para realização:'
-							type='duration'
-							date={duration}
-							setDate={setFormDuration}
-							styleProps={{ flex: 0.5, paddingLeft: 0, paddingRight: 0 }}
-						/> */}
 					</View>
 					<Button label='Salvar' onPress={() => onButtonSavePress()} />
 				</ScrollView>

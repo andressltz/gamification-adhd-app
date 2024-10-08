@@ -133,6 +133,8 @@ export function EditTaskScreen(props) {
 
 			await api.get(`/task/${idTask}`).then((response) => {
 				if (response?.data?.data) {
+					setHasError(false)
+
 					setTask(response.data.data)
 					setFormTitle(response.data.data.title)
 					setFormDescription(response.data.data.description)
@@ -143,8 +145,6 @@ export function EditTaskScreen(props) {
 					setFormDuration(response.data.data.timeToDo)
 					setFormHasAchievement(response.data.data.hasAchievement)
 					setFormAchievement(response.data.data.achievementId)
-
-					setHasError(false)
 				} else {
 					setHasError(true)
 					setErrorMessage(response)
@@ -157,6 +157,9 @@ export function EditTaskScreen(props) {
 	}, [route, navigation])
 
 	async function onButtonSavePress() {
+		setIsLoading(true)
+		setHasError(false)
+
 		const response = await api.patch(`/task/${idTask}`, {
 			id: idTask,
 			status: task.status,
@@ -174,11 +177,13 @@ export function EditTaskScreen(props) {
 			ownerId: 1,
 		})
 		if (response?.data?.data) {
+			setHasError(false)
 			navigation.navigate('TasksScreen', { patientId: patientId, patientName: patientName })
 		} else {
 			setHasError(true)
 			setErrorMessage(response)
 		}
+		setIsLoading(false)
 	}
 
 	function myUseState(bool) {

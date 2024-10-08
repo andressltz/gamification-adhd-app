@@ -79,6 +79,9 @@ export const ApiClient = () => {
 	const patch = async (path, body, params) => {
 		try {
 			const response = await api.patch(path, body, params)
+			if (response?.data?.error) {
+				return response.data.error
+			}
 			return response
 		} catch (error) {
 			return errorMessage(error)
