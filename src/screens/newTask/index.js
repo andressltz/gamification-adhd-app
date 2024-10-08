@@ -215,8 +215,8 @@ export function NewTaskScreen(props) {
 							autoCorrect={false}
 							autoCapitalize='none'
 							placeholder='Ex: 15/10/2024 19:35'
-							// type='phone-pad'
-							// inputMode='numeric'
+							type='numeric'
+							inputMode='numeric'
 							label='Data e hora inicial:*'
 							onChangeText={setDateToStart}
 							value={dateToStart}
@@ -228,8 +228,8 @@ export function NewTaskScreen(props) {
 							autoCorrect={false}
 							autoCapitalize='none'
 							placeholder='Ex: 01:30'
-							// type='phone-pad'
-							// inputMode='numeric'
+							type='numeric'
+							inputMode='numeric'
 							label='Tempo para realização:'
 							onChangeText={setFormDuration}
 							value={duration}
