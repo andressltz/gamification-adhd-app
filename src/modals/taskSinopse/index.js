@@ -59,6 +59,7 @@ export function TaskSinopseModal(props) {
 								<View style={style.achievementContainer}>
 									<AchievementCard
 										alwaysEnabled={true}
+										iconCode={task.achievement.image}
 										title={task.achievement.title}
 										status={task.achievement.status}
 										id={task.achievement.id}
