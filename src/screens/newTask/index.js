@@ -62,7 +62,7 @@ export function NewTaskScreen(props) {
 				secondDigitHourMask = /[0-9]/
 			}
 			if (cleanText.charAt(8) === '2') {
-				secondDigitHourMask = /[03]/
+				secondDigitHourMask = /[0-3]/
 			}
 		}
 
