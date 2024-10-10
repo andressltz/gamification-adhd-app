@@ -39,6 +39,11 @@ export default StyleSheet.create({
 		fontSize: 20,
 		marginLeft: 20,
 	},
+	detailLabelDisabled: {
+		fontSize: 20,
+		marginLeft: 20,
+		color: COLORS.GREY,
+	},
 	detailIcon: {},
 	firstColumn: {
 		flexDirection: 'row',
