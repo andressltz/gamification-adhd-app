@@ -128,7 +128,7 @@ export function ProfileScreen(props) {
 						<View style={style.separator} />
 						<View style={style.detailCard}>
 							<FontAwesomeIcon name='phone' size={35} color={COLORS.GREY_DARK} style={style.detailIcon} />
-							{user.phoneFormatte ? (
+							{user.phoneFormatted ? (
 								<Text style={style.detailLabel}>{user.phoneFormatted}</Text>
 							) : (
 								<Text style={style.detailLabelDisabled}> não informado</Text>
